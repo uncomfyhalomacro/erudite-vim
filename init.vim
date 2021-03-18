@@ -3,7 +3,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set number
-set updatetime=100
+set updatetime=60
 
 au CursorHold * checktime
 
@@ -28,7 +28,7 @@ let g:diagnostic_auto_popup_while_jump = 1
 let g:diagnostic_enable_virtual_text = 0
 
 " Keymaps
-nnoremap <silent> <C-k> :lua vim.lsp.buf.hover()<CR>
+"nnoremap <silent> <C-k> :lua vim.lsp.buf.hover()<CR>
 nnoremap <localleader>jf :JuliaFormatterFormat<CR>
 nnoremap <silent> <C-t> :sp<bar>terminal<CR>
 
@@ -37,6 +37,7 @@ augroup MyLSP
     autocmd FileType julia setlocal omnifunc=lua.vim.lsp.omnifunc
     autocmd FileType python setlocal omnifunc=lua.vim.lsp.omnifunc
     autocmd FileType rust setlocal omnifunc=lua.vim.lsp.omnifunc
+    autocmd CursorHold * lua vim.lsp.buf.hover()
     autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics() 
 augroup END
 
