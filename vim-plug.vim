@@ -1,6 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " Make sure you use single quotes
+Plug 'psliwka/vim-smoothie'
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
@@ -26,6 +27,7 @@ Plug '~/my-prototype-plugin'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'glepnir/lspsaga.nvim'
 
 " Julia
 Plug 'JuliaEditorSupport/julia-vim'
