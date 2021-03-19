@@ -3,9 +3,9 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set number
-set updatetime=60
+set updatetime=100
 
-au CursorHold * checktime
+"au CursorHold * checktime
 
 autocmd InsertEnter,InsertLeave * set cul!
 
@@ -17,7 +17,20 @@ source $HOME/.config/nvim/julia.vim
 " LSP
 lua << EOF
 require'lspconfig'.rust_analyzer.setup({on_attach=require'completion'.on_attach})
-require'lspconfig'.julials.setup({on_attach=require'completion'.on_attach})
+require'lspconfig'.julials.setup({
+cmd = { 
+    "julia",
+    "--project=/home/tricks/.julia/packages/LanguageServer/y1ebo/src",
+    "--startup-file=no", 
+    "--history-file=no",
+    "--sysimage=/home/tricks/JuliaLS/languageserver.so",
+    "--sysimage-native-code=yes",
+    "/home/tricks/JuliaLS/languageserver.jl"
+     };
+})
+
+require('lspsaga.codeaction').code_action()
+require('lspsaga.codeaction').range_code_action()
 EOF
 
 set completeopt=menuone,noinsert,noselect
@@ -28,17 +41,32 @@ let g:diagnostic_auto_popup_while_jump = 1
 let g:diagnostic_enable_virtual_text = 0
 
 " Keymaps
-"nnoremap <silent> <C-k> :lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
+nnoremap <silent>K :Lspsaga hover_doc<CR>
+nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
+nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
+nnoremap <silent> <C-p> :lua vim.lsp.buf.references()<CR>
+nnoremap <silent>gd :lua vim.lsp.buf.definition()<CR>
+nnoremap <silent>gD :lua vim.lsp.buf.declaration()<CR>
 nnoremap <localleader>jf :JuliaFormatterFormat<CR>
 nnoremap <silent> <C-t> :sp<bar>terminal<CR>
+nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
+nnoremap <silent> gh :Lspsaga lsp_finder<CR>
+nnoremap <silent><leader>ca :Lspsaga code_action<CR>
+vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>
+nnoremap <silent> <C-[> <cmd>Lspsaga diagnostic_jump_next<CR> 
+nnoremap <silent> <C-[> <cmd>Lspsaga diagnostic_jump_prev<CR>
+nnoremap <silent> <C-k> <cmd>Lspsaga preview_definition<CR>
 
 augroup MyLSP
     autocmd!
     autocmd FileType julia setlocal omnifunc=lua.vim.lsp.omnifunc
     autocmd FileType python setlocal omnifunc=lua.vim.lsp.omnifunc
     autocmd FileType rust setlocal omnifunc=lua.vim.lsp.omnifunc
-    autocmd CursorHold * lua vim.lsp.buf.hover()
-    autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics() 
+    "autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+    autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+    "autocmd CursorMoved * :Lspsaga hover_doc
+    autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
 augroup END
 
 autocmd BufWrite * lua vim.lsp.buf.formatting()
