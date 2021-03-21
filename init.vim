@@ -6,9 +6,6 @@ set expandtab
 set number
 set updatetime=100
 
-"au CursorHold * checktime
-
-autocmd InsertEnter,InsertLeave * set cul!
 
 " Sourcing configurations
 source $HOME/.config/nvim/vim-plug.vim
@@ -19,18 +16,32 @@ source $HOME/.config/nvim/julia.vim
 lua << EOF
 require'lspconfig'.rust_analyzer.setup({on_attach=require'completion'.on_attach})
 require'lspconfig'.julials.setup({
-cmd = { 
-    "julia",
-    "--project=/home/tricks/.julia/packages/LanguageServer/y1ebo/src",
-    "--startup-file=no", 
-    "--history-file=no",
-    "--sysimage=/home/tricks/JuliaLS/languageserver.so",
-    "--sysimage-native-code=yes",
-    "/home/tricks/JuliaLS/languageserver.jl"
-     };
-     on_attach=require'completion'.on_attach
+      on_new_config = function(new_config,new_root_dir)
+      server_path = "/home/tricks/.julia/packages/LanguageServer/y1ebo/src/"
+      cmd = {
+        "julia",
+        "--project="..server_path,
+        "--startup-file=no",
+        "--history-file=no",
+        "--sysimage=/home/tricks/JuliaLS/julials.so",
+        "--sysimage-native-code=yes",
+        "-e", [[
+          using Pkg;
+          Pkg.instantiate()
+          using LanguageServer; using SymbolServer;
+          depot_path = get(ENV, "JULIA_DEPOT_PATH", "")
+          project_path = dirname(something(Base.current_project(pwd()), Base.load_path_expand(LOAD_PATH[2])))
+          # Make sure that we only load packages from this environment specifically.
+          @info "Running language server" env=Base.load_path()[1] pwd() project_path depot_path
+          server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path);
+          server.runlinter = true;
+          run(server);
+        ]]
+    };
+    new_config.cmd = cmd
+    on_attach=require'completion'.on_attach
+    end
 })
-
 require('lspsaga.codeaction').code_action()
 require('lspsaga.codeaction').range_code_action()
 EOF
@@ -75,4 +86,5 @@ augroup MyLSP
     autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
 augroup END
 
+autocmd VimEnter * lua vim.lsp.buf_attach_client()
 autocmd BufWrite * lua vim.lsp.buf.formatting()
