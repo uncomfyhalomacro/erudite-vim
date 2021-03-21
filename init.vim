@@ -1,3 +1,4 @@
+filetype plugin on
 set splitbelow
 set tabstop=4
 set shiftwidth=4
@@ -27,6 +28,7 @@ cmd = {
     "--sysimage-native-code=yes",
     "/home/tricks/JuliaLS/languageserver.jl"
      };
+     on_attach=require'completion'.on_attach
 })
 
 require('lspsaga.codeaction').code_action()
@@ -49,23 +51,27 @@ nnoremap <silent> <C-p> :lua vim.lsp.buf.references()<CR>
 nnoremap <silent>gd :lua vim.lsp.buf.definition()<CR>
 nnoremap <silent>gD :lua vim.lsp.buf.declaration()<CR>
 nnoremap <localleader>jf :JuliaFormatterFormat<CR>
-nnoremap <silent> <C-t> :sp<bar>terminal<CR>
+nnoremap <silent> <C-t> <cmd>Lspsaga open_floaterm<CR>
+nnoremap <silent> T <cmd>Lspsaga close_floaterm<CR>
 nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
 nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 nnoremap <silent><leader>ca :Lspsaga code_action<CR>
 vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>
-nnoremap <silent> <C-[> <cmd>Lspsaga diagnostic_jump_next<CR> 
+nnoremap <silent> <C-]> <cmd>Lspsaga diagnostic_jump_next<CR> 
 nnoremap <silent> <C-[> <cmd>Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent> <C-k> <cmd>Lspsaga preview_definition<CR>
-
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <leader>m <cmd>NERDTreeToggle<CR><bar><cmd>wincmd p<CR>
+nnoremap <C-m> <cmd>NERDTreeToggle<CR>
+nnoremap <F5> :NERDTreeFind<CR>
+autocmd VimEnter * NERDTree | wincmd p
 augroup MyLSP
     autocmd!
     autocmd FileType julia setlocal omnifunc=lua.vim.lsp.omnifunc
     autocmd FileType python setlocal omnifunc=lua.vim.lsp.omnifunc
     autocmd FileType rust setlocal omnifunc=lua.vim.lsp.omnifunc
-    "autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-    autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
-    "autocmd CursorMoved * :Lspsaga hover_doc
+    autocmd CursorHold * Lspsaga show_line_diagnostics
     autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
 augroup END
 
