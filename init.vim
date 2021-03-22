@@ -1,9 +1,12 @@
 filetype plugin on
+set hidden
 set splitbelow
 set tabstop=4
+set mouse=nva
 set shiftwidth=4
 set expandtab
 set number
+set showtabline=1
 set updatetime=100
 
 
@@ -71,12 +74,31 @@ vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>
 nnoremap <silent> <C-]> <cmd>Lspsaga diagnostic_jump_next<CR> 
 nnoremap <silent> <C-[> <cmd>Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent> <C-k> <cmd>Lspsaga preview_definition<CR>
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <leader>m <cmd>NERDTreeToggle<CR><bar><cmd>wincmd p<CR>
-nnoremap <C-m> <cmd>NERDTreeToggle<CR>
-nnoremap <F5> :NERDTreeFind<CR>
-autocmd VimEnter * NERDTree | wincmd p
+
+" Navigations
+"nnoremap <leader>n :NERDTreeFocus<CR>
+"nnoremap <C-n> :NERDTree<CR>
+"nnoremap <leader>m <cmd>NERDTreeToggle<CR><bar><cmd>wincmd p<CR>
+"nnoremap <C-m> <cmd>NERDTreeToggle<CR>
+"nnoremap <F5> :NERDTreeFind<CR>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"autocmd VimEnter * NERDTree | wincmd p
+
+" Netrw
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 3
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Vexplore
+augroup END
+
 augroup MyLSP
     autocmd!
     autocmd FileType julia setlocal omnifunc=lua.vim.lsp.omnifunc
@@ -86,5 +108,5 @@ augroup MyLSP
     autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
 augroup END
 
-autocmd VimEnter * lua vim.lsp.buf_attach_client()
+autocmd BufWritePre * lua vim.lsp.buf_attach_client()
 autocmd BufWrite * lua vim.lsp.buf.formatting()
