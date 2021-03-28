@@ -26,6 +26,8 @@ Plug 'preservim/nerdcommenter'
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim'
+" Navigation
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Julia
 Plug 'JuliaEditorSupport/julia-vim'
