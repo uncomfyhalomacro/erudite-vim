@@ -60,7 +60,6 @@ let g:diagnostic_auto_popup_while_jump = 1
 let g:diagnostic_enable_virtual_text = 0
 
 " Keymaps
-nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
 nnoremap <silent>K :Lspsaga hover_doc<CR>
 nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
 nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
@@ -76,7 +75,7 @@ nnoremap <silent><leader>ca :Lspsaga code_action<CR>
 vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>
 nnoremap <silent> <C-]> <cmd>Lspsaga diagnostic_jump_next<CR> 
 nnoremap <silent> <C-[> <cmd>Lspsaga diagnostic_jump_prev<CR>
-nnoremap <silent> <C-k> <cmd>Lspsaga preview_definition<CR>
+nnoremap <silent> <C-p> <cmd>Lspsaga preview_definition<CR>
 
 " Navigations
 "nnoremap <leader>n :NERDTreeFocus<CR>
@@ -116,9 +115,9 @@ let g:coc_explorer_global_presets = {
 \     'file.child.template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
 \   }
 \ }
-"nmap <silent> <space>e :CocCommand explorer<CR>
-" nnoremap <silent> <leader>e :CocCommand explorer<CR>
-" nmap <space>f :CocCommand explorer --preset floatingRightside<CR>
+map <silent> <space>e :CocCommand explorer<CR>
+nnoremap <silent> <leader>e :CocCommand explorer<CR>
+nmap <space>f :CocCommand explorer --preset floatingRightside<CR>
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " Snippets
