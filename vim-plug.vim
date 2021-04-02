@@ -34,10 +34,9 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'kdheepak/JuliaFormatter.vim'
 
 " Themes
-Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'dracula/vim', { 'as': 'dracula' }
 
 " Completions
 Plug 'nvim-lua/completion-nvim'
 " Initialize plugins
 call plug#end()
-colorscheme dracula
