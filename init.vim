@@ -15,6 +15,7 @@ set undodir=/home/tricks/.local/share/nvim/undo/,/tmp//
 " Sourcing configurations
 source $HOME/.config/nvim/vim-plug.vim
 source $HOME/.config/nvim/julia.vim
+source $HOME/.config/nvim/colorscheme.vim
 " luafile $HOME/.config/nvim/lua/julia.lua  I plan to learn Lua but not now
 
 " LSP
