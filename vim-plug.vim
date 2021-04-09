@@ -21,6 +21,8 @@ Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 " Plugin outside ~/.vim/plugged with post-update hook
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
+" Tools
+Plug 'airblade/vim-gitgutter', { 'branch': 'master' }
 Plug 'preservim/nerdcommenter'
 
 " LSP

@@ -49,6 +49,13 @@ require'lspconfig'.julials.setup({
     on_attach=require'completion'.on_attach
     end
 })
+require'lspconfig'.sumneko_lua.setup({
+    cmd={
+       "lua-language-server",
+       "E",
+       "/usr/share/lua-language-server/main.lua"
+    };
+})
 require('lspsaga.codeaction').code_action()
 require('lspsaga.codeaction').range_code_action()
 EOF
@@ -72,8 +79,8 @@ nnoremap <silent> <C-t> <cmd>Lspsaga open_floaterm<CR>
 nnoremap <silent> T <cmd>Lspsaga close_floaterm<CR>
 nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
 nnoremap <silent> gh :Lspsaga lsp_finder<CR>
-nnoremap <silent><leader>ca :Lspsaga code_action<CR>
-vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>
+nnoremap <silent><leader>C :Lspsaga code_action<CR>
+vnoremap <silent><leader>C :<C-U>Lspsaga range_code_action<CR>
 nnoremap <silent> <C-]> <cmd>Lspsaga diagnostic_jump_next<CR> 
 nnoremap <silent> <C-[> <cmd>Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent> <C-p> <cmd>Lspsaga preview_definition<CR>
@@ -120,6 +127,7 @@ map <silent> <space>e :CocCommand explorer<CR>
 nnoremap <silent> <leader>e :CocCommand explorer<CR>
 nmap <space>f :CocCommand explorer --preset floatingRightside<CR>
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+nmap <space>k <cmd>lua vim.lsp.buf.formatting()<CR>
 
 " Snippets
 " Use <C-l> for trigger snippet expand.
@@ -152,4 +160,9 @@ augroup MyLSP
     autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
 augroup END
 
-autocmd BufWrite * lua vim.lsp.buf.formatting()
+augroup LuaLSP
+    autocmd!
+    autocmd FileType lua setlocal omnifunc=lua.vim.lsp.omnifunc
+    autocmd CursorHold * Lspsaga show_line_diagnostics
+    autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+augroup END
