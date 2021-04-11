@@ -77,8 +77,8 @@ nnoremap <silent> <C-p> :lua vim.lsp.buf.references()<CR>
 nnoremap <silent>gd :lua vim.lsp.buf.definition()<CR>
 nnoremap <silent>gD :lua vim.lsp.buf.declaration()<CR>
 nnoremap <localleader>jf :JuliaFormatterFormat<CR>
-nnoremap <silent> <C-t> <cmd>Lspsaga open_floaterm<CR>
-nnoremap <silent> T <cmd>Lspsaga close_floaterm<CR>
+"nnoremap <silent> <C-t> <cmd>Lspsaga open_floaterm<CR>
+"nnoremap <silent> T <cmd>Lspsaga close_floaterm<CR>
 nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
 nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 nnoremap <silent><leader>C :Lspsaga code_action<CR>
@@ -99,6 +99,11 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <space>e :CocCommand explorer --position left<CR>
 "autocmd VimEnter * NERDTree | wincmd p
+
+" Markdown
+let g:instant_markdown_autostart = 0
+nnoremap <silent> <space>m <cmd>InstantMarkdownPreview<CR>
+nnoremap <silent>M <cmd>InstantMarkdownStop<CR>
 
 " Netrw
 let g:netrw_banner = 0

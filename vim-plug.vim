@@ -35,6 +35,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'kdheepak/JuliaFormatter.vim'
 
+"Vim Slime
+Plug 'jpalardy/vim-slime', { 'branch': 'main' }
+
 " Themes
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'itchyny/lightline.vim', { 'branch': 'master' }
@@ -45,3 +48,6 @@ Plug 'nvim-lua/completion-nvim'
 " Initialize plugins
 call plug#end()
 
+
+let g:slime_target = "kitty"
+let g:slime_default_config = {"window_id": 1, "listen_on": $KITTY_LISTEN_ON}
