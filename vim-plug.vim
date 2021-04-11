@@ -25,6 +25,9 @@ Plug 'preservim/nerdcommenter'
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim'
+
+" Markdown preview
+Plug 'instant-markdown/vim-instant-markdown', { 'for': 'markdown' }
 " Navigation
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -34,6 +37,8 @@ Plug 'kdheepak/JuliaFormatter.vim'
 
 " Themes
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'itchyny/lightline.vim', { 'branch': 'master' }
+
 
 " Completions
 Plug 'nvim-lua/completion-nvim'

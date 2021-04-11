@@ -16,12 +16,14 @@ set undodir=/home/tricks/.local/share/nvim/undo/,/tmp//
 source $HOME/.config/nvim/vim-plug.vim
 source $HOME/.config/nvim/julia.vim
 source $HOME/.config/nvim/colorscheme.vim
+source $HOME/.config/nvim/lightline.vim
 " luafile $HOME/.config/nvim/lua/julia.lua  I plan to learn Lua but not now
 
 " LSP
 " require'lspconfig'.rnix.setup({on_attach=require'completion'.on_attach})
 lua << EOF
 require'lspconfig'.rust_analyzer.setup({on_attach=require'completion'.on_attach})
+require'lspconfig'.jsonls.setup({})
 require'lspconfig'.julials.setup({
       on_new_config = function(new_config,new_root_dir)
       server_path = "/home/tricks/.julia/packages/LanguageServer/y1ebo/src/"
@@ -156,6 +158,7 @@ augroup MyLSP
     autocmd FileType julia setlocal omnifunc=lua.vim.lsp.omnifunc
     autocmd FileType python setlocal omnifunc=lua.vim.lsp.omnifunc
     autocmd FileType rust setlocal omnifunc=lua.vim.lsp.omnifunc
+    autocmd FileType json setlocal omnifunc=lua.vim.ls.omnifunc
     autocmd CursorHold * Lspsaga show_line_diagnostics
     autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
 augroup END
