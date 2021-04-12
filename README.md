@@ -7,7 +7,7 @@ My neovim configuration. This is my way to learn Lua 🌙. Currently underconstr
 - [x] Rust LSP
 - [x] Julia LSP
 - [x] Lua LSP
-- [x] Haskell LSP
+- [ ] Haskell LSP
 - [ ] Move keymappings from vimscript to lua
 - [ ] Move settings from vimscript to lua
 - [ ] Find more todos
