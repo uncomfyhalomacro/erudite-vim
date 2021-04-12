@@ -29,8 +29,8 @@ return require('packer').startup(function()
 		use 'honza/vim-snippets'
 		use 'junegunn/vim-easy-align'
 		use 'psliwka/vim-smoothie' -- for smooth scrolling
-		use 'jpalardy/vim-slime'
 		use 'nvim-lua/completion-nvim'
+        use {'jpalardy/vim-slime', branch='main'}
 
 		-- Language Server Protocol Plugins
 		use 'neovim/nvim-lspconfig'
