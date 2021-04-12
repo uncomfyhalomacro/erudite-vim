@@ -23,6 +23,6 @@
       ]
      }
   },
-  "pairs.enableBackspace": false
-
+  "pairs.enableBackspace": false,
+  "coc.source.emoji.filetypes": ["markdown"]
 }

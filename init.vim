@@ -19,9 +19,8 @@ source $HOME/.config/nvim/colorscheme.vim
 source $HOME/.config/nvim/lightline.vim
 source $HOME/.config/nvim/mappings.vim
 source $HOME/.config/nvim/lsp.vim
-" luafile $HOME/.config/nvim/lua/julia.lua  I plan to learn Lua but not now
 
-
+set completefunc=emoji#complete
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 let g:completion_enable_auto_hover = 1
