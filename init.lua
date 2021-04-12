@@ -7,7 +7,7 @@ require('lspsaga.codeaction').code_action()
 require('lspsaga.codeaction').range_code_action()
 
 -- Themes
-require('colorscheme') -- highlight not working very weird
+require('colorscheme')
 
 -- Settings 
 require('settings')
