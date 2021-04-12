@@ -10,5 +10,6 @@ require('lspsaga.codeaction').range_code_action()
 require('colorscheme') -- highlight not working very weird
 
 -- Settings 
+require('settings')
 -- Using vimscript for now
 vim.cmd('source ~/.config/nvim/vimscripts/settings.vim')
