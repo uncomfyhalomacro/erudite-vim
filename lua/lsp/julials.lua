@@ -1,12 +1,13 @@
-require'lspconfig'.julials.setup{
+require'lspconfig'.julials.setup({
       on_new_config = function(new_config,new_root_dir)
-      executablePath = "/usr/bin/julia-nightly"    
-      server_path = "/home/tricks/.julia/packages/LanguageServer/y1ebo/src/LanguageServer.jl"
+      server_path = "/home/tricks/.julia/packages/LanguageServer/y1ebo/src/"
       cmd = {
-        "julia-nightly",
+        "julia",
         "--project="..server_path,
         "--startup-file=no",
         "--history-file=no",
+        "--sysimage=/home/tricks/Developer/Julia/julials.so",
+        "--sysimage-native-code=yes",
         "-e", [[
           using Pkg;
           Pkg.instantiate()
@@ -20,6 +21,7 @@ require'lspconfig'.julials.setup{
           run(server);
         ]]
     };
-      new_config.cmd = cmd
+    new_config.cmd = cmd
+    on_attach=require'completion'.on_attach
     end
-}
+})
