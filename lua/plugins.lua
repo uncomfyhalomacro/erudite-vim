@@ -31,13 +31,14 @@ return require('packer').startup(function()
 		use 'psliwka/vim-smoothie' -- for smooth scrolling
 		use 'nvim-lua/completion-nvim'
         use {'jpalardy/vim-slime', branch='main'}
+        use {'instant-markdown/vim-instant-markdown', ft = {'markdown'}}
 
 		-- Language Server Protocol Plugins
 		use 'neovim/nvim-lspconfig'
 		use 'glepnir/lspsaga.nvim'
 		use 'onsails/lspkind-nvim'
 		use 'kosayoda/nvim-lightbulb'
-		
+        
 		-- Julia Programming Language Plugins
 		use 'JuliaEditorSupport/julia-vim'
 		use 'kdheepak/JuliaFormatter.vim'

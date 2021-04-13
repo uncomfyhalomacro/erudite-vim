@@ -13,7 +13,6 @@ set directory=$HOME/.local/share/nvim/swap/,/tmp//
 set undodir=$HOME/tricks/.local/share/nvim/undo/,/tmp//
 
 " Sourcing configurations
-source $HOME/.config/nvim/julia.vim
 source $HOME/.config/nvim/mappings.vim
 
 set completefunc=emoji#complete
@@ -47,3 +46,4 @@ augroup LuaLSP
     autocmd CursorHold * Lspsaga show_line_diagnostics
     autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
 augroup END
+
