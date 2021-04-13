@@ -3,6 +3,10 @@
 My neovim configuration. This is my way to learn Lua 🌙. Currently underconstruction and using Vimscript.
 This config was inspired by [NVCode](https://github.com/ChristianChiarulli/nvcode/). I mostly like julia so I am making my own configuration.
 
+## Preview
+![Image](https://github.com/ReneganRonin/nvim-ronin/blob/main/screenshots/dashboard.png)
+![Image](https://github.com/ReneganRonin/nvim-ronin/blob/main/screenshots/rust_julia.png)
+
 ## TODOS
 
 - [x] Rust LSP
