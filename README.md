@@ -18,6 +18,20 @@ This config was inspired by [NVCode](https://github.com/ChristianChiarulli/nvcod
 - [ ] Find more todos
 - [x] Dashboard Startify-like plugin
 - [x] Fzf
+- [ ] liuchengxu/vim-which-key
+- [ ] nvim-treesitter/playground
+- [ ] glepnir/galaxyline.nvim `to replace lightline`
+- [ ] nvim-treesitter/nvim-treesitter
+- [x] wbthomason/packer.nvim `of course`
+- [ ] tpope/vim-surround
+- [ ] easymotion/vim-easymotion
+- [ ] romgrk/barbar.nvim `for better tab bars bro`
+- [ ] skywind3000/asynctasks.vim `for building projects`
+- [ ] junegunn/gv.vim `another git plugin`
+- [ ] tpope/vim-fugitive `another git plugin`
+- [ ] junegunn/goyo.vim `Zen Mode`
+- [ ] kyazdani42/nvim-web-devicons
+- [ ] ryanoasis/vim-devicons
 - [ ] Done 
 
 ### Plugins
