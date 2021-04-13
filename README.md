@@ -15,13 +15,12 @@ This config was inspired by [NVCode](https://github.com/ChristianChiarulli/nvcod
 - [ ] Haskell LSP
 - [ ] Move keymappings from vimscript to lua
 - [ ] Move settings from vimscript to lua
-- [ ] Find more todos
 - [x] Dashboard Startify-like plugin
 - [x] Fzf
 - [ ] liuchengxu/vim-which-key
 - [ ] nvim-treesitter/playground
 - [ ] glepnir/galaxyline.nvim `to replace lightline`
-- [ ] nvim-treesitter/nvim-treesitter
+- [x] nvim-treesitter/nvim-treesitter
 - [x] wbthomason/packer.nvim `of course`
 - [ ] tpope/vim-surround
 - [ ] easymotion/vim-easymotion
