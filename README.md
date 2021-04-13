@@ -1,6 +1,7 @@
 # Neovim Ronin
 
 My neovim configuration. This is my way to learn Lua 🌙. Currently underconstruction and using Vimscript.
+This config was inspired by [NVCode](https://github.com/ChristianChiarulli/nvcode/). I mostly like julia so I am making my own configuration.
 
 ## TODOS
 
@@ -14,3 +15,6 @@ My neovim configuration. This is my way to learn Lua 🌙. Currently underconstr
 - [x] Dashboard Startify-like plugin
 - [x] Fzf
 - [ ] Done 
+
+### Plugins
+I will going to list them soon. For now just refer [here](https://github.com/ReneganRonin/nvim-ronin/blob/main/lua/plugins.lua)
