@@ -34,6 +34,7 @@ return require('packer').startup(function()
 		use 'nvim-lua/completion-nvim'
         use {'jpalardy/vim-slime', branch='main'}
         use {'instant-markdown/vim-instant-markdown', ft = {'markdown'}}
+        use {'nvim-treesitter/nvim-treesitter', cmd = 'TSUpdate'}
 
 		-- Language Server Protocol Plugins
 		use 'neovim/nvim-lspconfig'
