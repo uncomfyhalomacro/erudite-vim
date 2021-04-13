@@ -1,3 +1,6 @@
+-- This is a modified config. Edit it on your own. I am using a sysimage here so go 
+-- to https://discourse.julialang.org/t/neovim-native-lsp-with-julials-using-packagecompiled-languageserver/57659
+-- for further instructions
 require'lspconfig'.julials.setup({
       on_new_config = function(new_config,new_root_dir)
       server_path = "/home/tricks/.julia/packages/LanguageServer/y1ebo/src/"
