@@ -1,34 +1,3 @@
-let g:dashboard_custom_header = [ 
-            \'',
-            \'',
-            \'',
-            \'',
-            \'',
-            \'',
-            \'',
-            \'',
-            \'███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗    ██████╗  ██████╗ ███╗   ██╗██╗███╗   ██╗',
-            \'████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║    ██╔══██╗██╔═══██╗████╗  ██║██║████╗  ██║',
-            \'██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║    ██████╔╝██║   ██║██╔██╗ ██║██║██╔██╗ ██║',
-            \'██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║    ██╔══██╗██║   ██║██║╚██╗██║██║██║╚██╗██║',
-            \'██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║    ██║  ██║╚██████╔╝██║ ╚████║██║██║ ╚████║',
-            \'╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝    ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝',
-            \'',
-            \'',
-            \'',
-            \'',
-            \'',
-            \'',
-            \'',
-            \'',
-            \''
-            \]
-"let g:dashboard_preview_command = 'cat'
-"let g:dashboard_preview_pipeline = 'lolcat'
-"let g:dashboard_preview_file = $HOME/.config/nvim/dashboardlogo.cat
-"let g:dashboard_preview_file_height = 12
-"let g:dashboard_preview_file_width = 80
-
 filetype plugin on
 set hidden
 set splitbelow
@@ -49,10 +18,6 @@ source $HOME/.config/nvim/mappings.vim
 set completefunc=emoji#complete
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
-let g:completion_enable_auto_hover = 1
-let g:completion_enable_auto_popup = 1
-let g:diagnostic_auto_popup_while_jump = 1
-let g:diagnostic_enable_virtual_text = 0
 
 
 augroup MyCocExplorer
