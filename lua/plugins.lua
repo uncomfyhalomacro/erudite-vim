@@ -28,6 +28,8 @@ return require('packer').startup(function()
 		use 'SirVer/ultisnips'
 		use 'honza/vim-snippets'
 		use 'junegunn/vim-easy-align'
+        use 'junegunn/fzf.vim'
+        use {'glepnir/dashboard-nvim', config = vim.cmd('let g:dashboard_default_executive ="fzf"')}
 		use 'psliwka/vim-smoothie' -- for smooth scrolling
 		use 'nvim-lua/completion-nvim'
         use {'jpalardy/vim-slime', branch='main'}
