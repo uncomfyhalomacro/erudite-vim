@@ -19,15 +19,15 @@ require('packer').init({display = {auto_clean = false}})
 
 return require('packer').startup(function()
 		-- Themes
-		use {'dracula/vim', as = 'dracula'}
-		use 'itchyny/lightline.vim'
+        use {'dracula/vim', as = 'dracula'}
+        use 'itchyny/lightline.vim'
 
-		-- Utils
-		use 'airblade/vim-gitgutter'
-		use 'preservim/nerdcommenter'
-		use 'SirVer/ultisnips'
-		use 'honza/vim-snippets'
-		use 'junegunn/vim-easy-align'
+        -- Utils
+        use 'airblade/vim-gitgutter'
+        use 'preservim/nerdcommenter'
+        use 'SirVer/ultisnips'
+        use 'honza/vim-snippets'
+        use 'junegunn/vim-easy-align'
         use 'junegunn/fzf.vim'
         use {'glepnir/dashboard-nvim', config = function (dash)
             vim.g.dashboard_default_executive = "fzf"
@@ -68,15 +68,15 @@ return require('packer').startup(function()
         use {'nvim-treesitter/nvim-treesitter', cmd = 'TSUpdate'}
 
 		-- Language Server Protocol Plugins
-		use 'neovim/nvim-lspconfig'
-		use 'glepnir/lspsaga.nvim'
-		use 'onsails/lspkind-nvim'
-		use 'kosayoda/nvim-lightbulb'
+        use 'neovim/nvim-lspconfig'
+        use 'glepnir/lspsaga.nvim'
+        use 'onsails/lspkind-nvim'
+        use 'kosayoda/nvim-lightbulb'
 
-		-- Julia Programming Language Plugins
-		use 'JuliaEditorSupport/julia-vim'
-		use 'kdheepak/JuliaFormatter.vim'
+        -- Julia Programming Language Plugins
+        use 'JuliaEditorSupport/julia-vim'
+        use 'kdheepak/JuliaFormatter.vim'
 
-		-- COC-neovim
-		use {'neoclide/coc.nvim', branch = 'release'}
+        -- COC-neovim
+        use {'neoclide/coc.nvim', branch = 'release'}
 end)
