@@ -20,16 +20,17 @@ require('packer').init({display = {auto_clean = false}})
 return require('packer').startup(function()
 		-- Themes
         use {'dracula/vim', as = 'dracula'}
-        use 'itchyny/lightline.vim'
+        --use 'itchyny/lightline.vim'
 
         -- Utils
         use 'airblade/vim-gitgutter'
         use 'preservim/nerdcommenter'
+		use {'tpope/vim-fugitive', branch = 'master'}
         use 'SirVer/ultisnips'
         use 'honza/vim-snippets'
         use 'junegunn/vim-easy-align'
         use 'junegunn/fzf.vim'
-        use {'glepnir/dashboard-nvim', config = function (dash)
+        use {'glepnir/dashboard-nvim', config = function ()
             vim.g.dashboard_default_executive = "fzf"
             vim.g.dashboard_custom_section = {
                 last_session = {
@@ -50,16 +51,18 @@ return require('packer').startup(function()
 
                 }
             }
-            vim.cmd('highlight dashboardHeader ctermfg=86')
-            vim.cmd('highlight dashboardFooter ctermfg=190')
-            vim.cmd('highlight dashboardCenter ctermfg=99')
+			--vim.cmd('highlight dashboardHeader ctermfg=86')
+			--vim.cmd('highlight dashboardFooter ctermfg=190')
+			--vim.cmd('highlight dashboardCenter ctermfg=99')
         end}
-		use 'psliwka/vim-smoothie' -- for smooth scrolling
-		use {'nvim-lua/completion-nvim', config = function (complete)
+        use {'glepnir/galaxyline.nvim', branch = 'main', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
+        use 'psliwka/vim-smoothie' -- for smooth scrolling
+        use {'nvim-lua/completion-nvim', config = function ()
             vim.g.completion_enable_auto_hover = 1
             vim.g.completion_enable_auto_popup = 1
         end}
-        use {'jpalardy/vim-slime', branch = 'main', config = function (slime)
+
+        use {'jpalardy/vim-slime', branch = 'main', config = function ()
             vim.g.slime_target = "kitty"
             vim.g.slime_default_config = {window_id= 1, listen_on= os.getenv('KITTY_LISTEN_ON')}
 

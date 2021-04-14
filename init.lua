@@ -12,6 +12,7 @@ require('lspsaga.codeaction').range_code_action()
 
 -- Themes
 require('colorscheme')
+require('ronin-galaxy')
 
 -- Settings
 require('settings')

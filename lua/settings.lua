@@ -18,7 +18,7 @@ vim.o.undodir = os.getenv('HOME').."/.local/share/nvim/undo/, /tmp//"
 vim.o.completefunc = "emoji#complete"
 vim.o.completeopt = "menuone,noinsert,noselect"
 vim.cmd('set shortmess+=c')
-vim.o.termguicolors = false
+vim.o.termguicolors = true
 
 -- Diagnostics
 vim.g.diagnostic_enable_popup_while_jump = 1
