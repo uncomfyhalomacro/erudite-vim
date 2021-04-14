@@ -53,11 +53,17 @@ return require('packer').startup(function()
             vim.cmd('highlight dashboardHeader ctermfg=86')
             vim.cmd('highlight dashboardFooter ctermfg=190')
             vim.cmd('highlight dashboardCenter ctermfg=99')
-        end
-        }
+        end}
 		use 'psliwka/vim-smoothie' -- for smooth scrolling
-		use 'nvim-lua/completion-nvim'
-        use {'jpalardy/vim-slime', branch = 'main'}
+		use {'nvim-lua/completion-nvim', config = function (complete)
+            vim.g.completion_enable_auto_hover = 1
+            vim.g.completion_enable_auto_popup = 1
+        end}
+        use {'jpalardy/vim-slime', branch = 'main', config = function (slime)
+            vim.g.slime_target = "kitty"
+            vim.g.slime_default_config = {window_id= 1, listen_on= os.getenv('KITTY_LISTEN_ON')}
+
+        end}
         use {'instant-markdown/vim-instant-markdown', ft = {'markdown'}}
         use {'nvim-treesitter/nvim-treesitter', cmd = 'TSUpdate'}
 
@@ -66,7 +72,7 @@ return require('packer').startup(function()
 		use 'glepnir/lspsaga.nvim'
 		use 'onsails/lspkind-nvim'
 		use 'kosayoda/nvim-lightbulb'
-        
+
 		-- Julia Programming Language Plugins
 		use 'JuliaEditorSupport/julia-vim'
 		use 'kdheepak/JuliaFormatter.vim'

@@ -1,23 +1,23 @@
-filetype plugin on
-set hidden
-set splitbelow
-set tabstop=4
-set mouse=nva
-set shiftwidth=4
-set expandtab
-set number
-set showtabline=1
-set updatetime=100
-set backupdir=$HOME/.local/share/nvim/backup/,/tmp//
-set directory=$HOME/.local/share/nvim/swap/,/tmp//
-set undodir=$HOME/tricks/.local/share/nvim/undo/,/tmp//
+"filetype plugin on
+"set hidden
+"set splitbelow
+"set tabstop=4
+"set mouse=nva
+"set shiftwidth=4
+"set expandtab
+"set number
+"set showtabline=1
+"set updatetime=100
+"set backupdir=$HOME/.local/share/nvim/backup/,/tmp//
+"set directory=$HOME/.local/share/nvim/swap/,/tmp//
+"set undodir=$HOME/tricks/.local/share/nvim/undo/,/tmp//
 
 " Sourcing configurations
 source $HOME/.config/nvim/mappings.vim
 
-set completefunc=emoji#complete
-set completeopt=menuone,noinsert,noselect
-set shortmess+=c
+"set completefunc=emoji#complete
+"set completeopt=menuone,noinsert,noselect
+"set shortmess+=c
 
 
 augroup MyCocExplorer

@@ -1,10 +1,21 @@
--- Vim Slime
-vim.g.slime_target = "kitty"
-vim.g.slime_default_config = {window_id= 1, listen_on= os.getenv('KITTY_LISTEN_ON')}
-
--- Completions Neovim
-vim.g.completion_enable_auto_hover = 1
-vim.g.completion_enable_auto_popup = 1
+-- Main
+vim.cmd("filetype plugin on")
+vim.o.hidden = true
+vim.o.splitbelow = true
+vim.o.tabstop = 4
+vim.o.mouse = 'cav'
+vim.o.shiftwidth = 4
+vim.o.number = true
+vim.o.expandtab = true
+vim.o.showtabline = 1
+vim.o.updatetime = 100
+vim.o.backupdir = os.getenv('HOME').."/.local/share/nvim/backup/,/tmp//" 
+vim.o.directory = os.getenv('HOME').."/.local/share/nvim/swap/,/tmp//" 
+vim.o.undodir = os.getenv('HOME').."/.local/share/nvim/undo/, /tmp//" 
+vim.o.completefunc = "emoji#complete"
+vim.o.completeopt = "menuone,noinsert,noselect"
+vim.cmd('set shortmess+=c')
+vim.o.termguicolors = false
 
 -- Diagnostics
 vim.g.diagnostic_enable_popup_while_jump = 1
