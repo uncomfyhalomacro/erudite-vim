@@ -9,6 +9,7 @@ require'lspconfig'.julials.setup({
         "--project="..server_path,
         "--startup-file=no",
         "--history-file=no",
+        --"--trace-compile=/home/tricks/Developer/Julia/tracecompile.jl",
         "--sysimage=/home/tricks/Developer/Julia/julials.so",
         "--sysimage-native-code=yes",
         "-e", [[
