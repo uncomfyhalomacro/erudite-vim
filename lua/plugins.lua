@@ -29,10 +29,35 @@ return require('packer').startup(function()
 		use 'honza/vim-snippets'
 		use 'junegunn/vim-easy-align'
         use 'junegunn/fzf.vim'
-        use {'glepnir/dashboard-nvim', config = vim.cmd('let g:dashboard_default_executive ="fzf"')}
+        use {'glepnir/dashboard-nvim', config = function (dash)
+            vim.g.dashboard_default_executive = "fzf"
+            vim.g.dashboard_custom_section = {
+                last_session = {
+                    description = {" Load Last Session        SPC l"},
+                    command = 'SessionLoad'
+                },
+                newfile = {
+                    description = {" New File                 SPC n"},
+                    command = 'DashboardNewFile'
+                },
+                findfile = {
+                    description = {" Find File                SPC F"},
+                    command = 'DashboardFindFile'
+                },
+                history = {
+                    description = {" History                  SPC h"},
+                    command = 'DashboardFindHistory'
+
+                }
+            }
+            vim.cmd('highlight dashboardHeader ctermfg=86')
+            vim.cmd('highlight dashboardFooter ctermfg=190')
+            vim.cmd('highlight dashboardCenter ctermfg=99')
+        end
+        }
 		use 'psliwka/vim-smoothie' -- for smooth scrolling
 		use 'nvim-lua/completion-nvim'
-        use {'jpalardy/vim-slime', branch='main'}
+        use {'jpalardy/vim-slime', branch = 'main'}
         use {'instant-markdown/vim-instant-markdown', ft = {'markdown'}}
         use {'nvim-treesitter/nvim-treesitter', cmd = 'TSUpdate'}
 
