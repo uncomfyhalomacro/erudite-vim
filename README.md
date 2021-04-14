@@ -5,6 +5,7 @@ This config was inspired by [NVCode](https://github.com/ChristianChiarulli/nvcod
 
 ## Preview
 ![Image](https://github.com/ReneganRonin/nvim-ronin/blob/main/screenshots/dashboard.png)
+![Image](https://github.com/ReneganRonin/nvim-ronin/blob/main/screenshots/alt_dashboard.png)
 ![Image](https://github.com/ReneganRonin/nvim-ronin/blob/main/screenshots/rust_julia.png)
 
 ## TODOS
