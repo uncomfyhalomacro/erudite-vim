@@ -8,7 +8,7 @@ require('lspsaga.codeaction').code_action()
 require('lspsaga.codeaction').range_code_action()
 
 -- FileTypes
-require('ftplugin')
+-- require('ftplugin') --sadly not ported to lua yet
 
 -- Themes
 require('colorscheme')
