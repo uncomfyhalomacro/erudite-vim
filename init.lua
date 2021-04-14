@@ -7,6 +7,9 @@ require('lsp')
 require('lspsaga.codeaction').code_action()
 require('lspsaga.codeaction').range_code_action()
 
+-- FileTypes
+require('ftplugin')
+
 -- Themes
 require('colorscheme')
 
