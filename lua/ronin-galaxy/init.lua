@@ -3,13 +3,12 @@ local gls = gl.section
 local extension = require('galaxyline.provider_extensions')
 
 gl.short_line_list = {
-    'dashboard-nvim',
+	'coc-explorer',
+	'dashboard-nvim',
     'vim-slime',
-    'coc-explorer',
     'fugitive',
     'fugitiveblame',
     'lspsaga.nvim',
-    'coc-discord-rpc',
     'packer'
 }
 
@@ -18,18 +17,18 @@ gl.short_line_list = {
 local colors = {
     bg = '#2b2b2b',
     line_bg = '#020202', --'#5e4582'
-    fg = '#aa96d9',
-    fg_green = '#56f500',
+    fg = '#c982ff',
+    fg_green = '#020202',
 
     yellow = '#00e9f5',
     cyan = '#00f5a7',
     darkblue = '#081633',
     green = '#ffffff',
     orange = '#FF8800',
-    purple = '#020202',
+    purple = '#000000',
     magenta = '#bae314',
     blue = '#00f2ff';
-    red = '#ff2f05'
+    red = '#ff0000'
 }
 
 local function lsp_status(status)
@@ -136,7 +135,7 @@ gls.left[2] = {
           [''] = colors.orange,ic = colors.yellow,R = colors.purple,Rv = colors.purple,
           cv = colors.red,ce=colors.red, r = colors.cyan,rm = colors.cyan, ['r?'] = colors.cyan,
           ['!']  = colors.green,t = colors.green,
-          c  = colors.purple,
+          c  = colors.red,
           ['r?'] = colors.red,
           ['r']  = colors.red,
           rm = colors.red,
@@ -200,7 +199,7 @@ gls.left[8] = {
   DiffModified = {
     provider = 'DiffModified',
     condition = checkwidth,
-    icon = ' ',
+    icon = " "..'  ',
     highlight = {colors.orange,colors.line_bg},
   }
 }
@@ -324,6 +323,6 @@ gls.short_line_right[1] = {
     separator = '',
     condition = has_file_type,
     separator_highlight = {colors.purple,colors.bg},
-    highlight = {colors.fg,colors.purple}
+    highlight = {colors.bg,colors.purple}
   }
 }
