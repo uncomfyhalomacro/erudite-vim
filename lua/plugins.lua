@@ -51,9 +51,9 @@ return require('packer').startup(function()
 
                 }
             }
-			--vim.cmd('highlight dashboardHeader ctermfg=86')
-			--vim.cmd('highlight dashboardFooter ctermfg=190')
-			--vim.cmd('highlight dashboardCenter ctermfg=99')
+			--vim.cmd('highlight dashboardHeader ctermfg=213')
+			--vim.cmd('highlight dashboardFooter ctermfg=34')
+			--vim.cmd('highlight dashboardCenter ctermfg=155')
         end}
         use {'glepnir/galaxyline.nvim', branch = 'main', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
         use 'psliwka/vim-smoothie' -- for smooth scrolling
