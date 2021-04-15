@@ -13,6 +13,7 @@ require('lspsaga.codeaction').range_code_action()
 -- Themes
 require('colorscheme')
 require('ronin-galaxy')
+local heads = require('headers')
 
 -- Settings
 require('settings')
@@ -22,50 +23,6 @@ require('settings')
 vim.cmd('source ~/.config/nvim/vimscripts/settings.vim')
 
 -- Dashboard Theme
---vim.g.dashboard_custom_header = { 
---'',
---'',
---'',
-
---[[███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗    ██████╗  ██████╗ ███╗   ██╗██╗███╗   ██╗]]
---[[████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║    ██╔══██╗██╔═══██╗████╗  ██║██║████╗  ██║]]
---[[██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║    ██████╔╝██║   ██║██╔██╗ ██║██║██╔██╗ ██║]]
---[[██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║    ██╔══██╗██║   ██║██║╚██╗██║██║██║╚██╗██║]]
---[[██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║    ██║  ██║╚██████╔╝██║ ╚████║██║██║ ╚████║]]
---[[╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝    ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝]]
---'',
---'',
---'',
---''
---}
-
-vim.g.dashboard_custom_header = {
-'',
-'',
-'',
-'',
-'  ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓    ██▀███   ▒█████   ███▄    █  ██▓ ███▄    █ ',
-' ██ ▀█   █ ▓█   ▀ ▒██▒  ██▒▓██░   █▒▓██▒▓██▒▀█▀ ██▒   ▓██ ▒ ██▒▒██▒  ██▒ ██ ▀█   █ ▓██▒ ██ ▀█   █ ',
-'▓██  ▀█ ██▒▒███   ▒██░  ██▒ ▓██  █▒░▒██▒▓██    ▓██░   ▓██ ░▄█ ▒▒██░  ██▒▓██  ▀█ ██▒▒██▒▓██  ▀█ ██▒',
-'▓██▒  ▐▌██▒▒▓█  ▄ ▒██   ██░  ▒██ █░░░██░▒██    ▒██    ▒██▀▀█▄  ▒██   ██░▓██▒  ▐▌██▒░██░▓██▒  ▐▌██▒',
-'▒██░   ▓██░░▒████▒░ ████▓▒░   ▒▀█░  ░██░▒██▒   ░██▒   ░██▓ ▒██▒░ ████▓▒░▒██░   ▓██░░██░▒██░   ▓██░',
-'░ ▒░   ▒ ▒ ░░ ▒░ ░░ ▒░▒░▒░    ░ ▐░  ░▓  ░ ▒░   ░  ░   ░ ▒▓ ░▒▓░░ ▒░▒░▒░ ░ ▒░   ▒ ▒ ░▓  ░ ▒░   ▒ ▒ ',
-'░ ░░   ░ ▒░ ░ ░  ░  ░ ▒ ▒░    ░ ░░   ▒ ░░  ░      ░     ░▒ ░ ▒░  ░ ▒ ▒░ ░ ░░   ░ ▒░ ▒ ░░ ░░   ░ ▒░',
-'   ░   ░ ░    ░   ░ ░ ░ ▒       ░░   ▒ ░░      ░        ░░   ░ ░ ░ ░ ▒     ░   ░ ░  ▒ ░   ░   ░ ░ ',
-'         ░    ░  ░    ░ ░        ░   ░         ░         ░         ░ ░           ░  ░           ░ ',
-'                                ░                                                                 ',
-'',
-'',
-'',
-'',
-''
-} -- Going to randomize this soon in a separate configuration file
-
-vim.g.dashboard_custom_footer = {"Welcome "..os.getenv('USER')..". Ready for some adventure?"}
--- ugly though. I should create a predetermined color in the future
---vim.g.dashboard_preview_command = 'lolcat --spread=2.0 --seed=23'
---vim.g.dashboard_preview_file = '~/.config/nvim/dashboardlogo.cat'
---vim.g.dashboard_preview_file_height = 15
---vim.g.dashboard_preview_file_width = 95
-
-
+math.randomseed(os.time()) --seed it
+vim.g.dashboard_custom_header = heads.headers[math.random(#heads.headers)]
+vim.g.dashboard_custom_footer = {"Welcome "..os.getenv('USER')..". Ready for some adventure?","  Date: "..os.date()}
