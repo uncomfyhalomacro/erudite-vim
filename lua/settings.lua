@@ -19,6 +19,7 @@ vim.o.completefunc = "emoji#complete"
 vim.o.completeopt = "menuone,noinsert,noselect"
 vim.cmd('set shortmess+=c')
 vim.o.termguicolors = true
+vim.cmd('let &t_ut=\'\'')
 
 -- Set autosave last session
 vim.cmd('autocmd BufWritePost * silent! SessionSave')

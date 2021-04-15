@@ -55,6 +55,9 @@ vim.g.dashboard_custom_header = {
 '         ░    ░  ░    ░ ░        ░   ░         ░         ░         ░ ░           ░  ░           ░ ',
 '                                ░                                                                 ',
 '',
+'',
+'',
+'',
 ''
 } -- Going to randomize this soon in a separate configuration file
 

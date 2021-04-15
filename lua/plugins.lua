@@ -49,11 +49,12 @@ return require('packer').startup(function()
                     description = {" History                  SPC h"},
                     command = 'DashboardFindHistory'
 
+                },
+                coc_explorer = {
+                    description = {" Open File Explorer       SPC f"},
+                    command = 'CocCommand explorer --preset floating'
                 }
             }
-			--vim.cmd('highlight dashboardHeader ctermfg=213')
-			--vim.cmd('highlight dashboardFooter ctermfg=34')
-			--vim.cmd('highlight dashboardCenter ctermfg=155')
         end}
         use {'glepnir/galaxyline.nvim', branch = 'main', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
         use 'psliwka/vim-smoothie' -- for smooth scrolling
