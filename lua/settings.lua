@@ -3,7 +3,7 @@ vim.cmd("filetype plugin on")
 vim.o.hidden = true
 vim.o.splitbelow = true
 vim.o.tabstop = 4
-vim.o.mouse = 'cav'
+vim.o.mouse = 'nvira'
 vim.o.shiftwidth = 4
 vim.wo.number = true
 vim.wo.cursorline = true
@@ -19,6 +19,9 @@ vim.o.completefunc = "emoji#complete"
 vim.o.completeopt = "menuone,noinsert,noselect"
 vim.cmd('set shortmess+=c')
 vim.o.termguicolors = true
+
+-- Set autosave last session
+vim.cmd('autocmd BufWritePost * SessionSave')
 
 -- Diagnostics
 vim.g.diagnostic_enable_popup_while_jump = 1
