@@ -9,15 +9,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute 'packadd packer.nvim'
 end
 
-local my = function(file) require(file) end
-
-vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
-
-require('packer').init({display = {auto_clean = false}})
-
--- Initialize plugins
 
 return require('packer').startup(function()
+	
+	-- packer can manage itself as an optional plugin
+    	use {'wbthomason/packer.nvim'}
+
 		-- Themes
         use {'dracula/vim', as = 'dracula', config = require('plugin_settings.dracula')}
 
