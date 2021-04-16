@@ -28,6 +28,3 @@ vim.cmd('autocmd BufWritePost * silent! SessionSave')
 -- Diagnostics
 vim.g.diagnostic_enable_popup_while_jump = 1
 vim.g.diagnostic_enable_virtual_text = 0
-
--- Mappings
-require('mappings')
