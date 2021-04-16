@@ -8,6 +8,15 @@ This config was inspired by [NVCode](https://github.com/ChristianChiarulli/nvcod
 ![Image](https://github.com/ReneganRonin/nvim-ronin/blob/main/screenshots/alt_dashboard.png)
 ![Image](https://github.com/ReneganRonin/nvim-ronin/blob/main/screenshots/rust_julia.png)
 
+## Prerequisites
+
+- Julia Programming Language
+- Rust Programming Language (install rustup)
+- fzf
+- git
+- treesitter
+
+
 ## TODOS
 
 - [x] Rust LSP
