@@ -1,9 +1,12 @@
 -- Plugins
 require('plugins')
 require('language_providers')
+require('ronin-explorer')
+require('ronin-whichkey')
 
 -- LSP
 require('lsp')
+require('lspsaga').init_lsp_saga()
 require('lspsaga.codeaction').code_action()
 require('lspsaga.codeaction').range_code_action()
 

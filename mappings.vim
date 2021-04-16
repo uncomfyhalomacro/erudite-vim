@@ -12,9 +12,9 @@ nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
 nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 nnoremap <silent><leader>C :Lspsaga code_action<CR>
 vnoremap <silent><leader>C :<C-U>Lspsaga range_code_action<CR>
-nnoremap <silent> <C-]> <cmd>Lspsaga diagnostic_jump_next<CR> 
-nnoremap <silent> <C-[> <cmd>Lspsaga diagnostic_jump_prev<CR>
-nnoremap <silent> <C-p> <cmd>Lspsaga preview_definition<CR>
+nnoremap <silent>gn <cmd>Lspsaga diagnostic_jump_next<CR> 
+nnoremap <silent>gp <cmd>Lspsaga diagnostic_jump_prev<CR>
+nnoremap <silent><C-p> <cmd>Lspsaga preview_definition<CR>
 
 " Navigations
 "nnoremap <leader>n :NERDTreeFocus<CR>

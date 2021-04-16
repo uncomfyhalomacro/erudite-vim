@@ -23,7 +23,9 @@ return require('packer').startup(function()
 
         -- Utils
         use 'airblade/vim-gitgutter'
-		use 'liuchengxu/vim-which-key'
+        use {'AckslD/nvim-whichkey-setup.lua', 
+        requires = {'liuchengxu/vim-which-key'}
+        }
         use 'preservim/nerdcommenter'
 		use {'tpope/vim-fugitive', branch = 'master'}
         use 'SirVer/ultisnips'
@@ -34,24 +36,24 @@ return require('packer').startup(function()
             vim.g.dashboard_default_executive = "fzf"
             vim.g.dashboard_custom_section = {
                 last_session = {
-                    description = {" Load Last Session        SPC l"},
+                    description = {" Load Last Session        SPC l l"},
                     command = 'SessionLoad'
                 },
                 newfile = {
-                    description = {" New File                 SPC n"},
+                    description = {" New File                 SPC n  "},
                     command = 'DashboardNewFile'
                 },
                 findfile = {
-                    description = {" Find File                SPC F"},
+                    description = {" Find File                SPC F  "},
                     command = 'DashboardFindFile'
                 },
                 history = {
-                    description = {" History                  SPC h"},
+                    description = {" History                  SPC h  "},
                     command = 'DashboardFindHistory'
 
                 },
                 coc_explorer = {
-                    description = {" Open File Explorer       SPC f"},
+                    description = {" Open File Explorer       SPC f  "},
                     command = 'CocCommand explorer --preset floating'
                 }
             }
