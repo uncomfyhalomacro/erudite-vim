@@ -20,10 +20,10 @@ require('packer').init({display = {auto_clean = false}})
 return require('packer').startup(function()
 		-- Themes
         use {'dracula/vim', as = 'dracula'}
-        --use 'itchyny/lightline.vim'
 
         -- Utils
         use 'airblade/vim-gitgutter'
+		use 'liuchengxu/vim-which-key'
         use 'preservim/nerdcommenter'
 		use {'tpope/vim-fugitive', branch = 'master'}
         use 'SirVer/ultisnips'
@@ -73,7 +73,7 @@ return require('packer').startup(function()
 
 		-- Language Server Protocol Plugins
         use 'neovim/nvim-lspconfig'
-        use 'glepnir/lspsaga.nvim'
+        use {'glepnir/lspsaga.nvim', branch = 'main'}
         use 'onsails/lspkind-nvim'
         use 'kosayoda/nvim-lightbulb'
 
