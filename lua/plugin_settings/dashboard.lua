@@ -25,3 +25,5 @@ coc_explorer = {
 
 -- Set autosave last session
 vim.cmd('autocmd BufWritePost * silent! SessionSave')
+vim.g.dashboard_custom_header = require('headers')
+vim.g.dashboard_custom_footer = {"   Welcome "..os.getenv('USER')..". Ready for some adventure?","     Date: "..os.date()}
