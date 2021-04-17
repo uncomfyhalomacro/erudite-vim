@@ -25,11 +25,7 @@ local on_attach = function(client, bufnr)
             -- code action
             q = {"<Cmd>lua require('lspsaga.codeaction').code_action()<CR>", 'code action'},
         },
-        r = {
-            name = "+rename",
-            -- rename
-            n = {"<Cmd>lua require('lspsaga.rename').rename()<CR>", 'rename'},
-        },
+        r = {"<Cmd>lua require('lspsaga.rename').rename()<CR>", 'rename func/var/def'}
     }
     local visual_keymap = {l = {
         name = "+lsp",
