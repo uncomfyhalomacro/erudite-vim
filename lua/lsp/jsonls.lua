@@ -1,1 +1,0 @@
-require'lspconfig'.jsonls.setup({})

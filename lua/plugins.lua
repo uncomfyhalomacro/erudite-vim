@@ -48,8 +48,8 @@ return require('packer').startup(function()
         use {'nvim-treesitter/nvim-treesitter', cmd = 'TSUpdate'}
 
 		-- Language Server Protocol Plugins
-        use 'neovim/nvim-lspconfig'
-        use {'glepnir/lspsaga.nvim', branch = 'main'}
+        use {'neovim/nvim-lspconfig'}
+        use {'glepnir/lspsaga.nvim', branch = 'main', config = require('plugin_settings.lspsaga')}
         use 'onsails/lspkind-nvim'
         use 'kosayoda/nvim-lightbulb'
 

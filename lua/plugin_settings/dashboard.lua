@@ -1,7 +1,7 @@
 vim.g.dashboard_default_executive = "fzf"
 vim.g.dashboard_custom_section = {
 last_session = {
-    description = {" Load Last Session        SPC l l"},
+    description = {" Load Last Session        SPC s l"},
     command = 'SessionLoad'
 },
 newfile = {
@@ -22,3 +22,6 @@ coc_explorer = {
     command = 'CocCommand explorer --preset floating'
     }
 }
+
+-- Set autosave last session
+vim.cmd('autocmd BufWritePost * silent! SessionSave')
