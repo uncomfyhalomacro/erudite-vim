@@ -58,5 +58,5 @@ return require('packer').startup(function()
         use 'kdheepak/JuliaFormatter.vim'
 
         -- COC-neovim
-        use {'neoclide/coc.nvim', branch = 'release'}
+        use {'neoclide/coc.nvim', branch = 'release', config = require('plugin_settings.explorer')}
 end)

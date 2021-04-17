@@ -5,20 +5,20 @@ last_session = {
     command = 'SessionLoad'
 },
 newfile = {
-    description = {" New File                 SPC n  "},
+    description = {" New File                 SPC f n"},
     command = 'DashboardNewFile'
 },
 findfile = {
-    description = {" Find File                SPC F  "},
+    description = {" Find File                SPC f f"},
     command = 'DashboardFindFile'
 },
 history = {
-    description = {" History                  SPC h  "},
+    description = {" History                  SPC d h"},
     command = 'DashboardFindHistory'
 
 },
 coc_explorer = {
-    description = {" Open File Explorer       SPC f  "},
+    description = {" Open File Explorer       SPC f e"},
     command = 'CocCommand explorer --preset floating'
-}
+    }
 }
