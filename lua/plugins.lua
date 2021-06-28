@@ -38,6 +38,7 @@ return packer.startup({function()
             })
             end
         }
+        use 'kristijanhusak/orgmode.nvim'
         use {'romgrk/barbar.nvim'}
         use {'AckslD/nvim-whichkey-setup.lua',
             requires = {'liuchengxu/vim-which-key'},
