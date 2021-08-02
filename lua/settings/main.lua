@@ -24,6 +24,7 @@ vim.o.undodir = os.getenv('HOME').."/.local/share/nvim/undo/, /tmp//"
 vim.o.updatetime = 100
 vim.wo.cursorline = true
 vim.wo.number = true
+vim.wo.relativenumber = true
 vim.o.timeoutlen = 1000
 vim.o.timeout = true
 -- Diagnostics

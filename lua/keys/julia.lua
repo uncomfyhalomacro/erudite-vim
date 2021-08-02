@@ -1,8 +1,8 @@
 local keymap = {}
 local julia = {
     name = '+julia',
-    o = {':!kitty @new-window --window-type os --cwd=$PWD julia<CR>:<C-[><CR>', 'open julia repl in kitty'},
-    r = {':!kitty @new-window --cwd=$PWD julia<CR>:<C-[><CR> :%SlimeSend<CR>', 'run code from current buffer'}
+    o = {':!/usr/bin/kitty @new-window --window-type os --cwd=$PWD julia<CR>:<C-[><CR>', 'open julia repl in kitty'},
+    r = {':!/usr/bin/kitty @new-window --cwd=$PWD julia<CR>:<C-[><CR> :%SlimeSend<CR>', 'run code from current buffer'}
 }
 
 keymap.j = julia

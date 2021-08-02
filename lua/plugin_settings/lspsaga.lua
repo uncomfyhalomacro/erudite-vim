@@ -129,9 +129,7 @@ local servers = {
     },
     sumneko_lua = {
         cmd={
-            "/home/tricks/lua-language-server/bin/Linux/lua-language-server",
-            "-E",
-            "/home/tricks/lua-language-server/main.lua"
+            "/usr/bin/lua-language-server",
         };
     },
     texlab = {
