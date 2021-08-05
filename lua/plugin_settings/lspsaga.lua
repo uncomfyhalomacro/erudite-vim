@@ -101,29 +101,44 @@ local servers = {
         filetypes = { "zig", "zir" }
     },
     julials = {
-	  on_new_config = function(new_config,new_root_dir)
-      vim.fn.system([[julia --startup-file=no -q -e 'using Pkg; Pkg.add(["LanguageServer", "SymbolServer", "StaticLint"])]])
-	  server_path = vim.fn.system([[julia --startup-file=no -q -e 'print(dirname(something(Base.current_project(Base.find_package("LanguageServer")))))']])
-	  cmd = {
-			"julia",
-			"--project="..server_path,
-			"--startup-file=no",
-			"--history-file=no",
-			"-e", [[
-			  using Pkg;
-			  Pkg.activate(Base.current_project());
-			  using LanguageServer; using StaticLint; using SymbolServer;
-			  depot_path = join(DEPOT_PATH, ":")
-			  project_path = dirname(something(Base.current_project(pwd()), Base.load_path_expand(LOAD_PATH[2])))
-			  # Make sure that we only load packages from this environment specifically.
-			  @info "Running language server" env=Base.load_path()[1] pwd() project_path depot_path
-			  server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path);
-			  server.runlinter = true;
-			  run(server);
-			]]
-		};
-		new_config.cmd = cmd
-		end
+		settings = {
+			julia = {
+				symbolCacheDownload = true,
+				lint = {
+					missingrefs = "none",
+					iter = true,
+					lazy = true,
+					modname = true
+				},
+				trace = {
+					server = "verbose"
+				}
+			}
+		}
+
+	  --on_new_config = function(new_config,new_root_dir)
+      --vim.fn.system([[julia --startup-file=no -q -e 'using Pkg; Pkg.add(["LanguageServer", "SymbolServer", "StaticLint"])]])
+	  --server_path = vim.fn.system([[julia --startup-file=no -q -e 'print(dirname(something(Base.current_project(Base.find_package("LanguageServer")))))']])
+	  --cmd = {
+			--"julia",
+			--"--project="..server_path,
+			--"--startup-file=no",
+			--"--history-file=no",
+			--"-e", [[
+			  --using Pkg;
+			  --Pkg.activate(Base.current_project());
+			  --using LanguageServer; using StaticLint; using SymbolServer;
+			  --depot_path = join(DEPOT_PATH, ":")
+			  --project_path = dirname(something(Base.current_project(pwd()), Base.load_path_expand(LOAD_PATH[2])))
+			  --# Make sure that we only load packages from this environment specifically.
+			  --@info "Running language server" env=Base.load_path()[1] pwd() project_path depot_path
+			  --server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path);
+			  --server.runlinter = true;
+			  --run(server);
+			--]]
+		--};
+		--new_config.cmd = cmd
+		--end
     },
     sumneko_lua = {
         cmd={
