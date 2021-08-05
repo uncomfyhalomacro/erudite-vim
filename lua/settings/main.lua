@@ -34,3 +34,9 @@ vim.g.diagnostic_enable_virtual_text = 0
 vim.g.latex_to_unicode_auto = 1
 vim.g.latex_to_unicode_suggestions = 0
 vim.g.latex_to_unicode_eager = 1
+
+-- Set shell
+if (os.getenv('HOME') == nil)  -- If `nil`, therefore it is likely to be a Windows system
+then
+	vim.o.shell = 'pwsh-preview.cmd'
+end
