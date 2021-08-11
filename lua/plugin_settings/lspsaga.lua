@@ -26,7 +26,6 @@ local on_attach = function(client, bufnr)
             q = {"<Cmd>lua require('lspsaga.codeaction').code_action()<CR>", 'code action'},
         },
         r = {"<Cmd>lua require('lspsaga.rename').rename()<CR>", 'rename func/var/def'},
-        x = {"<cmd>LspTroubleToggle<CR>", 'list diagnostics'}
     }
     local visual_keymap = {l = {
         name = "+lsp",
@@ -105,7 +104,7 @@ local servers = {
 			julia = {
 				symbolCacheDownload = true,
 				lint = {
-					missingrefs = "none",
+					missingrefs = "all",
 					iter = true,
 					lazy = true,
 					modname = true

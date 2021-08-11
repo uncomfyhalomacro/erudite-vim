@@ -29,6 +29,9 @@ keymap.w = { ':w<CR>', 'write buffer to file' }
 local explorer_key = require('keys.explorer')
 local kitty_key = require('keys.kitty')
 
+
+keymap.x = {"<cmd>LspTroubleToggle<CR>", 'list diagnostics'}
+
 local sessions = {
     name = '+sessions';
     s = {':SessionSave<CR>', 'save current session'};
