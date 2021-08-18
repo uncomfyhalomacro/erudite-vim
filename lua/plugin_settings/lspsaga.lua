@@ -183,10 +183,16 @@ local servers = {
         },
     },
 }
+
+
 for lsp, setup in pairs(servers) do
     setup.on_attach = on_attach
     setup.capabilities = capabilities
     nvim_lsp[lsp].setup(setup)
+    vim.schedule(function ()
+        require("packer").loader("coq_nvim coq.artifacts")
+        nvim_lsp[lsp].setup(require("coq")().lsp_ensure_capabilities(setup))
+    end)
 end
 
 local saga = require('lspsaga')
