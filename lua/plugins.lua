@@ -80,7 +80,7 @@ return packer.startup({
 		use({ "nvim-treesitter/playground" })
 
 		-- Language Server Protocol Plugins --
-		use({ "ReneganRonin/nvim-lspconfig", branch = "julials-fix" })
+		use({ "neovim/nvim-lspconfig", branch = "master" })
 		use({ "glepnir/lspsaga.nvim", branch = "main", config = [[require('plugin_settings.lspsaga')]] })
 		use({
 			"folke/lsp-trouble.nvim",
