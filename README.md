@@ -13,6 +13,8 @@ My neovim configuration. This is my way to learn Lua 🌙. Fully in Lua. I mostl
 - luajit
 - git
 - treesitter
+- kitty
+- tmux
 
 ### Plugins
 

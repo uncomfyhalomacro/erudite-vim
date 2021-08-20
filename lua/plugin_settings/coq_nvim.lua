@@ -1,3 +1,3 @@
 vim.g.coq_settings = {
-    auto_start=true
+	auto_start = true,
 }

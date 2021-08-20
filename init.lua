@@ -6,4 +6,4 @@ vim.cmd "autocmd BufWinEnter * NvimBlamerAuto"
 require('language_providers')
 require('ayu.colors')
 vim.cmd('colorscheme gruvbox')
-vim.o.background = "light"
+vim.o.background = "dark"
