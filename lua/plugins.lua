@@ -95,7 +95,7 @@ return packer.startup({
 
 		-- Julia Programming Language Plugins --
 		use({ "JuliaEditorSupport/julia-vim" })
-		use({ "kdheepak/JuliaFormatter.vim", config = [[require('plugin_settings.JuliaFormatter')]] })
+		use({ "kdheepak/JuliaFormatter.vim", run='julia --startup-file=no --project=. -q -e "using Pkg; Pkg.update()"', config = [[require('plugin_settings.JuliaFormatter')]] })
 	end,
 	config = {
 		display = {
