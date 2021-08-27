@@ -1,20 +1,20 @@
 -- Main
-vim.g.filetype = 'plugin on'
+vim.g.filetype = "plugin on"
 vim.opt.splitright = true
 vim.opt.compatible = false
 vim.o.autochdir = true
 vim.bo.autoindent = true
 vim.bo.expandtab = true
 vim.bo.smartindent = true
-vim.cmd('let &t_ut=\'\'')
-vim.opt.shortmess:append('c')
+vim.cmd("let &t_ut=''")
+vim.opt.shortmess:append("c")
 vim.opt.ts = 4
 vim.opt.sw = 4
 vim.o.cmdheight = 2
-vim.o.completefunc = "emoji#complete"
+--vim.o.completefunc = "emoji#complete"
 vim.o.completeopt = "menuone,noinsert,noselect"
 vim.o.hidden = true
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 vim.o.showtabline = 1
 vim.o.splitbelow = true
 vim.o.termguicolors = true
@@ -33,10 +33,10 @@ vim.g.diagnostic_enable_virtual_text = 0
 -- Latex for Julia
 vim.g.latex_to_unicode_auto = 1
 vim.g.latex_to_unicode_suggestions = 0
-vim.g.latex_to_unicode_eager = 1
+vim.g.latex_to_unicode_eager = 0
+vim.g.latex_to_unicode_tab = "off"
 
 -- Set shell
-if (os.getenv('HOME') == nil)  -- If `nil`, therefore it is likely to be a Windows system
-then
-	vim.o.shell = 'pwsh-preview.cmd'
+if os.getenv("HOME") == nil then
+	vim.o.shell = "pwsh-preview.cmd"
 end

@@ -37,13 +37,23 @@ return packer.startup({
 		})
 
 		-- Utils
-		-- packer
-		use({ "ms-jpq/coq_nvim", branch = "coq", config = [[require('plugin_settings.coq_nvim')]] }) -- main one
+		use({
+			"ms-jpq/coq_nvim",
+			branch = "coq",
+			config = [[require('plugin_settings.coq_nvim')]],
+			run = ":COQdeps",
+		}) -- main one
 		use({ "ms-jpq/coq.artifacts", branch = "artifacts" }) -- 9000+ Snippets
+		use({ "ms-jpq/chadtree", branch = "chad", run = ":CHADdeps" })
 
 		use("nvim-lua/lsp-status.nvim")
-		use("kyazdani42/nvim-tree.lua")
-		use("andweeb/presence.nvim")
+		--use("kyazdani42/nvim-tree.lua")
+		use({
+			"andweeb/presence.nvim",
+			config = function()
+				require("presence"):setup({ auto_update = true })
+			end,
+		})
 		use({
 			"ttys3/nvim-blamer.lua",
 			config = function()
@@ -95,7 +105,11 @@ return packer.startup({
 
 		-- Julia Programming Language Plugins --
 		use({ "JuliaEditorSupport/julia-vim" })
-		use({ "kdheepak/JuliaFormatter.vim", run='julia --startup-file=no --project=. -q -e "using Pkg; Pkg.update()"', config = [[require('plugin_settings.JuliaFormatter')]] })
+		use({
+			"kdheepak/JuliaFormatter.vim",
+			run = 'julia --startup-file=no --project=. -e "using Pkg; Pkg.update()"',
+			config = [[require('plugin_settings.JuliaFormatter')]],
+		})
 	end,
 	config = {
 		display = {
