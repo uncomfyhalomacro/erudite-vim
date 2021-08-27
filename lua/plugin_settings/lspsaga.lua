@@ -108,17 +108,17 @@ local servers = {
 		filetypes = { "zig", "zir" },
 	},
 	julials = {
-		settings = {
-			julia = {
-				symbolCacheDownload = true,
-				lint = {
-					missingrefs = "all",
-					iter = true,
-					lazy = true,
-					modname = true,
-				},
-			},
-		},
+		--settings = {
+			--julia = {
+				--symbolCacheDownload = true,
+				--lint = {
+					--missingrefs = "all",
+					--iter = true,
+					--lazy = true,
+					--modname = true,
+				--},
+			--},
+		--},
 
 		--on_new_config = function(new_config, new_root_dir)
 		--vim.fn.system(
