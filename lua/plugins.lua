@@ -35,6 +35,7 @@ return packer.startup({
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
 			config = [[require('plugin_settings.lualine')]],
 		})
+		use("tiagofumo/vim-nerdtree-syntax-highlight")
 
 		-- Utils
 		use({
@@ -44,7 +45,17 @@ return packer.startup({
 			run = ":COQdeps",
 		}) -- main one
 		use({ "ms-jpq/coq.artifacts", branch = "artifacts" }) -- 9000+ Snippets
-		use({ "ms-jpq/chadtree", branch = "chad", run = ":CHADdeps" })
+		use({
+			"ms-jpq/chadtree",
+			branch = "chad",
+			run = ":CHADdeps",
+			config = function()
+				local chadtree_settings = { theme = {
+					text_colour_set = "env",
+				} }
+				vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
+			end,
+		})
 
 		use("nvim-lua/lsp-status.nvim")
 		--use("kyazdani42/nvim-tree.lua")
