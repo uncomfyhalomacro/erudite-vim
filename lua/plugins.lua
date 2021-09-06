@@ -48,15 +48,22 @@ return packer.startup({
 		use({
 			"ms-jpq/chadtree",
 			branch = "chad",
-			run = ":CHADdeps",
-			config = function()
-				local chadtree_settings = { theme = {
-					text_colour_set = "env",
-				} }
+			run = "python3 -m chadtree deps",
+			requires = { "ryanoasis/vim-devicons", opt = true },
+			config = function ()
+				local chadtree_settings = {
+					theme = {
+						icon_glyph_set = "devicons",
+						text_colour_set = "nerdtree_syntax_dark"
+					}
+				}
 				vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
-			end,
+			end
 		})
-
+		use({
+			"kyazdani42/nvim-tree.lua",
+			requires = "kyazdani42/nvim-web-devicons",
+		})
 		use("nvim-lua/lsp-status.nvim")
 		--use("kyazdani42/nvim-tree.lua")
 		use({
