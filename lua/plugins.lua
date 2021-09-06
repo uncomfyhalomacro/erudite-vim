@@ -29,7 +29,7 @@ return packer.startup({
 		use({ "dracula/vim", as = "dracula" })
 		use("folke/tokyonight.nvim")
 		use("Shatur/neovim-ayu")
-		use({ "npxbr/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
+		use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
 		use({
 			"hoob3rt/lualine.nvim",
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -54,7 +54,7 @@ return packer.startup({
 				local chadtree_settings = {
 					theme = {
 						icon_glyph_set = "devicons",
-						text_colour_set = "nerdtree_syntax_dark"
+						text_colour_set = "env"
 					}
 				}
 				vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
