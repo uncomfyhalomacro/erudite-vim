@@ -72,15 +72,6 @@ return packer.startup({
 				require("presence"):setup({ auto_update = true })
 			end,
 		})
-		use({
-			"ttys3/nvim-blamer.lua",
-			config = function()
-				require("nvim-blamer").setup({
-					enable = true,
-					format = "%committer │ %committer-time-human │ %summary",
-				})
-			end,
-		})
 		use("kristijanhusak/orgmode.nvim")
 		use({ "romgrk/barbar.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
 		use({
@@ -104,21 +95,32 @@ return packer.startup({
 			branch = "main",
 			config = [[require('plugin_settings.vim-slime')]],
 		})
+
+		-- Some stuff I need to disable for now because MS Windows succs
         if os.getenv("HOME") ~= nil then
 		    use({ "nvim-treesitter/nvim-treesitter", config = [[require('plugin_settings.treesitter')]], run = ":TSUpdate" })
 		    use({ "nvim-treesitter/playground" })
-        end
+			use({
+				"ttys3/nvim-blamer.lua",
+				config = function()
+					require("nvim-blamer").setup({
+						enable = true,
+						format = "%committer │ %committer-time-human │ %summary",
+					})
+				end,
+			})
+		end
 
-		-- Language Server Protocol Plugins --
-		use({ "neovim/nvim-lspconfig", branch = "master" })
-		use({ "glepnir/lspsaga.nvim", branch = "main", config = [[require('plugin_settings.lspsaga')]] })
-		use({
-			"folke/lsp-trouble.nvim",
-			requires = "kyazdani42/nvim-web-devicons",
-			config = function()
-				require("trouble").setup({})
-			end,
-		})
+			-- Language Server Protocol Plugins --
+			use({ "neovim/nvim-lspconfig", branch = "master" })
+			use({ "glepnir/lspsaga.nvim", branch = "main", config = [[require('plugin_settings.lspsaga')]] })
+			use({
+				"folke/lsp-trouble.nvim",
+				requires = "kyazdani42/nvim-web-devicons",
+				config = function()
+					require("trouble").setup({})
+				end,
+			})
 		--use 'ziglang/zig.vim'
 		use("onsails/lspkind-nvim")
 		use("kosayoda/nvim-lightbulb")
