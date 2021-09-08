@@ -104,8 +104,10 @@ return packer.startup({
 			branch = "main",
 			config = [[require('plugin_settings.vim-slime')]],
 		})
-		use({ "nvim-treesitter/nvim-treesitter", config = [[require('plugin_settings.treesitter')]], run = ":TSUpdate" })
-		use({ "nvim-treesitter/playground" })
+        if os.getenv("HOME") ~= nil then
+		    use({ "nvim-treesitter/nvim-treesitter", config = [[require('plugin_settings.treesitter')]], run = ":TSUpdate" })
+		    use({ "nvim-treesitter/playground" })
+        end
 
 		-- Language Server Protocol Plugins --
 		use({ "neovim/nvim-lspconfig", branch = "master" })

@@ -25,7 +25,15 @@ vim.g.dashboard_custom_section = {
 -- Set autosave last session
 vim.cmd("autocmd BufWritePost * silent! SessionSave")
 vim.g.dashboard_custom_header = require("headers")
-vim.g.dashboard_custom_footer = {
-	"   Welcome " .. os.getenv("USER") .. ". Ready for some adventure?",
-	"     Date: " .. os.date(),
-}
+if os.getenv("HOME") == nil then
+
+    vim.g.dashboard_custom_footer = {
+	    "   Welcome " .. os.getenv("USERNAME") .. ". Ready for some adventure?",
+	    "     			Date: " .. os.date(),
+    }
+else
+    vim.g.dashboard_custom_footer = {
+	    "   Welcome " .. os.getenv("USER") .. ". Ready for some adventure?",
+	    "     Date: " .. os.date(),
+    }
+end
