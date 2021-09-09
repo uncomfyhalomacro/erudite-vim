@@ -27,6 +27,32 @@ return packer.startup({
 		})
 		-- Themes
 		use({ "dracula/vim", as = "dracula" })
+		use({
+			"xiyaowong/nvim-transparent",
+			config = function()
+				require("transparent").setup({
+					enable = true, -- boolean: enable transparent
+					extra_groups = { -- table/string: additional groups that should be clear
+						-- In particular, when you set it to 'all', that means all avaliable groups
+
+						-- example of akinsho/nvim-bufferline.lua
+						"BufferLineTabClose",
+						"BufferlineBufferSelected",
+						"BufferLineFill",
+						"BufferLineBackground",
+						"BufferLineSeparator",
+						"BufferLineIndicatorSelected",
+					},
+					exclude = {}, -- table: groups you don't want to clear
+				})
+			end,
+		})
+		use({
+			"akinsho/bufferline.nvim",
+			config = function()
+				require("bufferline").setup()
+			end,
+		})
 		use("folke/tokyonight.nvim")
 		use("Shatur/neovim-ayu")
 		use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
@@ -50,15 +76,15 @@ return packer.startup({
 			branch = "chad",
 			run = "python3 -m chadtree deps",
 			requires = { "ryanoasis/vim-devicons", opt = true },
-			config = function ()
+			config = function()
 				local chadtree_settings = {
 					theme = {
 						icon_glyph_set = "devicons",
-						text_colour_set = "env"
-					}
+						text_colour_set = "env",
+					},
 				}
 				vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
-			end
+			end,
 		})
 		use({
 			"kyazdani42/nvim-tree.lua",
@@ -73,7 +99,7 @@ return packer.startup({
 			end,
 		})
 		use("kristijanhusak/orgmode.nvim")
-		use({ "romgrk/barbar.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
+		--use({ "romgrk/barbar.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
 		use({
 			"AckslD/nvim-whichkey-setup.lua",
 			requires = { "liuchengxu/vim-which-key" },
@@ -97,9 +123,13 @@ return packer.startup({
 		})
 
 		-- Some stuff I need to disable for now because MS Windows succs
-        if os.getenv("HOME") ~= nil then
-		    use({ "nvim-treesitter/nvim-treesitter", config = [[require('plugin_settings.treesitter')]], run = ":TSUpdate" })
-		    use({ "nvim-treesitter/playground" })
+		if os.getenv("HOME") ~= nil then
+			use({
+				"nvim-treesitter/nvim-treesitter",
+				config = [[require('plugin_settings.treesitter')]],
+				run = ":TSUpdate",
+			})
+			use({ "nvim-treesitter/playground" })
 			use({
 				"ttys3/nvim-blamer.lua",
 				config = function()
@@ -111,16 +141,16 @@ return packer.startup({
 			})
 		end
 
-			-- Language Server Protocol Plugins --
-			use({ "neovim/nvim-lspconfig", branch = "master" })
-			use({ "glepnir/lspsaga.nvim", branch = "main", config = [[require('plugin_settings.lspsaga')]] })
-			use({
-				"folke/lsp-trouble.nvim",
-				requires = "kyazdani42/nvim-web-devicons",
-				config = function()
-					require("trouble").setup({})
-				end,
-			})
+		-- Language Server Protocol Plugins --
+		use({ "neovim/nvim-lspconfig", branch = "master" })
+		use({ "glepnir/lspsaga.nvim", branch = "main", config = [[require('plugin_settings.lspsaga')]] })
+		use({
+			"folke/lsp-trouble.nvim",
+			requires = "kyazdani42/nvim-web-devicons",
+			config = function()
+				require("trouble").setup({})
+			end,
+		})
 		--use 'ziglang/zig.vim'
 		use("onsails/lspkind-nvim")
 		use("kosayoda/nvim-lightbulb")
