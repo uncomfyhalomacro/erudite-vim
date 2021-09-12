@@ -26,32 +26,34 @@ return packer.startup({
 			config = [[require('plugin_settings.markdown_preview')]],
 		})
 		-- Themes
+		use({"NLKNguyen/papercolor-theme", as="paper2"})
+		use({ "yorickpeterse/vim-paper", as = "paper" })
 		use({ "dracula/vim", as = "dracula" })
 		use({
 			"xiyaowong/nvim-transparent",
 			config = function()
 				require("transparent").setup({
-					enable = true, -- boolean: enable transparent
-					extra_groups = { -- table/string: additional groups that should be clear
+					enable = false, -- boolean: enable transparent
+					exclude = { -- table/string: additional groups that should be clear
 						-- In particular, when you set it to 'all', that means all avaliable groups
 
 						-- example of akinsho/nvim-bufferline.lua
 						"BufferLineTabClose",
 						"BufferlineBufferSelected",
-						"BufferLineFill",
-						"BufferLineBackground",
+						--"BufferLineFill",
+						--"BufferLineBackground",
 						"BufferLineSeparator",
-						"BufferLineIndicatorSelected",
+						--"BufferLineIndicatorSelected",
 					},
-					exclude = {}, -- table: groups you don't want to clear
+					--exclude = {}, -- table: groups you don't want to clear
 				})
 			end,
 		})
 		use({
-			"akinsho/bufferline.nvim",
-			config = function()
-				require("bufferline").setup()
-			end,
+		"akinsho/bufferline.nvim",
+		config = function()
+		require("bufferline").setup()
+		end,
 		})
 		use("folke/tokyonight.nvim")
 		use("Shatur/neovim-ayu")
@@ -99,7 +101,7 @@ return packer.startup({
 			end,
 		})
 		use("kristijanhusak/orgmode.nvim")
-		--use({ "romgrk/barbar.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
+		--use({ "romgrk/barbar.nvim", requires = { "kyazdani42/nvim-web-devicons" }, config = function() end })
 		use({
 			"AckslD/nvim-whichkey-setup.lua",
 			requires = { "liuchengxu/vim-which-key" },

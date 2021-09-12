@@ -151,7 +151,7 @@ local servers = {
 	},
 	sumneko_lua = {
 		cmd = {
-			"/usr/bin/lua-language-server",
+			"lua-language-server",
 		},
 	},
 	texlab = {

@@ -50,7 +50,7 @@ keymap.a = {
 	a = { ":Lspsaga code_action<CR>", "code action" },
 	r = { ":<C-U>Lspsaga range_code_action<CR>", "ranged code action" },
 }
-keymap.A = require("keys.barbar")
+keymap.A = require("keys.bufferline")
 keymap.d = {
 	name = "+dashboard",
 	h = { ":DashboardFindHistory<CR>", "browse history" },
