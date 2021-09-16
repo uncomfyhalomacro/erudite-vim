@@ -26,7 +26,7 @@ return packer.startup({
 			config = [[require('plugin_settings.markdown_preview')]],
 		})
 		-- Themes
-		use({"NLKNguyen/papercolor-theme", as="paper2"})
+		use({ "NLKNguyen/papercolor-theme", as = "paper2" })
 		use({ "yorickpeterse/vim-paper", as = "paper" })
 		use({ "dracula/vim", as = "dracula" })
 		use({
@@ -50,10 +50,10 @@ return packer.startup({
 			end,
 		})
 		use({
-		"akinsho/bufferline.nvim",
-		config = function()
-		require("bufferline").setup()
-		end,
+			"akinsho/bufferline.nvim",
+			config = function()
+				require("bufferline").setup()
+			end,
 		})
 		use("folke/tokyonight.nvim")
 		use("Shatur/neovim-ayu")
@@ -66,6 +66,10 @@ return packer.startup({
 		use("tiagofumo/vim-nerdtree-syntax-highlight")
 
 		-- Utils
+		use({"wfxr/minimap.vim", run = "cargo install --locked code-minimap", config = function ()
+        vim.g.minimap_auto_start=1
+        vim.g.minimap_auto_start_win_enter=1
+    end })
 		use({
 			"ms-jpq/coq_nvim",
 			branch = "coq",
