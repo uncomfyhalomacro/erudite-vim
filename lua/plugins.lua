@@ -50,6 +50,13 @@ return packer.startup({
 			end,
 		})
 		use({
+			"lewis6991/impatient.nvim",
+			config = function()
+				require("impatient").setup()
+				require("impatient").enable_profile()
+			end,
+		})
+		use({
 			"akinsho/bufferline.nvim",
 			config = function()
 				require("bufferline").setup()
@@ -66,10 +73,15 @@ return packer.startup({
 		use("tiagofumo/vim-nerdtree-syntax-highlight")
 
 		-- Utils
-		use({"wfxr/minimap.vim", run = "cargo install --locked code-minimap", config = function ()
-        vim.g.minimap_auto_start=1
-        vim.g.minimap_auto_start_win_enter=1
-    end })
+		use({
+			"wfxr/minimap.vim",
+			run = "cargo install --locked code-minimap",
+			config = function()
+				vim.g.minimap_auto_start = 1
+				vim.g.minimap_auto_start_win_enter = 1
+				vim.g.minimap_width = 15
+			end,
+		})
 		use({
 			"ms-jpq/coq_nvim",
 			branch = "coq",
