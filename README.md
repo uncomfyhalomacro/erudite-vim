@@ -1,4 +1,7 @@
-# Erudite Vim
+<center><h1> Erudite Vim </h1><center>
+<img src="https://github.com/uncomfyhalomacro/erudite-vim/blob/main/screenshots/logo.png"></img>
+
+
 
 My neovim configuration. This is my way to learn Lua 🌙. Fully in Lua. I mostly like julia so I am making my own configuration. No more COC stuff and all. Just mostly Lua configuration.
 
