@@ -1,5 +1,5 @@
 <div align="center"><h1> Erudite Vim </h1></div>
-<div align="center"><img align="center" src="https://github.com/uncomfyhalomacro/erudite-vim/blob/main/screenshots/logo.png"></img></div>
+<div align="center"><img align="center" src="https://github.com/uncomfyhalomacro/erudite-vim/blob/main/screenshots/logo.png"></img></div><br/>
 
 
 
