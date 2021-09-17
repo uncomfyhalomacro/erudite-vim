@@ -7,5 +7,5 @@ if os.getenv("HOME") ~= nil then
 end
 require('language_providers')
 require('ayu.colors')
-vim.o.background = "light"
+vim.o.background = "dark"
 vim.cmd('colorscheme PaperColor')

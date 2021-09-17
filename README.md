@@ -1,4 +1,4 @@
-<center><h1> Erudite Vim </h1><center>
+<p align=center><h1> Erudite Vim </h1></p>
 <img src="https://github.com/uncomfyhalomacro/erudite-vim/blob/main/screenshots/logo.png"></img>
 
 
