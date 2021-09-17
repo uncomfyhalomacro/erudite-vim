@@ -25,7 +25,16 @@ vim.g.dashboard_custom_section = {
 -- Set autosave last session
 vim.cmd("autocmd BufWritePost * silent! SessionSave")
 vim.g.dashboard_custom_header = require("headers")
-vim.g.dashboard_custom_footer = { "You who have profound knowledge are here to learn and prosper!" }
+math.randomseed(os.time())
+
+local footers = {
+	"You who have profound knowledge are here to learn and prosper!",
+	"Those who know nothing is but a process for those who are curious of the unknown",
+	"The present is but a mere reflection of the past and the future"
+}
+
+local randomize = math.random(#footers)
+vim.g.dashboard_custom_footer = { footers[randomize] }
 --if os.getenv("HOME") == nil then
 	--vim.g.dashboard_custom_footer = {
 		--"   Welcome " .. os.getenv("USERNAME") .. ". Ready for some adventure?",
