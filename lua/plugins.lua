@@ -18,6 +18,7 @@ packer.init({
 
 return packer.startup({
 	function()
+		use("lewis6991/impatient.nvim")
 		use({
 			"iamcco/markdown-preview.nvim",
 			ft = { "markdown", "m" },
@@ -27,7 +28,9 @@ return packer.startup({
 		})
 		-- Themes
 		use({ "NLKNguyen/papercolor-theme", as = "paper2" })
-		use({ "yorickpeterse/vim-paper", as = "paper" })
+		use({ "uncomfyhalomacro/vim-paper", as = "paper" })
+		use("shaunsingh/nord.nvim")
+		--use({'YorickPeterse/vim-paper', as = "origpaper" })
 		use({ "dracula/vim", as = "dracula" })
 		use({
 			"xiyaowong/nvim-transparent",
@@ -47,13 +50,6 @@ return packer.startup({
 					},
 					--exclude = {}, -- table: groups you don't want to clear
 				})
-			end,
-		})
-		use({
-			"lewis6991/impatient.nvim",
-			config = function()
-				require("impatient").setup()
-				require("impatient").enable_profile()
 			end,
 		})
 		use({
@@ -185,5 +181,6 @@ return packer.startup({
 		display = {
 			open_fn = require("packer.util").float,
 		},
+		compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
 	},
 })
