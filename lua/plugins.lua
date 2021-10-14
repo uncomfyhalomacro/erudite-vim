@@ -14,10 +14,15 @@ packer.init({
 	git = {
 		clone_timeout = 600,
 	},
-})
+}) 
 
 return packer.startup({
 	function()
+		use({
+			"kyazdani42/nvim-tree.lua",
+			requires = "kyazdani42/nvim-web-devicons",
+			config = function() require'nvim-tree'.setup {} end
+		})
 		use("lewis6991/impatient.nvim")
 		use({
 			"iamcco/markdown-preview.nvim",
@@ -78,31 +83,60 @@ return packer.startup({
 				vim.g.minimap_width = 20
 			end,
 		})
+		use("hrsh7th/cmp-nvim-lsp")
+		use("hrsh7th/cmp-buffer")
+		use("hrsh7th/cmp-vsnip")
+		use("hrsh7th/vim-vsnip")
+		use("quangnguyen30192/cmp-nvim-ultisnips")
+		use("SirVer/ultisnips")
 		use({
-			"ms-jpq/coq_nvim",
-			branch = "coq",
-			config = [[require('plugin_settings.coq_nvim')]],
-			run = ":COQdeps",
-		}) -- main one
-		use({ "ms-jpq/coq.artifacts", branch = "artifacts" }) -- 9000+ Snippets
-		use({
-			"ms-jpq/chadtree",
-			branch = "chad",
-			run = "python3 -m chadtree deps",
-			requires = { "ryanoasis/vim-devicons", opt = true },
+			"hrsh7th/nvim-cmp",
 			config = function()
-				local chadtree_settings = {
-					theme = {
-						icon_glyph_set = "devicons",
-						text_colour_set = "env",
+				local cmp = require("cmp")
+
+				cmp.setup({
+					snippet = {
+						expand = function(args)
+							-- For `vsnip` user.
+							vim.fn["vsnip#anonymous"](args.body)
+
+							-- For `luasnip` user.
+							-- require('luasnip').lsp_expand(args.body)
+
+							-- For `ultisnips` user.
+							-- vim.fn["UltiSnips#Anon"](args.body)
+						end,
 					},
-				}
-				vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
+					mapping = {
+						["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+						["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+						["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+						["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+						["<C-d>"] = cmp.mapping.scroll_docs(-4),
+						["<C-f>"] = cmp.mapping.scroll_docs(4),
+						["<C-Space>"] = cmp.mapping.complete(),
+						["<C-e>"] = cmp.mapping.close(),
+						["<CR>"] = cmp.mapping.confirm({
+							behavior = cmp.ConfirmBehavior.Replace,
+							select = true,
+						}),
+					},
+					sources = {
+						{ name = "nvim_lsp" },
+
+						-- For vsnip user.
+						{ name = "vsnip" },
+
+						-- For luasnip user.
+						{ name = "luasnip" },
+
+						-- For ultisnips user.
+						{ name = "ultisnips" },
+
+						{ name = "buffer" },
+					},
+				})
 			end,
-		})
-		use({
-			"kyazdani42/nvim-tree.lua",
-			requires = "kyazdani42/nvim-web-devicons",
 		})
 		use("nvim-lua/lsp-status.nvim")
 		--use("kyazdani42/nvim-tree.lua")

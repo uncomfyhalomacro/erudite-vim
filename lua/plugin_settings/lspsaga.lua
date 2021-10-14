@@ -101,6 +101,7 @@ local servers = {
 	pyright = {},
 	rust_analyzer = {},
 	bashls = {},
+	clangd = {},
 	jsonls = {},
 	hls = {},
 	zls = {
@@ -199,12 +200,8 @@ local servers = {
 
 for lsp, setup in pairs(servers) do
 	setup.on_attach = on_attach
-	setup.capabilities = capabilities
+	setup.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 	nvim_lsp[lsp].setup(setup)
-	vim.schedule(function()
-		require("packer").loader("coq_nvim coq.artifacts")
-		nvim_lsp[lsp].setup(require("coq")().lsp_ensure_capabilities(setup))
-	end)
 end
 
 local saga = require("lspsaga")
