@@ -108,8 +108,8 @@ return packer.startup({
 						end,
 					},
 					mapping = {
-						["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-						["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+						["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+						["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
 						["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
 						["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
 						["<C-d>"] = cmp.mapping.scroll_docs(-4),
@@ -204,7 +204,7 @@ return packer.startup({
 		use("kosayoda/nvim-lightbulb")
 
 		-- Julia Programming Language Plugins --
-		use({ "JuliaEditorSupport/julia-vim" })
+		--use({ "JuliaEditorSupport/julia-vim" })
 		use({
 			"kdheepak/JuliaFormatter.vim",
 			run = 'julia --startup-file=no --project=. -e "using Pkg; Pkg.update()"',
