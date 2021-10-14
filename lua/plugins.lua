@@ -14,14 +14,16 @@ packer.init({
 	git = {
 		clone_timeout = 600,
 	},
-}) 
+})
 
 return packer.startup({
 	function()
 		use({
 			"kyazdani42/nvim-tree.lua",
 			requires = "kyazdani42/nvim-web-devicons",
-			config = function() require'nvim-tree'.setup {} end
+			config = function()
+				require("nvim-tree").setup({})
+			end,
 		})
 		use("lewis6991/impatient.nvim")
 		use({
@@ -101,10 +103,10 @@ return packer.startup({
 							vim.fn["vsnip#anonymous"](args.body)
 
 							-- For `luasnip` user.
-							-- require('luasnip').lsp_expand(args.body)
+							require("luasnip").lsp_expand(args.body)
 
 							-- For `ultisnips` user.
-							-- vim.fn["UltiSnips#Anon"](args.body)
+							vim.fn["UltiSnips#Anon"](args.body)
 						end,
 					},
 					mapping = {
