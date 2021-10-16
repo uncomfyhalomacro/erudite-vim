@@ -11,12 +11,12 @@ if vim.fn.empty(vim.fn.glob(impatient_path)) < 0 then
 end
 
 require('plugins')
+require"packer".compile()
 require('settings')
 
 vim.o.guifont="JuliaMono:h10"
 
 if os.getenv("HOME") ~= nil then
-	vim.cmd "autocmd BufWritePost plugins.lua PackerCompile"
 	vim.cmd "autocmd BufWinEnter * NvimBlamerAuto"
 end
 
