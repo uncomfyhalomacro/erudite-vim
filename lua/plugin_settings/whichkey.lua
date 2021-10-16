@@ -39,9 +39,7 @@ local sessions = {
 keymap.f = explorer_key
 
 -- Check TERM
-if os.getenv("TERM") == "xterm-kitty" then
-	keymap.k = kitty_key
-end
+keymap.k = kitty_key
 keymap.s = sessions
 keymap.c = { name = "+NerdCommenter" }
 keymap.h = { name = "+GitGutter" }

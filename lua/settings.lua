@@ -37,6 +37,6 @@ vim.g.latex_to_unicode_eager = 0
 vim.g.latex_to_unicode_tab = "on"
 
 -- Set shell
-if os.getenv("HOME") == nil then
+if vim.fn.getenv("HOME") == nil then
 	vim.o.shell = "pwsh-preview.cmd"
 end
