@@ -1,12 +1,15 @@
 -- Packer
-local execute = vim.api.nvim_command
 local fn = vim.fn
-
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
 if fn.empty(fn.glob(install_path)) > 0 then
-	execute("!git clone https://github.com/wbthomason/packer.nvim --depth=1 " .. install_path)
-	execute("packadd packer.nvim")
+	packer_bootstrap = fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
+		"https://github.com/wbthomason/packer.nvim",
+		install_path,
+	})
 end
 
 local packer = require("packer")
@@ -195,7 +198,7 @@ return packer.startup({
 		use({ "neovim/nvim-lspconfig", branch = "master" })
 		use({ "glepnir/lspsaga.nvim", branch = "main", config = [[require('plugin_settings.lspsaga')]] })
 		use({
-			"folke/lsp-trouble.nvim",
+			"folke/lsp-troublenvim",
 			requires = "kyazdani42/nvim-web-devicons",
 			config = function()
 				require("trouble").setup({})
@@ -212,11 +215,14 @@ return packer.startup({
 			run = 'julia --startup-file=no --project=. -e "using Pkg; Pkg.update()"',
 			config = [[require('plugin_settings.JuliaFormatter')]],
 		})
+		if packer_bootstrap then
+			require("packer").sync()
+		end
 	end,
 	config = {
 		display = {
 			open_fn = require("packer.util").float,
 		},
-	--	compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
+		compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
 	},
 })

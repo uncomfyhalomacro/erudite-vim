@@ -18,7 +18,7 @@ vim.g.dashboard_custom_section = {
 	},
 	coc_explorer = {
 		description = { " Open File Explorer       SPC f e" },
-		command = "CHADopen",
+		command = "NvimTreeToggle",
 	},
 }
 
