@@ -25,18 +25,20 @@ return packer.startup({
 			"kyazdani42/nvim-tree.lua",
 			requires = "kyazdani42/nvim-web-devicons",
 			config = function()
-				require"nvim-tree".setup {
+				require("nvim-tree").setup({
 					update_cwd = true,
 					update_focused_file = {
 						enable = true,
 						update_cwd = true,
 					},
 					diagnostics = {
-						enable = true
-					}
-				}
+						enable = true,
+					},
+				})
 			end,
 		})
+		use("lukas-reineke/cmp-rg")
+		use({ "mg979/vim-visual-multi", branch = "master" })
 		use("lewis6991/impatient.nvim")
 		use({
 			"iamcco/markdown-preview.nvim",
@@ -102,6 +104,7 @@ return packer.startup({
 		use("hrsh7th/cmp-vsnip")
 		use("hrsh7th/vim-vsnip")
 		use("quangnguyen30192/cmp-nvim-ultisnips")
+		use("saadparwaiz1/cmp_luasnip")
 		use("SirVer/ultisnips")
 		use({
 			"hrsh7th/nvim-cmp",
@@ -115,7 +118,7 @@ return packer.startup({
 							vim.fn["vsnip#anonymous"](args.body)
 
 							-- For `luasnip` user.
-							require("luasnip").lsp_expand(args.body)
+							-- require("luasnip").lsp_expand(args.body)
 
 							-- For `ultisnips` user.
 							vim.fn["UltiSnips#Anon"](args.body)
@@ -142,7 +145,7 @@ return packer.startup({
 						{ name = "vsnip" },
 
 						-- For luasnip user.
-						{ name = "luasnip" },
+						{ name = "cmp_luasnip" },
 
 						-- For ultisnips user.
 						{ name = "ultisnips" },
@@ -207,7 +210,7 @@ return packer.startup({
 		use({ "neovim/nvim-lspconfig", branch = "master" })
 		use({ "glepnir/lspsaga.nvim", branch = "main", config = [[require('plugin_settings.lspsaga')]] })
 		use({
-			"folke/lsp-troublenvim",
+			"folke/lsp-trouble.nvim",
 			requires = "kyazdani42/nvim-web-devicons",
 			config = function()
 				require("trouble").setup({})
