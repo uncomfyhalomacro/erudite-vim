@@ -151,6 +151,8 @@ return packer.startup({
 						{ name = "ultisnips" },
 
 						{ name = "buffer" },
+
+                        { name = "rg" },
 					},
 				})
 			end,
