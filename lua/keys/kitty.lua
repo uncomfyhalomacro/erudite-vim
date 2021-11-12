@@ -15,6 +15,9 @@ elseif vim.fn.getenv("TERM") == "screen" then
 		s = { ":!tmux split-window" .. " -c " .. vim.fn.getcwd() .. "<CR>:<C-[><CR>", "split tmux-window on cwd" },
 	}
 	return tmux
-else
-	return {}
+else 
+	local someterm = {
+		name = "placeholder tmux/kitty"
+	}
+	return someterm
 end

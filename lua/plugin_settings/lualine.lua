@@ -1,10 +1,11 @@
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
-		theme = "tokyonight",
-		component_separators = { "", "" },
-		section_separators = { "", "" },
+		theme = "auto",
+		component_separators = { left = "", right = "" },
+		section_separators = { left = "", right = "" },
 		disabled_filetypes = {},
+		always_divide_middle = true,
 	},
 	sections = {
 		lualine_a = { "mode" },
@@ -14,10 +15,9 @@ require("lualine").setup({
 			"encoding",
 			"fileformat",
 			"filetype",
-			require("lsp-status").status,
-			require("lsp-status").register_progress,
-			require("lsp-status").diagnostics,
-			require("lsp-status").messages,
+			function()
+				return require("lsp-status").status()
+			end,
 		},
 		lualine_y = { "progress" },
 		lualine_z = { "location" },

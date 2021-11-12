@@ -11,7 +11,7 @@ if vim.fn.empty(vim.fn.glob(impatient_path)) < 0 then
 end
 
 require('plugins')
-require"packer".compile()
+--require"packer".compile()
 require('settings')
 
 vim.o.guifont="JuliaMono:h10"
@@ -23,4 +23,6 @@ end
 require('language_providers')
 require('ayu.colors')
 vim.o.background = "dark"
-vim.cmd('colorscheme tokyonight')
+vim.g.transparent_enabled=true
+vim.g.presence_auto_update=true
+vim.cmd('colorscheme PaperColor')

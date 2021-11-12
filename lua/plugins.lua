@@ -57,7 +57,7 @@ return packer.startup({
 			"xiyaowong/nvim-transparent",
 			config = function()
 				require("transparent").setup({
-					enable = false, -- boolean: enable transparent
+					enable = true, -- boolean: enable transparent
 					exclude = { -- table/string: additional groups that should be clear
 						-- In particular, when you set it to 'all', that means all avaliable groups
 
@@ -218,7 +218,7 @@ return packer.startup({
 				require("trouble").setup({})
 			end,
 		})
-		--use 'ziglang/zig.vim'
+        use 'ziglang/zig.vim'
 		use("onsails/lspkind-nvim")
 		use("kosayoda/nvim-lightbulb")
 
