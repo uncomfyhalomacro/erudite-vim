@@ -152,7 +152,7 @@ return packer.startup({
 
 						{ name = "buffer" },
 
-                        { name = "rg" },
+						{ name = "rg" },
 					},
 				})
 			end,
@@ -162,7 +162,13 @@ return packer.startup({
 		use({
 			"andweeb/presence.nvim",
 			config = function()
-				require("presence"):setup({ auto_update = true })
+				require("presence"):setup({
+					auto_update = true,
+					buttons = {
+						{ label = "GitHub Profile", url = "https://github.com/uncomfyhalomacro" },
+						{ label = "Neovim Config", url = "https://github.com/uncomfyhalomacro/erudite-vim" },
+					},
+				})
 			end,
 		})
 		use("kristijanhusak/orgmode.nvim")
@@ -218,7 +224,7 @@ return packer.startup({
 				require("trouble").setup({})
 			end,
 		})
-        use 'ziglang/zig.vim'
+		use("ziglang/zig.vim")
 		use("onsails/lspkind-nvim")
 		use("kosayoda/nvim-lightbulb")
 
