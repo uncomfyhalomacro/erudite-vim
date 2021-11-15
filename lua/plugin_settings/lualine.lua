@@ -18,9 +18,6 @@ require("lualine").setup({
 			function()
 				return require("lsp-status").status()
 			end,
-			require("lsp-status").register_progress(),
-			require("lsp-status").diagnostics(),
-			require("lsp-status").messages(),
 		},
 		lualine_y = { "progress" },
 		lualine_z = { "location" },

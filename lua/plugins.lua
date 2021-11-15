@@ -21,6 +21,7 @@ packer.init({
 
 return packer.startup({
 	function()
+		use("lewis6991/impatient.nvim")
 		use({
 			"kyazdani42/nvim-tree.lua",
 			requires = "kyazdani42/nvim-web-devicons",
@@ -37,9 +38,7 @@ return packer.startup({
 				})
 			end,
 		})
-		use("lukas-reineke/cmp-rg")
 		use({ "mg979/vim-visual-multi", branch = "master" })
-		use("lewis6991/impatient.nvim")
 		use({
 			"iamcco/markdown-preview.nvim",
 			ft = { "markdown", "m" },
@@ -103,6 +102,9 @@ return packer.startup({
 		use("hrsh7th/cmp-buffer")
 		use("hrsh7th/cmp-vsnip")
 		use("hrsh7th/vim-vsnip")
+		use("hrsh7th/cmp-nvim-lsp-document-symbol")
+		use("hrsh7th/cmp-calc")
+		use("lukas-reineke/cmp-rg")
 		use("quangnguyen30192/cmp-nvim-ultisnips")
 		use("saadparwaiz1/cmp_luasnip")
 		use("SirVer/ultisnips")
@@ -153,7 +155,15 @@ return packer.startup({
 						{ name = "buffer" },
 
 						{ name = "rg" },
+						{ name = "calc" },
 					},
+				})
+				require("cmp").setup.cmdline("/", {
+					sources = cmp.config.sources({
+						{ name = "nvim_lsp_document_symbol" },
+					}, {
+						{ name = "buffer" },
+					}),
 				})
 			end,
 		})
@@ -162,13 +172,7 @@ return packer.startup({
 		use({
 			"andweeb/presence.nvim",
 			config = function()
-				require("presence"):setup({
-					auto_update = true,
-					buttons = {
-						{ label = "GitHub Profile", url = "https://github.com/uncomfyhalomacro" },
-						{ label = "Neovim Config", url = "https://github.com/uncomfyhalomacro/erudite-vim" },
-					},
-				})
+				require("presence"):setup({ auto_update = true })
 			end,
 		})
 		use("kristijanhusak/orgmode.nvim")
