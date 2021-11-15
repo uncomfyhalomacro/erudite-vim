@@ -27,7 +27,11 @@ Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/lua/
 
 ### Benchmarks
 
-**CPU**: Intel i5-10300H (8) @ 4.500GHz 
+**CPU**: Intel i5-10300H (8) @ 4.500GHz
+
+Using [impatient.nvim](https://github.com/lewis6991/impatient.nvim), a project that I am happy that exists, my startup time became so fast 🥳
+
+Below is the profiling report after running `:LuaCacheProfile` from impatient.nvim
 
 ```
 ────────────────────────────────────────┬────────────────┬────────────┬────────────┬────────────┬────────────┐
