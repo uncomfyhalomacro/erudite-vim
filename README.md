@@ -18,7 +18,6 @@ My neovim configuration. This is my way to learn Lua 🌙. Fully in Lua. I mostl
 - julia
 - rust-analyzer
 - cargo
-- lua
 - npm
 
 ### Plugins
