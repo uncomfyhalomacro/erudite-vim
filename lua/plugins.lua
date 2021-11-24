@@ -21,6 +21,9 @@ packer.init({
 
 return packer.startup({
 	function()
+		use("nathom/filetype.nvim")
+		use("https://git.sr.ht/~leon_plickat/paige")
+		use("ldelossa/calltree.nvim")
 		use("lewis6991/impatient.nvim")
 		use({
 			"kyazdani42/nvim-tree.lua",
@@ -49,6 +52,7 @@ return packer.startup({
 		-- Themes
 		use({ "NLKNguyen/papercolor-theme", as = "paper2" })
 		use({ "uncomfyhalomacro/vim-paper", as = "paper" })
+		use("shaunsingh/solarized.nvim")
 		use("shaunsingh/nord.nvim")
 		--use({'YorickPeterse/vim-paper', as = "origpaper" })
 		use({ "dracula/vim", as = "dracula" })

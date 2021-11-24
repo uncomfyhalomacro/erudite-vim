@@ -15,11 +15,12 @@ vim.cmd([[
 
 require("language_providers")
 require("ayu.colors")
-vim.o.background = "dark"
-vim.g.transparent_enabled = true
+vim.o.background = "light"
+vim.g.transparent_enabled = false
 vim.g.presence_auto_update = true
 vim.cmd("colorscheme PaperColor")
-vim.o.guifont = "JuliaMono:h10"
+vim.o.guifont = "JuliaMono,Hack Nerd Font,Noto Color Emoji:h10"
+vim.g.did_load_filetypes = 1
 
 if os.getenv("HOME") ~= nil then
 	vim.cmd("autocmd BufWinEnter * NvimBlamerAuto")
