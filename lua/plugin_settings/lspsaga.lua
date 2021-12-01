@@ -109,7 +109,6 @@ local servers = {
 		filetypes = { "zig", "zir" },
 	},
 	julials = {
-        executablePath="/home/uncomfy/.apps/bin/julia17",
 		settings = {
 			julia = {
 				symbolCacheDownload = true,
