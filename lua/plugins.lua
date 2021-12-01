@@ -21,8 +21,67 @@ packer.init({
 
 return packer.startup({
 	function()
-		use("nathom/filetype.nvim")
+		-- Themes
 		use("https://git.sr.ht/~leon_plickat/paige")
+		use({ "NLKNguyen/papercolor-theme", as = "paper2" })
+		use({ "uncomfyhalomacro/vim-paper", as = "paper" })
+		use("shaunsingh/solarized.nvim")
+		use("shaunsingh/nord.nvim")
+		use({ "dracula/vim", as = "dracula" })
+		use({
+			"xiyaowong/nvim-transparent",
+			config = function()
+				require("transparent").setup({
+					enable = true, -- boolean: enable transparent
+					exclude = { -- table/string: additional groups that should be clear
+						-- In particular, when you set it to 'all', that means all avaliable groups
+
+						-- example of akinsho/nvim-bufferline.lua
+						"BufferLineTabClose",
+						"BufferlineBufferSelected",
+						--"BufferLineFill",
+						--"BufferLineBackground",
+						"BufferLineSeparator",
+						--"BufferLineIndicatorSelected",
+					},
+					--exclude = {}, -- table: groups you don't want to clear
+				})
+			end,
+		})
+		use("folke/tokyonight.nvim")
+		use("Shatur/neovim-ayu")
+		use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
+		use({
+			"hoob3rt/lualine.nvim",
+			requires = { "kyazdani42/nvim-web-devicons", opt = true },
+			config = [[require('plugin_settings.lualine')]],
+		})
+		use("tiagofumo/vim-nerdtree-syntax-highlight")
+
+		-- Utils
+		use({
+			"akinsho/bufferline.nvim",
+			config = function()
+				require("bufferline").setup()
+			end,
+		})
+		use({
+			"VonHeikemen/searchbox.nvim",
+			requires = {
+				{ "MunifTanjim/nui.nvim" },
+			},
+			config = function()
+				vim.api.nvim_set_keymap(
+					"n",
+					"<localleader>s",
+					'<cmd>lua require("searchbox").incsearch()<CR>',
+					{ noremap = true, silent = true }
+				)
+			end,
+		})
+
+        -- Beta plugins
+		use("nathom/filetype.nvim")
 		use("ldelossa/calltree.nvim")
 		use("lewis6991/impatient.nvim")
 		use({
@@ -49,50 +108,6 @@ return packer.startup({
 			cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
 			config = [[require('plugin_settings.markdown_preview')]],
 		})
-		-- Themes
-		use({ "NLKNguyen/papercolor-theme", as = "paper2" })
-		use({ "uncomfyhalomacro/vim-paper", as = "paper" })
-		use("shaunsingh/solarized.nvim")
-		use("shaunsingh/nord.nvim")
-		--use({'YorickPeterse/vim-paper', as = "origpaper" })
-		use({ "dracula/vim", as = "dracula" })
-		use({
-			"xiyaowong/nvim-transparent",
-			config = function()
-				require("transparent").setup({
-					enable = true, -- boolean: enable transparent
-					exclude = { -- table/string: additional groups that should be clear
-						-- In particular, when you set it to 'all', that means all avaliable groups
-
-						-- example of akinsho/nvim-bufferline.lua
-						"BufferLineTabClose",
-						"BufferlineBufferSelected",
-						--"BufferLineFill",
-						--"BufferLineBackground",
-						"BufferLineSeparator",
-						--"BufferLineIndicatorSelected",
-					},
-					--exclude = {}, -- table: groups you don't want to clear
-				})
-			end,
-		})
-		use({
-			"akinsho/bufferline.nvim",
-			config = function()
-				require("bufferline").setup()
-			end,
-		})
-		use("folke/tokyonight.nvim")
-		use("Shatur/neovim-ayu")
-		use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
-		use({
-			"hoob3rt/lualine.nvim",
-			requires = { "kyazdani42/nvim-web-devicons", opt = true },
-			config = [[require('plugin_settings.lualine')]],
-		})
-		use("tiagofumo/vim-nerdtree-syntax-highlight")
-
-		-- Utils
 		use({
 			"wfxr/minimap.vim",
 			run = "cargo install --locked code-minimap",
@@ -172,7 +187,6 @@ return packer.startup({
 			end,
 		})
 		use("nvim-lua/lsp-status.nvim")
-		--use("kyazdani42/nvim-tree.lua")
 		use({
 			"andweeb/presence.nvim",
 			config = function()
@@ -180,7 +194,6 @@ return packer.startup({
 			end,
 		})
 		use("kristijanhusak/orgmode.nvim")
-		--use({ "romgrk/barbar.nvim", requires = { "kyazdani42/nvim-web-devicons" }, config = function() end })
 		use({
 			"AckslD/nvim-whichkey-setup.lua",
 			requires = { "liuchengxu/vim-which-key" },
@@ -203,6 +216,7 @@ return packer.startup({
 			config = [[require('plugin_settings.vim-slime')]],
 		})
 
+        -- LSP and syntax highlighting
 		-- Some stuff I need to disable for now because MS Windows succs
 		if os.getenv("HOME") ~= nil then
 			use({
@@ -236,13 +250,6 @@ return packer.startup({
 		use("onsails/lspkind-nvim")
 		use("kosayoda/nvim-lightbulb")
 
-		-- Julia Programming Language Plugins --
-		--use({ "JuliaEditorSupport/julia-vim" })
-		use({
-			"kdheepak/JuliaFormatter.vim",
-			run = 'julia --startup-file=no --project=. -e "using Pkg; Pkg.update()"',
-			config = [[require('plugin_settings.JuliaFormatter')]],
-		})
 		if packer_bootstrap then
 			require("packer").sync()
 		end
