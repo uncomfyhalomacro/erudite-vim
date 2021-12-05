@@ -238,7 +238,7 @@ return packer.startup({
 
 		-- Language Server Protocol Plugins --
 		use({ "neovim/nvim-lspconfig", branch = "master" })
-		use({ "glepnir/lspsaga.nvim", branch = "main", config = [[require('plugin_settings.lspsaga')]] })
+		use({ "tami5/lspsaga.nvim", branch = "main", config = [[require('plugin_settings.lspsaga')]] })
 		use({
 			"folke/lsp-trouble.nvim",
 			requires = "kyazdani42/nvim-web-devicons",
