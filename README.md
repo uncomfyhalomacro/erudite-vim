@@ -155,3 +155,9 @@ nvim-treesitter.utils                   │             NA │   0.0000ms │   
 ```
 
 This is how fast [impatient](https://github.com/lewis6991/impatient.nvim) is. More benchmarks can be found [here](https://github.com/uncomfyhalomacro/erudite-vim/tree/main/benchmarks)
+
+# TODO
+
+- [ ] Separate lsp configs?
+- [ ] Replace packer with [dep](https://github.com/chiyadev/dep)?
+- [ ] Write the keymaps in a doc file or something
