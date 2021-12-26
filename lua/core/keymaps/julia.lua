@@ -1,4 +1,3 @@
-local keymap = {}
 local kitty_exe = vim.fn.exepath("kitty")
 local julia_exe = vim.fn.exepath("julia")
 local tmux_exe = vim.fn.exepath("tmux")
