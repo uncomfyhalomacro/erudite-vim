@@ -5,7 +5,5 @@ local markdown = {
 	t = { ":MarkdownPreviewToggle<CR>", "toggle preview" },
 	m = { ":!pandoc -s -o %:r.pdf %<CR>", "save MD to PDF" },
 }
-local keymap = {}
-keymap.m = markdown
-local wk = require("whichkey_setup")
-wk.register_keymap("leader", keymap)
+
+return markdown

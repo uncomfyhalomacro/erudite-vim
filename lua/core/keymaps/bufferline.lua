@@ -1,4 +1,3 @@
-local wk = require("whichkey_setup")
 local keymap = {}
 keymap = {
 	name = "+tab",

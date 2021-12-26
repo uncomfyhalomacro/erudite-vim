@@ -1,4 +1,3 @@
-local pwd = os.getenv("PWD")
 local explorer = {
 	name = "+explorer",
 	n = { ":DashboardNewFile<CR>", "create new file" },
