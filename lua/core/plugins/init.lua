@@ -12,4 +12,5 @@ require("core.plugins.treesitter")
 require("core.plugins.treesitter-playground")
 require("core.plugins.trouble")
 require("core.plugins.vim-slime")
+require("core.plugins.bufferline")
 
