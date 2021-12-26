@@ -1,3 +1,4 @@
+require("packer_init")
 require("core.settings")
 require("core.plugins")
 require("core.keymaps")

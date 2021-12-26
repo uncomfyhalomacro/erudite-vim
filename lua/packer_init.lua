@@ -28,13 +28,13 @@ return packer.startup({
 		use({ "dracula/vim", as = "dracula" })
 		use({
 			"xiyaowong/nvim-transparent",
-					})
+		})
 		use("folke/tokyonight.nvim")
 		use("Shatur/neovim-ayu")
 		use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
 		use({
 			"hoob3rt/lualine.nvim",
-			requires = { "kyazdani42/nvim-web-devicons", opt = true }
+			requires = { "kyazdani42/nvim-web-devicons", opt = true },
 		})
 		use("tiagofumo/vim-nerdtree-syntax-highlight")
 
@@ -68,18 +68,19 @@ return packer.startup({
 			"wfxr/minimap.vim",
 			run = "cargo install --locked code-minimap",
 		})
-		use("hrsh7th/cmp-nvim-lsp")
-		use("hrsh7th/cmp-buffer")
-		use("hrsh7th/cmp-vsnip")
-		use("hrsh7th/vim-vsnip")
-		use("hrsh7th/cmp-nvim-lsp-document-symbol")
-		use("hrsh7th/cmp-calc")
-		use("lukas-reineke/cmp-rg")
-		use("quangnguyen30192/cmp-nvim-ultisnips")
-		use("saadparwaiz1/cmp_luasnip")
-		use("SirVer/ultisnips")
 		use({
 			"hrsh7th/nvim-cmp",
+			requires = {
+				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-vsnip",
+				"hrsh7th/vim-vsnip",
+				"hrsh7th/cmp-nvim-lsp-document-symbol",
+				"hrsh7th/cmp-calc",
+				"lukas-reineke/cmp-rg",
+				"saadparwaiz1/cmp_luasnip",
+				{ "quangnguyen30192/cmp-nvim-ultisnips", requires = "SirVer/UltiSnips" },
+			},
 		})
 		use("nvim-lua/lsp-status.nvim")
 		use({
