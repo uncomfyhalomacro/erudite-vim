@@ -22,11 +22,10 @@ local keymap = {}
 
 -- Basic stuff
 keymap.q = { ":q<CR>", "exit buffer" }
-
 keymap.w = { ":w<CR>", "write buffer to file" }
-----
-local explorer_key = require("keys.explorer")
-local kitty_key = require("keys.kitty")
+
+local explorer_key = require("core.keymaps.explorer")
+local kitty_key = require("core.keymaps.kitty")
 
 keymap.x = { "<cmd>LspTroubleToggle<CR>", "list diagnostics" }
 
@@ -37,8 +36,6 @@ local sessions = {
 }
 
 keymap.f = explorer_key
-
--- Check TERM
 keymap.k = kitty_key
 keymap.s = sessions
 keymap.c = { name = "+NerdCommenter" }
@@ -48,7 +45,7 @@ keymap.a = {
 	a = { ":Lspsaga code_action<CR>", "code action" },
 	r = { ":<C-U>Lspsaga range_code_action<CR>", "ranged code action" },
 }
-keymap.A = require("keys.bufferline")
+keymap.A = require("core.keymaps.bufferline")
 keymap.d = {
 	name = "+dashboard",
 	h = { ":DashboardFindHistory<CR>", "browse history" },
@@ -61,12 +58,11 @@ keymap.d = {
 keymap["t"] = { ":TSPlaygroundToggle<CR>", "treesitter playground" }
 
 -- FileTypes
-
-vim.cmd("autocmd FileType julia :lua require('keys.julia')")
-vim.cmd("autocmd FileType lua :lua require('keys.lua')")
-vim.cmd("autocmd FileType markdown :lua require('keys.markdown')")
-vim.cmd("autocmd FileType tex :lua require('keys.texlab')")
-vim.cmd("autocmd FileType bib :lua require('keys.texlab')")
+vim.cmd("autocmd FileType julia :lua require('core.keymaps.julia')")
+vim.cmd("autocmd FileType lua :lua require('core.keymaps.lua')")
+vim.cmd("autocmd FileType markdown :lua require('core.keymaps.markdown')")
+vim.cmd("autocmd FileType tex :lua require('core.keymaps.texlab')")
+vim.cmd("autocmd FileType bib :lua require('core.keymaps.texlab')")
 
 wk.config({
 	hide_statusline = true,
