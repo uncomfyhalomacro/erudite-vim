@@ -47,11 +47,6 @@ local on_attach = function(client, bufnr)
 	-- wk.register_keymap('leader', visual_keymap, {bufnr=bufnr, mode='v'})
 	wk.register_keymap("leader", visual_keymap, { bufnr = bufnr, mode = "v" })
 
-	-- TODO breaks e.g. gU
-	-- wk.register_keymap('g', {
-	--     h = {"<Cmd>lua require('lspsaga.provider').lsp_finder()<CR>", 'finder'},
-	-- }, {noremap=true, silent=true, bufnr=bufnr, mode='n'})
-
 	-- saga mappings
 	-- lsp provider to find the cursor word definition and reference
 
@@ -76,10 +71,6 @@ local on_attach = function(client, bufnr)
 	if client.resolved_capabilities.document_highlight then
 		vim.api.nvim_exec(
 			[[
-			" TODO handle this
-			" hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-			" hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-			" hi LspReferenceWrite cterm=bold ctermbg=red guibg=Lightellow
 			augroup lsp_auto
 				autocmd! * <buffer>
 				" autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
@@ -120,32 +111,6 @@ local servers = {
 				},
 			},
 		},
-
-		--on_new_config = function(new_config, new_root_dir)
-		--server_path = vim.fn.system(
-		--[[julia --startup-file=no -q -e 'print(dirname(something(Base.current_project(Base.find_package("LanguageServer")))))']]
-		--)
-		--cmd = {
-		--"julia",
-		--"--project=" .. server_path,
-		--"--startup-file=no",
-		--"--history-file=no",
-		--"-e",
-		--[[
-			  --using Pkg;
-			  --Pkg.activate(Base.current_project());
-			  --using LanguageServer; using StaticLint; using SymbolServer;
-			  --depot_path = join(DEPOT_PATH, ":")
-			  --project_path = dirname(something(Base.current_project(pwd()), Base.load_path_expand(LOAD_PATH[2])))
-			  --# Make sure that we only load packages from this environment specifically.
-			  --@info "Running language server" env=Base.load_path()[1] pwd() project_path depot_path
-			  --server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path);
-			  --server.runlinter = true;
-			  --run(server);
-			--]]
-		--}
-		--new_config.cmd = cmd
-		--end
 	},
 	sumneko_lua = {
 		cmd = {
