@@ -19,7 +19,7 @@ packer.init({
 	},
 })
 return packer.startup({
-	function()
+	function(use)
 		-- Themes
 		use("https://git.sr.ht/~leon_plickat/paige")
 		use({ "NLKNguyen/papercolor-theme" })
@@ -71,15 +71,15 @@ return packer.startup({
 		use({
 			"hrsh7th/nvim-cmp",
 			requires = {
-				"hrsh7th/cmp-nvim-lsp",
-				"hrsh7th/cmp-buffer",
-				"hrsh7th/cmp-vsnip",
-				"hrsh7th/vim-vsnip",
-				"hrsh7th/cmp-nvim-lsp-document-symbol",
-				"hrsh7th/cmp-calc",
-				"lukas-reineke/cmp-rg",
-				"saadparwaiz1/cmp_luasnip",
-				{ "quangnguyen30192/cmp-nvim-ultisnips", requires = "SirVer/UltiSnips" },
+                {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"},
+                {"hrsh7th/cmp-buffer", after = "nvim-cmp"},
+                {"hrsh7th/cmp-vsnip", after= "nvim-cmp"},
+                {"hrsh7th/vim-vsnip", after = "nvim-cmp"},
+                {"hrsh7th/cmp-nvim-lsp-document-symbol", after="nvim-cmp"},
+                {"hrsh7th/cmp-calc", after = "nvim-cmp" },
+                {"lukas-reineke/cmp-rg", after = "nvim-cmp"},
+                {"saadparwaiz1/cmp_luasnip", after = "nvim-cmp"},
+				{ "quangnguyen30192/cmp-nvim-ultisnips", requires = "SirVer/UltiSnips", after = "nvim-cmp" },
 			},
 		})
 		use("nvim-lua/lsp-status.nvim")
@@ -91,7 +91,8 @@ return packer.startup({
 			"AckslD/nvim-whichkey-setup.lua",
 			requires = { "liuchengxu/vim-which-key" },
 		})
-		use({ "norcalli/nvim-colorizer.lua", config = [[require'colorizer'.setup()]] })
+		use({ "norcalli/nvim-colorizer.lua", 
+    })
 		use("preservim/nerdcommenter")
 		use({ "tpope/vim-fugitive", branch = "master" })
 		use("junegunn/vim-easy-align")
@@ -100,12 +101,11 @@ return packer.startup({
 			"nvim-telescope/telescope.nvim",
 			requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
 		})
-		use({ "karb94/neoscroll.nvim", config = [[require('neoscroll').setup()]] })
+		use({ "karb94/neoscroll.nvim"})
 
 		use({
 			"jpalardy/vim-slime",
 			branch = "main",
-			config = [[require("core.plugins.vim-slime")]],
 		})
 
 		-- LSP and syntax highlighting
@@ -113,10 +113,9 @@ return packer.startup({
 		if vim.fn.getenv("HOME") ~= vim.NIL then
 			use({
 				"nvim-treesitter/nvim-treesitter",
-				config = [[require('core.plugins.treesitter')]],
 				run = ":TSUpdate",
 			})
-			use({ "nvim-treesitter/playground" })
+			use({ "nvim-treesitter/playground", after = "nvim-treesitter"})
 			use({
 				"ttys3/nvim-blamer.lua",
 			})
@@ -124,14 +123,15 @@ return packer.startup({
 
 		-- Language Server Protocol Plugins --
 		use({ "neovim/nvim-lspconfig", branch = "master" })
-		use({ "tami5/lspsaga.nvim", branch = "main" })
+		use({ "tami5/lspsaga.nvim", branch = "main", after = "nvim-lspconfig" })
 		use({
 			"folke/lsp-trouble.nvim",
 			requires = "kyazdani42/nvim-web-devicons",
+			after = "nvim-lspconfig",
 		})
 		use("ziglang/zig.vim")
-		use("onsails/lspkind-nvim")
-		use("kosayoda/nvim-lightbulb")
+		use({ "onsails/lspkind-nvim", after = "nvim-lspconfig" })
+		use({ "kosayoda/nvim-lightbulb", after = "nvim-lspconfig" })
 
 		if packer_bootstrap then
 			require("packer").sync()
