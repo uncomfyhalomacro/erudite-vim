@@ -15,4 +15,3 @@ require("core.plugins.vim-slime")
 require("core.plugins.bufferline")
 require("core.plugins.nvim-colorizer")
 require("core.plugins.neoscroll")
-

@@ -71,14 +71,14 @@ return packer.startup({
 		use({
 			"hrsh7th/nvim-cmp",
 			requires = {
-                {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"},
-                {"hrsh7th/cmp-buffer", after = "nvim-cmp"},
-                {"hrsh7th/cmp-vsnip", after= "nvim-cmp"},
-                {"hrsh7th/vim-vsnip", after = "nvim-cmp"},
-                {"hrsh7th/cmp-nvim-lsp-document-symbol", after="nvim-cmp"},
-                {"hrsh7th/cmp-calc", after = "nvim-cmp" },
-                {"lukas-reineke/cmp-rg", after = "nvim-cmp"},
-                {"saadparwaiz1/cmp_luasnip", after = "nvim-cmp"},
+				{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+				{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+				{ "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
+				{ "hrsh7th/vim-vsnip", after = "nvim-cmp" },
+				{ "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
+				{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
+				{ "lukas-reineke/cmp-rg", after = "nvim-cmp" },
+				{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
 				{ "quangnguyen30192/cmp-nvim-ultisnips", requires = "SirVer/UltiSnips", after = "nvim-cmp" },
 			},
 		})
@@ -91,8 +91,7 @@ return packer.startup({
 			"AckslD/nvim-whichkey-setup.lua",
 			requires = { "liuchengxu/vim-which-key" },
 		})
-		use({ "norcalli/nvim-colorizer.lua", 
-    })
+		use({ "norcalli/nvim-colorizer.lua" })
 		use("preservim/nerdcommenter")
 		use({ "tpope/vim-fugitive", branch = "master" })
 		use("junegunn/vim-easy-align")
@@ -101,7 +100,7 @@ return packer.startup({
 			"nvim-telescope/telescope.nvim",
 			requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
 		})
-		use({ "karb94/neoscroll.nvim"})
+		use({ "karb94/neoscroll.nvim" })
 
 		use({
 			"jpalardy/vim-slime",
@@ -115,7 +114,7 @@ return packer.startup({
 				"nvim-treesitter/nvim-treesitter",
 				run = ":TSUpdate",
 			})
-			use({ "nvim-treesitter/playground", after = "nvim-treesitter"})
+			use({ "nvim-treesitter/playground", after = "nvim-treesitter" })
 			use({
 				"ttys3/nvim-blamer.lua",
 			})

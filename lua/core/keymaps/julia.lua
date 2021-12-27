@@ -37,9 +37,9 @@ if (vim.fn.getenv("TERM") == "xterm-kitty") and vim.fn.getenv("TERM_PROGRAM") ==
 				"run code from current buffer",
 			},
 		}
-keymap.j = julia
-local wk = require("whichkey_setup")
-wk.register_keymap("leader", { k = keymap })
+		keymap.j = julia
+		local wk = require("whichkey_setup")
+		wk.register_keymap("leader", { k = keymap })
 	end
 elseif vim.fn.getenv("TERM_PROGRAM") == "tmux" then
 	if tmux_exe ~= "" then
@@ -80,7 +80,7 @@ elseif vim.fn.getenv("TERM_PROGRAM") == "tmux" then
 			},
 		}
 		keymap.j = julia
-local wk = require("whichkey_setup")
-wk.register_keymap("leader", { k = keymap })
+		local wk = require("whichkey_setup")
+		wk.register_keymap("leader", { k = keymap })
 	end
 end
