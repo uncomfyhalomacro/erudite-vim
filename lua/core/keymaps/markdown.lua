@@ -3,7 +3,10 @@ local markdown = {
 	p = { ":MarkdownPreview<CR>", "preview on browser" },
 	s = { ":MarkdownPreviewStop<CR>", "stop preview" },
 	t = { ":MarkdownPreviewToggle<CR>", "toggle preview" },
-	m = { ":!pandoc -s -o %:r.pdf %<CR>", "save MD to PDF" },
+	m = { ":!pandoc --wrap=auto --pdf-engine=xelatex -s -o %:r.pdf %<CR>", "save MD to PDF" },
 }
 
-return markdown
+local keymap = {}
+keymap.m = markdown
+local wk = require("whichkey_setup")
+wk.register_keymap("leader", keymap)
