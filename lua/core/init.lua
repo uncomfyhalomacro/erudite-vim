@@ -1,8 +1,8 @@
 require("packer_init")
+require("packer_compiled")
 require("core.settings")
 require("core.plugins")
 require("core.keymaps")
-require("packer_compiled")
 
 -- IMPATIENT STARTS HERE --
 -- Reporting a startup time of ~3.0 milliseconds --
