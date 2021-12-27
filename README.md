@@ -159,5 +159,8 @@ This is how fast [impatient](https://github.com/lewis6991/impatient.nvim) is. Mo
 # TODO
 
 - [ ] Separate lsp configs?
-- [ ] Replace packer with [dep](https://github.com/chiyadev/dep)?
+- [ ] ~~Replace packer with [dep](https://github.com/chiyadev/dep)?~~
 - [ ] Write the keymaps in a doc file or something
+- [ ] Add haskell and ghci
+- [ ] Add python repl support
+- [ ] make markdown preview dynamic with flatpak installed browser or installed from a distro's package manager?
