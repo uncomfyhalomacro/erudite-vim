@@ -24,6 +24,7 @@ return packer.startup({
 		use("https://git.sr.ht/~leon_plickat/paige")
 		use({ "NLKNguyen/papercolor-theme" })
 		use("shaunsingh/solarized.nvim")
+		use({"lewis6991/gitsigns.nvim", branch="master"})
 		use("shaunsingh/nord.nvim")
 		use({ "dracula/vim", as = "dracula" })
 		use({
@@ -48,6 +49,7 @@ return packer.startup({
 				{ "MunifTanjim/nui.nvim" },
 			},
 		})
+
 
 		-- Beta plugins
 		use("nathom/filetype.nvim")
