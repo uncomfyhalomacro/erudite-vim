@@ -24,7 +24,7 @@ return packer.startup({
 		use("https://git.sr.ht/~leon_plickat/paige")
 		use({ "NLKNguyen/papercolor-theme" })
 		use("shaunsingh/solarized.nvim")
-		use({"lewis6991/gitsigns.nvim", branch="master"})
+		use({ "lewis6991/gitsigns.nvim", branch = "main", requires='nvim-lua/plenary.nvim' })
 		use("shaunsingh/nord.nvim")
 		use({ "dracula/vim", as = "dracula" })
 		use({
@@ -49,7 +49,6 @@ return packer.startup({
 				{ "MunifTanjim/nui.nvim" },
 			},
 		})
-
 
 		-- Beta plugins
 		use("nathom/filetype.nvim")
@@ -76,7 +75,7 @@ return packer.startup({
 				{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
 				{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
 				{ "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
-				{ "hrsh7th/vim-vsnip", after = "nvim-cmp" },
+				{ "hrsh7th/vim-vsnip", after = "nvim-cmp", requires='hrsh7th/vim-vsnip-integ' },
 				{ "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
 				{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
 				{ "lukas-reineke/cmp-rg", after = "nvim-cmp" },
@@ -119,6 +118,9 @@ return packer.startup({
 			use({ "nvim-treesitter/playground", after = "nvim-treesitter" })
 			use({
 				"ttys3/nvim-blamer.lua",
+			})
+			require("nvim-treesitter.configs").setup({
+				yati = { enable = true },
 			})
 		end
 
