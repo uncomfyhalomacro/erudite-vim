@@ -24,7 +24,7 @@ return packer.startup({
 		use("https://git.sr.ht/~leon_plickat/paige")
 		use({ "NLKNguyen/papercolor-theme" })
 		use("shaunsingh/solarized.nvim")
-		use({ "lewis6991/gitsigns.nvim", branch = "main", requires='nvim-lua/plenary.nvim' })
+		use({ "lewis6991/gitsigns.nvim", branch = "main", requires = "nvim-lua/plenary.nvim" })
 		use("shaunsingh/nord.nvim")
 		use({ "dracula/vim", as = "dracula" })
 		use({
@@ -75,7 +75,7 @@ return packer.startup({
 				{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
 				{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
 				{ "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
-				{ "hrsh7th/vim-vsnip", after = "nvim-cmp", requires='hrsh7th/vim-vsnip-integ' },
+				{ "hrsh7th/vim-vsnip", after = "nvim-cmp", requires = "hrsh7th/vim-vsnip-integ" },
 				{ "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
 				{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
 				{ "lukas-reineke/cmp-rg", after = "nvim-cmp" },
@@ -100,6 +100,13 @@ return packer.startup({
 		use({
 			"nvim-telescope/telescope.nvim",
 			requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+		})
+		use({
+			"nvim-telescope/telescope-frecency.nvim",
+			config = function()
+				require("telescope").load_extension("frecency")
+			end,
+			requires = { "tami5/sqlite.lua" },
 		})
 		use({ "karb94/neoscroll.nvim" })
 
