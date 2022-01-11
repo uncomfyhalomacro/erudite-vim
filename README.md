@@ -26,9 +26,9 @@ Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/lua/
 
 # TODO
 
-- [ ] Separate lsp configs?
-- [ ] ~~Replace packer with [dep](https://github.com/chiyadev/dep)?~~
-- [ ] Write the keymaps in a doc file or something
-- [ ] Add haskell and ghci
-- [ ] Add python repl support
-- [ ] make markdown preview dynamic with flatpak installed browser or installed from a distro's package manager?
+- [ ] Separate lsp configs? (Not sure about this approach)
+- [ ] ~~Replace packer with [dep](https://github.com/chiyadev/dep)?~~ Fixed with https://github.com/wbthomason/packer.nvim/issues/750#issuecomment-1006070458
+- [ ] Write the keymaps in a doc file or something (In progress)
+- [ ] Add haskell and ghci (Adding a new slime command)
+- [ ] Add python repl support (Adding a new slime command)
+- [ ] make markdown preview dynamic with flatpak installed browser or installed from a distro's package manager? (Hmmm)
