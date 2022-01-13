@@ -46,6 +46,10 @@ cmp.setup({
 		{
 			name = "dictionary",
 			keyword_length = 2,
+			exact = 2,
+			async = true,
+			capacity = 10,
+			debug = false,
 		},
 	},
 })
