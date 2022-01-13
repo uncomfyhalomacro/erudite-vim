@@ -85,6 +85,22 @@ return packer.startup({
 				{ "lukas-reineke/cmp-rg", after = "nvim-cmp" },
 				{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
 				{ "quangnguyen30192/cmp-nvim-ultisnips", requires = "SirVer/UltiSnips", after = "nvim-cmp" },
+				{
+					"uga-rosa/cmp-dictionary",
+					after = "nvim-cmp",
+					config = function()
+						local dict = require("cmp_dictionary")
+						dict.setup({
+							dic = {
+								["*"] = "/usr/share/dict/words",
+								["markdown"] = {
+									"/usr/share/dict/american-english",
+									"/usr/share/dict/british-english",
+								},
+							},
+						})
+					end,
+				},
 			},
 		})
 		use("nvim-lua/lsp-status.nvim")
