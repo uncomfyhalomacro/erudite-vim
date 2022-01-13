@@ -6,10 +6,10 @@ require("transparent").setup({
 		-- example of akinsho/nvim-bufferline.lua
 		"BufferLineTabClose",
 		"BufferlineBufferSelected",
-		--"BufferLineFill",
-		--"BufferLineBackground",
+		"BufferLineFill",
+		"BufferLineBackground",
 		"BufferLineSeparator",
-		--"BufferLineIndicatorSelected",
+		"BufferLineIndicatorSelected",
 	},
 	--exclude = {}, -- table: groups you don't want to clear
 })
