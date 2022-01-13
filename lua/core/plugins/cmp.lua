@@ -85,21 +85,21 @@ cmp.setup({
 		{ name = "path" },
 	},
 	formatting = {
-		format = 				lspkind.cmp_format({
-					with_text=true,
-					menu = ({
-					buffer = "[Buffer]",
-					nvim_lsp = "[LSP]",
-					dictionary = "[Dictionary]",
-					nvim_lua = "[Lua]",
-					luasnip = "[LuaSnip]",
-					rg = "[RipGrep]",
-					ultisnips = "[UltiSnips]",
-					calc = "[Calc]",
-					vsnip = "[Vsnip]",
-					latex_symbols = "[LaTeX]",
-					})
-				})
+		format = lspkind.cmp_format({
+			with_text = true,
+			menu = {
+				buffer = "[Buffer]",
+				nvim_lsp = "[LSP]",
+				dictionary = "[Dictionary]",
+				nvim_lua = "[Lua]",
+				luasnip = "[LuaSnip]",
+				rg = "[RipGrep]",
+				ultisnips = "[UltiSnips]",
+				calc = "[Calc]",
+				vsnip = "[Vsnip]",
+				latex_symbols = "[LaTeX]",
+			},
+		}),
 	},
 })
 cmp.setup.cmdline("/", {
