@@ -1,4 +1,32 @@
 local cmp = require("cmp")
+local lspkind = require("lspkind")
+local kind_icons = {
+	Text = "",
+	Method = "",
+	Function = "",
+	Constructor = "",
+	Field = "",
+	Variable = "",
+	Class = "ﴯ",
+	Interface = "",
+	Module = "",
+	Property = "ﰠ",
+	Unit = "",
+	Value = "",
+	Enum = "",
+	Keyword = "",
+	Snippet = "",
+	Color = "",
+	File = "",
+	Reference = "",
+	Folder = "",
+	EnumMember = "",
+	Constant = "",
+	Struct = "",
+	Event = "",
+	Operator = "",
+	TypeParameter = "",
+} -- in case i will use this if lspkind is not installed
 
 cmp.setup({
 	snippet = {
@@ -43,6 +71,7 @@ cmp.setup({
 
 		{ name = "rg" },
 		{ name = "calc" },
+		{ name = "latex_symbols" },
 		{
 			name = "dictionary",
 			keyword_length = 2,
@@ -50,10 +79,30 @@ cmp.setup({
 			async = true,
 			capacity = 10,
 			debug = false,
+			priority = 1,
+			group_index = 2,
 		},
+		{ name = "path" },
+	},
+	formatting = {
+		format = 				lspkind.cmp_format({
+					with_text=true,
+					menu = ({
+					buffer = "[Buffer]",
+					nvim_lsp = "[LSP]",
+					dictionary = "[Dictionary]",
+					nvim_lua = "[Lua]",
+					luasnip = "[LuaSnip]",
+					rg = "[RipGrep]",
+					ultisnips = "[UltiSnips]",
+					calc = "[Calc]",
+					vsnip = "[Vsnip]",
+					latex_symbols = "[LaTeX]",
+					})
+				})
 	},
 })
-require("cmp").setup.cmdline("/", {
+cmp.setup.cmdline("/", {
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp_document_symbol" },
 	}, {
