@@ -96,8 +96,12 @@ return packer.startup({
 							dic = {
 								["*"] = "/usr/share/dict/words",
 								["markdown"] = {
-									"/usr/share/dict/american-english",
-									"/usr/share/dict/british-english",
+									vim.fn.stdpath("config") .. "/" .. "dictionary/american-english",
+									vim.fn.stdpath("config") .. "/" .. "dictionary/american-english-lowercase",
+									vim.fn.stdpath("config") .. "/" .. "dictionary/american-english-titlecase",
+									vim.fn.stdpath("config") .. "/" .. "dictionary/british-english",
+									vim.fn.stdpath("config") .. "/" .. "dictionary/british-english-lowercase",
+									vim.fn.stdpath("config") .. "/" .. "dictionary/british-english-titlecase",
 								},
 							},
 						})

@@ -55,23 +55,26 @@ cmp.setup({
 			select = true,
 		}),
 	},
+	sorting = {
+		priority_weight = 1,
+	},
 	sources = {
-		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp", group_index = 1 },
 
 		-- For vsnip user.
-		{ name = "vsnip" },
+		{ name = "vsnip", group_index = 1 },
 
 		-- For luasnip user.
-		{ name = "cmp_luasnip" },
+		{ name = "cmp_luasnip", group_index = 1 },
 
 		-- For ultisnips user.
-		{ name = "ultisnips" },
+		{ name = "ultisnips", group_index = 1 },
 
-		{ name = "buffer" },
+		{ name = "buffer", group_index = 1 },
 
 		{ name = "rg" },
 		{ name = "calc" },
-		{ name = "latex_symbols" },
+		{ name = "latex_symbols", group_index = 1 },
 		{
 			name = "dictionary",
 			keyword_length = 2,
