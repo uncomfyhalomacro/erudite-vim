@@ -3,7 +3,7 @@
 
 
 
-My neovim configuration. This is my way to learn Lua 🌙. Fully in Lua. I mostly like julia so I am making my own configuration. No more COC stuff and all. Just mostly Lua configuration.
+My neovim configuration. Fully written in Lua. This configuration is more focused for Julia users. But it can still be modified to be used for other languages. I am planning to add that functionality soon but it is not a priority as of yet. Feel free to fork! :smiley:
 
 ## Prerequisites
 
