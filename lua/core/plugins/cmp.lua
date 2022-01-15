@@ -72,6 +72,9 @@ cmp.setup({
 
 		{ name = "buffer", group_index = 1 },
 
+		-- emojis
+		{ name = "emoji", group_index = 1 },
+
 		-- { name = "rg" }, removing rg for now because of how demanding this is on cpu. i wish i have a way to dynamically run this if it is on a git directory
 		{ name = "calc" },
 		{ name = "latex_symbols", group_index = 1 },
@@ -101,6 +104,7 @@ cmp.setup({
 				calc = "[Calc]",
 				vsnip = "[Vsnip]",
 				latex_symbols = "[LaTeX]",
+				emoji = "[Emoji]",
 			},
 		}),
 	},
