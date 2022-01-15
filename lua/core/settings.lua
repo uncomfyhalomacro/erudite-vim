@@ -8,8 +8,14 @@ vim.bo.expandtab = true
 vim.bo.smartindent = true
 vim.cmd("let &t_ut=''")
 vim.opt.shortmess:append("c")
-vim.opt.ts = 4
-vim.opt.sw = 4
+if vim.bo.filetype == "markdown" then
+	vim.opt.ts = 4
+	vim.opt.sw = 4
+else
+	vim.opt.ts = 2
+	vim.opt.sw = 2
+end
+
 vim.o.cmdheight = 2
 --vim.o.completefunc = "emoji#complete"
 vim.o.completeopt = "menuone,noinsert,noselect"
