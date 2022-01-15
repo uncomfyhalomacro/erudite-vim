@@ -59,7 +59,7 @@ cmp.setup({
 		priority_weight = 1,
 	},
 	sources = {
-		{ name = "nvim_lsp", group_index = 1 },
+		{ name = "nvim_lsp", group_index = 1, priority = 100 },
 
 		-- For vsnip user.
 		{ name = "vsnip", group_index = 1 },
