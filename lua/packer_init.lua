@@ -29,14 +29,23 @@ return packer.startup({
 		use({ "NLKNguyen/papercolor-theme" })
 		use("shaunsingh/solarized.nvim")
 		use({ "lewis6991/gitsigns.nvim", branch = "main", requires = "nvim-lua/plenary.nvim" })
-		use("shaunsingh/nord.nvim")
-		use({ "dracula/vim", as = "dracula" })
 		use({
-			"xiyaowong/nvim-transparent",
+			"shaunsingh/nord.nvim",
+			config = function()
+				vim.cmd("colorscheme nord")
+			end,
 		})
+		use({ "dracula/vim", as = "dracula" })
 		use("folke/tokyonight.nvim")
 		use("Shatur/neovim-ayu")
 		use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
+
+		-- Transparency
+		use({
+			"xiyaowong/nvim-transparent",
+			after = { "nord.nvim", "solarized.nvim", "papercolor-theme", "paige", "dracula", "tokyonight.nvim" },
+		})
+
 		use({
 			"hoob3rt/lualine.nvim",
 			requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -77,7 +86,7 @@ return packer.startup({
 			"hrsh7th/nvim-cmp",
 			requires = {
 				{ "hrsh7th/cmp-path", after = "nvim-cmp" },
-				{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+				{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp", branch = "main" },
 				{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
 				{ "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
 				{ "hrsh7th/vim-vsnip", after = "nvim-cmp", requires = "hrsh7th/vim-vsnip-integ" },

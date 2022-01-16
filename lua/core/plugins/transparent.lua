@@ -1,5 +1,4 @@
 require("transparent").setup({
-	enable = true, -- boolean: enable transparent
 	exclude = { -- table/string: additional groups that should be clear
 		-- In particular, when you set it to 'all', that means all avaliable groups
 
@@ -7,7 +6,7 @@ require("transparent").setup({
 		"BufferLineTabClose",
 		"BufferlineBufferSelected",
 		"BufferLineFill",
-		"BufferLineBackground",
+		--"BufferLineBackground",
 		"BufferLineSeparator",
 		"BufferLineIndicatorSelected",
 	},
