@@ -3,7 +3,10 @@ local markdown = {
 	p = { ":MarkdownPreview<CR>", "preview on browser" },
 	s = { ":MarkdownPreviewStop<CR>", "stop preview" },
 	t = { ":MarkdownPreviewToggle<CR>", "toggle preview" },
-	m = { ":!pandoc -V mainfont=\"JuliaMono\" -V \"geometry:margin=.5in\" --wrap=auto --pdf-engine=xelatex -s -o '%:r.pdf' '%'<CR>", "save MD to PDF" },
+	m = {
+		":!pandoc -V mainfont=\"JuliaMono\" -V \"geometry:margin=.5in\" --wrap=auto --pdf-engine=xelatex -s -o '%:r.pdf' '%'<CR>",
+		"save MD to PDF",
+	},
 }
 
 local keymap = {}
