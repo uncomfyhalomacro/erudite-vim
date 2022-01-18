@@ -38,7 +38,7 @@ cmp.setup({
 			-- require("luasnip").lsp_expand(args.body)
 
 			-- For `ultisnips` user.
-			vim.fn["UltiSnips#Anon"](args.body)
+			--vim.fn["UltiSnips#Anon"](args.body)
 		end,
 	},
 	mapping = {
@@ -51,8 +51,8 @@ cmp.setup({
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.close(),
 		["<CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
+		behavior = cmp.ConfirmBehavior.Replace,
+		select = true,
 		}),
 	},
 	sorting = {
@@ -62,13 +62,13 @@ cmp.setup({
 		{ name = "nvim_lsp", group_index = 1, priority = 100 },
 
 		-- For vsnip user.
-		{ name = "vsnip", group_index = 1 },
+		{ name = "vsnip", group_index = 1, priority = 99 },
 
 		-- For luasnip user.
-		{ name = "cmp_luasnip", group_index = 1 },
+		--{ name = "cmp_luasnip", group_index = 1 },
 
 		-- For ultisnips user.
-		{ name = "ultisnips", group_index = 1 },
+		--{ name = "ultisnips", group_index = 1 },
 
 		{ name = "buffer", group_index = 1 },
 
@@ -97,10 +97,10 @@ cmp.setup({
 				buffer = "[Buffer]",
 				nvim_lsp = "[LSP]",
 				dictionary = "[Dictionary]",
-				nvim_lua = "[Lua]",
-				luasnip = "[LuaSnip]",
+				--nvim_lua = "[Lua]",
+				--luasnip = "[LuaSnip]",
 				-- rg = "[RipGrep]",
-				ultisnips = "[UltiSnips]",
+				--ultisnips = "[UltiSnips]",
 				calc = "[Calc]",
 				vsnip = "[Vsnip]",
 				latex_symbols = "[LaTeX]",

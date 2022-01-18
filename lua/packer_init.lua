@@ -94,8 +94,13 @@ return packer.startup({
 				{ "kdheepak/cmp-latex-symbols", after = "nvim-cmp" },
 				{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
 				{ "lukas-reineke/cmp-rg", after = "nvim-cmp" },
-				{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
-				{ "quangnguyen30192/cmp-nvim-ultisnips", requires = "SirVer/UltiSnips", after = "nvim-cmp" },
+				--{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+				--{
+					--"quangnguyen30192/cmp-nvim-ultisnips",
+					--requires = "SirVer/UltiSnips",
+					--after = "nvim-cmp",
+					--disable = true,
+				--},
 				{ "hrsh7th/cmp-emoji", after = "nvim-cmp" },
 				{
 					"uga-rosa/cmp-dictionary",
