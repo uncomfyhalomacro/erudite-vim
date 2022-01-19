@@ -1,4 +1,23 @@
-local cmp = require("cmp")
+local cmp_status_ok, cmp = pcall(require, "cmp")
+if not cmp_status_ok then
+	return
+end
+local status_ok, npairs = pcall(require, "nvim-autopairs")
+if not status_ok then
+	return
+end
+npairs.setup({
+	check_ts = true,
+	ts_config = {
+		lua = { "string", "source" },
+		julia = { "string", "argument_list" },
+	},
+})
+local cmp_autopairs_status_ok, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
+if not cmp_autopairs_status_ok then
+	return
+end
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 local lspkind = require("lspkind")
 local kind_icons = {
 	Text = "",
@@ -51,8 +70,8 @@ cmp.setup({
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.close(),
 		["<CR>"] = cmp.mapping.confirm({
-		behavior = cmp.ConfirmBehavior.Replace,
-		select = true,
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = true,
 		}),
 	},
 	sorting = {
