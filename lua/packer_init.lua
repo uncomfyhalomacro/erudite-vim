@@ -16,7 +16,10 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	end
 end
 
-local packer = require("packer")
+local packer_status, packer = pcall(require, "packer")
+if not packer_status then
+  return
+end
 packer.init({
 	git = {
 		clone_timeout = 600,
@@ -94,7 +97,7 @@ return packer.startup({
 				{ "kdheepak/cmp-latex-symbols", after = "nvim-cmp" },
 				{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
 				{ "lukas-reineke/cmp-rg", after = "nvim-cmp" },
-				{ "windwp/nvim-autopairs", after = "nvim-cmp" },
+				{ "windwp/nvim-autopairs", disable = false },
 
 				--{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
 				--{
