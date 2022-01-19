@@ -17,35 +17,7 @@ local cmp_autopairs_status_ok, cmp_autopairs = pcall(require, "nvim-autopairs.co
 if not cmp_autopairs_status_ok then
 	return
 end
-cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
-local lspkind = require("lspkind")
-local kind_icons = {
-	Text = "",
-	Method = "",
-	Function = "",
-	Constructor = "",
-	Field = "",
-	Variable = "",
-	Class = "ﴯ",
-	Interface = "",
-	Module = "",
-	Property = "ﰠ",
-	Unit = "",
-	Value = "",
-	Enum = "",
-	Keyword = "",
-	Snippet = "",
-	Color = "",
-	File = "",
-	Reference = "",
-	Folder = "",
-	EnumMember = "",
-	Constant = "",
-	Struct = "",
-	Event = "",
-	Operator = "",
-	TypeParameter = "",
-} -- in case i will use this if lspkind is not installed
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 
 cmp.setup({
 	snippet = {
@@ -76,6 +48,16 @@ cmp.setup({
 	},
 	sorting = {
 		priority_weight = 1,
+		comparators = {
+			cmp.config.compare.offset,
+			cmp.config.compare.exact,
+			cmp.config.compare.score,
+			require("cmp-under-comparator").under,
+			cmp.config.compare.kind,
+			cmp.config.compare.sort_text,
+			cmp.config.compare.length,
+			cmp.config.compare.order,
+		},
 	},
 	sources = {
 		{ name = "nvim_lsp", group_index = 1, priority = 100 },
@@ -110,16 +92,12 @@ cmp.setup({
 		{ name = "path" },
 	},
 	formatting = {
-		format = lspkind.cmp_format({
+		format = require("lspkind").cmp_format({
 			with_text = true,
 			menu = {
 				buffer = "[Buffer]",
 				nvim_lsp = "[LSP]",
 				dictionary = "[Dictionary]",
-				--nvim_lua = "[Lua]",
-				--luasnip = "[LuaSnip]",
-				-- rg = "[RipGrep]",
-				--ultisnips = "[UltiSnips]",
 				calc = "[Calc]",
 				vsnip = "[Vsnip]",
 				latex_symbols = "[LaTeX]",
