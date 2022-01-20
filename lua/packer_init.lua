@@ -18,7 +18,7 @@ end
 
 local packer_status, packer = pcall(require, "packer")
 if not packer_status then
-  return
+	return
 end
 packer.init({
 	git = {
@@ -98,6 +98,7 @@ return packer.startup({
 				{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
 				{ "lukas-reineke/cmp-rg", after = "nvim-cmp" },
 				{ "windwp/nvim-autopairs", disable = false },
+				{ "lukas-reineke/cmp-under-comparator" },
 
 				--{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
 				--{
