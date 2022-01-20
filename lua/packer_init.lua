@@ -143,7 +143,11 @@ return packer.startup({
 		use("preservim/nerdcommenter")
 		use({ "tpope/vim-fugitive", branch = "master" })
 		use("junegunn/vim-easy-align")
-		use({ "glepnir/dashboard-nvim" })
+		-- use({ "glepnir/dashboard-nvim" })
+		use({
+			"goolord/alpha-nvim",
+			requires = { "kyazdani42/nvim-web-devicons" },
+		})
 		use({
 			"nvim-telescope/telescope.nvim",
 			requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },

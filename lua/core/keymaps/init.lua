@@ -39,21 +39,20 @@ keymap.f = explorer_key
 keymap.k = kitty_key
 keymap.s = sessions
 keymap.c = { name = "+NerdCommenter" }
-keymap.h = { name = "+GitGutter" }
 keymap.a = {
 	name = "+code",
 	a = { ":Lspsaga code_action<CR>", "code action" },
 	r = { ":<C-U>Lspsaga range_code_action<CR>", "ranged code action" },
 }
 keymap.A = require("core.keymaps.bufferline")
-keymap.d = {
-	name = "+dashboard",
-	h = { ":DashboardFindHistory<CR>", "browse history" },
-	d = { ":Dashboard<CR>", "main menu" },
-	m = { ":DashboardJumpMarks<CR>", "jump marks" },
-	w = { ":DashboardFindWord<CR>", "find word" },
-	c = { ":DashboardChangeColorscheme<CR>", "change colorscheme" },
-}
+--keymap.d = {
+--name = "+dashboard",
+--h = { ":DashboardFindHistory<CR>", "browse history" },
+--d = { ":Dashboard<CR>", "main menu" },
+--m = { ":DashboardJumpMarks<CR>", "jump marks" },
+--w = { ":DashboardFindWord<CR>", "find word" },
+--c = { ":DashboardChangeColorscheme<CR>", "change colorscheme" },
+--}
 
 keymap["t"] = { ":TSPlaygroundToggle<CR>", "treesitter playground" }
 
