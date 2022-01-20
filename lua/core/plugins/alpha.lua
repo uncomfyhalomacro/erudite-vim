@@ -41,12 +41,12 @@ dashboard.section.header.val = {
 }
 --Set menu
 dashboard.section.buttons.val = {
-	dashboard.button("SPC f e", "   →   Open File Explorer", ":cd $PWD | NvimTreeToggle <CR>"),
+	dashboard.button("SPC f e", "   →   Open File Explorer", ":NvimTreeToggle <CR>"),
 	dashboard.button("SPC f n", "   →   New File", ":enew <BAR> startinsert <CR>"),
 	dashboard.button("SPC f f", "   →   Search Files", ":cd $PWD | Telescope find_files <CR>"),
 	dashboard.button("SPC f h", "   →   Recently opened files", ":Telescope oldfiles <CR>"),
 	dashboard.button("SPC f b", "   →   Marks", ":Telescope marks <CR>"),
-	dashboard.button("q", "   →   Quit", ":qa"),
+	dashboard.button("q", "   →   Quit", ":qa <CR>"),
 }
 
 --Set footer
@@ -63,8 +63,3 @@ dashboard.section.footer.val = footers[randomize]
 
 -- Send config to alpha
 alpha.setup(dashboard.opts)
-
--- Disable folding on alpha buffer
-vim.cmd([[
-    autocmd FileType alpha setlocal nofoldenable
-]])
