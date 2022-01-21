@@ -34,3 +34,4 @@ Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/lua/
 - [ ] Add python repl support (Adding a new slime command)
 - [ ] make markdown preview dynamic with flatpak installed browser or installed from a distro's package manager? (Hmmm)
 - [x] Replace dashboard-nvim with alpha-nvim (seems glepnir is MIA, i hope glepnir is fine)
+- [ ] Configure vim-slime to add neovim panes for MS Windows
