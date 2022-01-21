@@ -161,8 +161,15 @@ local servers = {
 }
 
 for lsp, setup in pairs(servers) do
-	setup.on_attach = on_attach
-	setup.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+	local lsp_status = require("lsp-status")
+	lsp_status.register_progress()
+	lsp_status.messages()
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	setup.capabilities = vim.tbl_extend("keep", setup.capabilities or {}, lsp_status.capabilities)
+	setup.on_attach = lsp_status.on_attach
+	lsp_status.register_client(setup.on_attach)
+	setup.capabilities = lsp_status.capabilities
+	setup.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 	nvim_lsp[lsp].setup(setup)
 end
 

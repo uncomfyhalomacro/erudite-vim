@@ -1,3 +1,11 @@
+local lsp_status = require('lsp-status')
+
+function LspStatus()
+    if #vim.lsp.buf_get_clients() < 1 then return "" end
+
+    return lsp_status.status()
+end
+
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
@@ -15,9 +23,7 @@ require("lualine").setup({
 			"encoding",
 			"fileformat",
 			"filetype",
-			function()
-				return require("lsp-status").status()
-			end,
+			'LspStatus()'
 		},
 		lualine_y = { "progress" },
 		lualine_z = { "location" },
