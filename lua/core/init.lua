@@ -1,12 +1,12 @@
 require("packer_init")
+require("impatient").enable_profile()
 require("packer_compiled")
 require("core.settings")
 require("core.plugins")
 require("core.keymaps")
 
 -- IMPATIENT STARTS HERE --
--- Reporting a startup time of ~3.0 milliseconds --
-require("impatient").enable_profile()
+-- Reporting a startup time of less than 3.0 milliseconds --
 vim.o.background = "dark"
 vim.g.transparent_enabled = true
 vim.g.presence_auto_update = true
