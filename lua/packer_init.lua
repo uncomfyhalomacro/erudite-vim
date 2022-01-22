@@ -68,6 +68,9 @@ return packer.startup({
 
 		-- Beta plugins
 		use("nathom/filetype.nvim")
+		use({
+			"sidebar-nvim/sidebar.nvim",
+		})
 		use("ldelossa/calltree.nvim")
 		use("lewis6991/impatient.nvim")
 		use({
