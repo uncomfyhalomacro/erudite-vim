@@ -8,13 +8,8 @@ vim.bo.expandtab = true
 vim.bo.smartindent = true
 vim.cmd("let &t_ut=''")
 vim.opt.shortmess:append("c")
-if vim.bo.filetype == "markdown" then
-	vim.opt.ts = 4
-	vim.opt.sw = 4
-else
-	vim.opt.ts = 2
-	vim.opt.sw = 2
-end
+vim.opt.ts = 2
+vim.opt.sw = 2
 
 vim.o.cmdheight = 2
 --vim.o.completefunc = "emoji#complete"
