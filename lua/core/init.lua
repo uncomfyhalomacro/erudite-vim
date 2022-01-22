@@ -4,6 +4,7 @@ require("packer_compiled")
 require("core.settings")
 require("core.plugins")
 require("core.keymaps")
+require("core.ftplugin")
 
 -- IMPATIENT STARTS HERE --
 -- Reporting a startup time of less than 3.0 milliseconds --
