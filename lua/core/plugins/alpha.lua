@@ -41,9 +41,9 @@ dashboard.section.header.val = {
 }
 --Set menu
 dashboard.section.buttons.val = {
-	dashboard.button("SPC f e", "   →   Open File Explorer", ":NvimTreeToggle <CR>"),
-	dashboard.button("SPC f n", "   →   New File", ":enew <BAR> startinsert <CR>"),
-	dashboard.button("SPC f f", "   →   Search Files", ":cd $PWD | Telescope find_files <CR>"),
+	dashboard.button("SPC f e", "   →   Open file explorer", ":NvimTreeToggle <CR>"),
+	dashboard.button("SPC f n", "   →   New file", ":enew <BAR> startinsert <CR>"),
+	dashboard.button("SPC f f", "   →   Search files", ":cd $PWD | Telescope find_files <CR>"),
 	dashboard.button("SPC f h", "   →   Recently opened files", ":Telescope oldfiles <CR>"),
 	dashboard.button("SPC f b", "   →   Marks", ":Telescope marks <CR>"),
 	dashboard.button("q", "   →   Quit", ":qa <CR>"),
