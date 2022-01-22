@@ -23,7 +23,7 @@ My neovim configuration. Fully written in Lua. This configuration is more focuse
 
 ### Plugins
 
-Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/lua/plugins.lua)
+Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/lua/packer_init.lua)
 
 # TODO
 
