@@ -1,9 +1,11 @@
-local lsp_status = require('lsp-status')
+local lsp_status = require("lsp-status")
 
 function LspStatus()
-    if #vim.lsp.buf_get_clients() < 1 then return "" end
+	if #vim.lsp.buf_get_clients() < 1 then
+		return ""
+	end
 
-    return lsp_status.status()
+	return lsp_status.status()
 end
 
 require("lualine").setup({
@@ -23,7 +25,7 @@ require("lualine").setup({
 			"encoding",
 			"fileformat",
 			"filetype",
-			'LspStatus()'
+			"LspStatus()",
 		},
 		lualine_y = { "progress" },
 		lualine_z = { "location" },

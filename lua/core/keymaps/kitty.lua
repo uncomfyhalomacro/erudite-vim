@@ -11,7 +11,7 @@ elseif vim.fn.getenv("TERM_PROGRAM") == "tmux" then
 	local tmux = {
 		name = "+tmux",
 		k = { ":!tmux split-window<CR>:<C-[><CR>", "split current tmux-window" },
-		s = { ":!tmux split-window" .. ' -c ' .. "%:p:h" .. ' <CR>:<C-[><CR>', "split tmux-window on cwd" },
+		s = { ":!tmux split-window" .. " -c " .. "%:p:h" .. " <CR>:<C-[><CR>", "split tmux-window on cwd" },
 	}
 	return tmux
 else
