@@ -34,9 +34,6 @@ return packer.startup({
 		use({ "lewis6991/gitsigns.nvim", branch = "main", requires = "nvim-lua/plenary.nvim" })
 		use({
 			"shaunsingh/nord.nvim",
-			config = function()
-				vim.cmd("colorscheme nord")
-			end,
 		})
 		use({ "dracula/vim", as = "dracula" })
 		use("folke/tokyonight.nvim")
@@ -70,6 +67,15 @@ return packer.startup({
 		use("nathom/filetype.nvim")
 		use({
 			"sidebar-nvim/sidebar.nvim",
+			config = function()
+				local sidebar = require("sidebar-nvim")
+				sidebar.setup({
+					side = "right",
+					open = false,
+					update_interval = 100,
+					disable_closing_prompt = true
+				})
+			end,
 		})
 		use("ldelossa/calltree.nvim")
 		use("lewis6991/impatient.nvim")
@@ -102,14 +108,6 @@ return packer.startup({
 				{ "lukas-reineke/cmp-rg", after = "nvim-cmp" },
 				{ "windwp/nvim-autopairs", disable = false },
 				{ "lukas-reineke/cmp-under-comparator" },
-
-				--{ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
-				--{
-				--"quangnguyen30192/cmp-nvim-ultisnips",
-				--requires = "SirVer/UltiSnips",
-				--after = "nvim-cmp",
-				--disable = true,
-				--},
 				{ "hrsh7th/cmp-emoji", after = "nvim-cmp" },
 				{
 					"uga-rosa/cmp-dictionary",

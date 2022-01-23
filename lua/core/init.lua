@@ -9,7 +9,8 @@ require("core.ftplugin")
 -- IMPATIENT STARTS HERE --
 -- Reporting a startup time of less than 3.0 milliseconds --
 vim.o.background = "dark"
-vim.g.transparent_enabled = true
+vim.cmd("colorscheme PaperColor")
+vim.g.transparent_enabled = false
 vim.g.presence_auto_update = true
 vim.o.guifont = "JuliaMono,Hack Nerd Font,Noto Color Emoji:h10"
 
