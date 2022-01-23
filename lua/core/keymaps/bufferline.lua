@@ -1,10 +1,10 @@
 local keymap = {}
 keymap = {
 	name = "+tab",
-	[","] = { ":BufferLineCyclePrevious<CR>", "previous tab" },
+	[","] = { ":BufferLineCyclePrev<CR>", "previous tab" },
 	["."] = { ":BufferLineCycleNext<CR>", "next tab" },
-	["<"] = { ":BufferMovePrevious<CR>", "move previous tab" },
-	[">"] = { ":BufferMoveNext<CR>", "move next tab" },
+	["<"] = { ":BufferLineMovePrev<CR>", "move previous tab" },
+	[">"] = { ":BufferLineMoveNext<CR>", "move next tab" },
 	["1"] = { ":BufferLineGoToBuffer 1<CR>", "goto tab 1" },
 	["2"] = { ":BufferLineGoToBuffer 2<CR>", "goto tab 2" },
 	["3"] = { ":BufferLineGoToBuffer 3<CR>", "goto tab 3" },
@@ -16,7 +16,6 @@ keymap = {
 	c = { ":BufferLinePickClose<CR>", "close picked buffer" },
 	s = { ":BufferLinePick<CR>", "pickering mode" },
 	d = { ":BufferLineSortByDirectory<CR>", "sort by directory" },
-	l = { ":BufferOrderByLanguage<CR>", "sort by language" },
 }
 
 return keymap
