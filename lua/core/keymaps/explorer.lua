@@ -7,7 +7,8 @@ local explorer = {
 	b = { ":Telsecope marks<CR>", "marks" },
 	f = { ":cd $PWD | Telsecope find_files <CR>", "search files" },
 	s = { ":SidebarNvimToggle <CR>", "open sidebar"},
-	c = { ":Telescope colorscheme <CR>", "select colorscheme"}
+	c = { ":Telescope colorscheme <CR>", "select colorscheme"},
+	m = { ":MinimapToggle <CR>", "toggle code minimap"}
 }
 
 return explorer
