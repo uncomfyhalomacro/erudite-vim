@@ -147,15 +147,22 @@ local servers = {
 	efm = {
 		cmd = { "efm-langserver" },
 		init_options = { documentFormatting = true },
-		filetypes = {
-			"lua",
-			"python",
-			"markdown",
-			"sh",
-			"json",
-		},
 		settings = {
 			rootMarkers = { ".git/" },
+			languages = {
+				lua = {
+					{
+						formatCommand = "stylua",
+						formatStdin = true,
+					},
+				},
+				markdown = {
+					{
+						formatCommand = "markdownlint -s",
+						formatStdin = true,
+					},
+				},
+			},
 		},
 	},
 }
