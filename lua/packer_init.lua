@@ -28,6 +28,7 @@ local plugins = function(use)
 	use({ "NLKNguyen/papercolor-theme" })
 	use("shaunsingh/solarized.nvim")
 	use({ "lewis6991/gitsigns.nvim", branch = "main", requires = "nvim-lua/plenary.nvim" })
+	use({ "catppuccin/nvim" })
 	use({
 		"shaunsingh/nord.nvim",
 	})
@@ -73,7 +74,6 @@ local plugins = function(use)
 			})
 		end,
 	})
-	use("ldelossa/calltree.nvim")
 	use("lewis6991/impatient.nvim")
 	use({
 		"kyazdani42/nvim-tree.lua",
