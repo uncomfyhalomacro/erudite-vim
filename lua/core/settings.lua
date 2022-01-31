@@ -1,5 +1,6 @@
 -- Main
 vim.g.filetype = "plugin on"
+vim.o.foldenable = false
 vim.opt.splitright = true
 vim.opt.compatible = false
 vim.o.autochdir = true
