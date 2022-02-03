@@ -28,7 +28,7 @@ local plugins = function(use)
 	use({ "NLKNguyen/papercolor-theme" })
 	use("shaunsingh/solarized.nvim")
 	use({ "lewis6991/gitsigns.nvim", branch = "main", requires = "nvim-lua/plenary.nvim" })
-	use({ "catppuccin/nvim" })
+	use({ "catppuccin/nvim", as = "catppuccin" })
 	use({
 		"shaunsingh/nord.nvim",
 	})
@@ -58,6 +58,21 @@ local plugins = function(use)
 		requires = {
 			{ "MunifTanjim/nui.nvim" },
 		},
+	})
+	use({
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			vim.opt.list = true
+			vim.opt.listchars:append("space:⋅")
+			vim.opt.listchars:append("eol:↴")
+			require("indent_blankline").setup({
+				use_treesitter = true,
+				show_current_context = true,
+				show_current_context_start = true,
+				filetype_exclude = { "alpha", "minimap", "Trouble", "SidebarNvim" },
+				buftype_exclude = { "terminal" },
+			})
+		end,
 	})
 
 	-- Beta plugins
