@@ -69,7 +69,7 @@ local plugins = function(use)
 				use_treesitter = true,
 				show_current_context = true,
 				show_current_context_start = true,
-				filetype_exclude = { "alpha", "minimap", "Trouble", "SidebarNvim" },
+				filetype_exclude = { "alpha", "minimap", "Trouble", "SidebarNvim", "packer", "fugitive" },
 				buftype_exclude = { "terminal" },
 			})
 		end,
