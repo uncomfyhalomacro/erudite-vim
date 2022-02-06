@@ -147,6 +147,13 @@ local servers = {
 	efm = {
 		cmd = { "efm-langserver" },
 		init_options = { documentFormatting = true },
+		filetypes = {
+			"lua",
+			"python",
+			"markdown",
+			"sh",
+			"json",
+		},
 		settings = {
 			rootMarkers = { ".git/" },
 			languages = {
