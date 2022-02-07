@@ -35,8 +35,15 @@ local sessions = {
 	l = { ":SessionLoad<CR>", "load last session" },
 }
 
+local pomodoro = {
+	name = "+pomodoro",
+	s = { ":PomodoroStart<CR>", "start pomodoro timer" },
+	t = { ":PomodoroStatus<CR>", "display pomodoro status" },
+	S = { ":PomodoroStop<CR>", "stop pomodoro timer" },
+}
 keymap.f = explorer_key
 keymap.k = kitty_key
+keymap.p = pomodoro
 keymap.s = sessions
 keymap.c = { name = "+NerdCommenter" }
 keymap.a = {

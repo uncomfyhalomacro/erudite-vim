@@ -159,8 +159,9 @@ local servers = {
 			languages = {
 				lua = {
 					{
-						formatCommand = "stylua",
+						formatCommand = "stylua --color Never",
 						formatStdin = true,
+						rootMarkers = { "stylua.toml", ".stylua.toml" },
 					},
 				},
 				markdown = {
