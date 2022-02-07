@@ -28,7 +28,23 @@ local plugins = function(use)
 	use({ "NLKNguyen/papercolor-theme" })
 	use("shaunsingh/solarized.nvim")
 	use({ "lewis6991/gitsigns.nvim", branch = "main", requires = "nvim-lua/plenary.nvim" })
-	use({ "catppuccin/nvim", as = "catppuccin" })
+	use({
+		"catppuccin/nvim",
+		as = "catppuccin",
+		config = function()
+			local catppuccin = require("catppuccin")
+			local transparency = vim.g.transparent_enabled
+			catppuccin.setup({
+				transparent_background = transparency,
+				which_key = true,
+				nvimtree = {
+					enabled = false,
+					show_root = not transparency, -- makes the root folder not transparent
+					transparent_panel = transparency, -- make the panel transparent
+				},
+			})
+		end,
+	})
 	use({
 		"shaunsingh/nord.nvim",
 	})
@@ -40,7 +56,6 @@ local plugins = function(use)
 	-- Transparency
 	use({
 		"xiyaowong/nvim-transparent",
-		after = { "nord.nvim", "solarized.nvim", "papercolor-theme", "paige", "dracula", "tokyonight.nvim" },
 	})
 
 	use({
