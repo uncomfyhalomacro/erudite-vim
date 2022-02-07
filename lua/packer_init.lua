@@ -58,6 +58,18 @@ local plugins = function(use)
 		requires = {
 			{ "MunifTanjim/nui.nvim" },
 		},
+		config = function()
+			require("pomodoro").setup({
+				time_work = 25,
+				time_break_short = 5,
+				time_break_long = 20,
+				timers_to_long_break = 4,
+			})
+		end,
+	})
+	use({
+		"wthollingsworth/pomodoro.nvim",
+		requires = "MunifTanjim/nui.nvim",
 	})
 	use({
 		"lukas-reineke/indent-blankline.nvim",
@@ -69,7 +81,7 @@ local plugins = function(use)
 				use_treesitter = true,
 				show_current_context = true,
 				show_current_context_start = true,
-				filetype_exclude = { "alpha", "minimap", "Trouble", "SidebarNvim", "packer", "fugitive" },
+				filetype_exclude = { "alpha", "minimap", "Trouble", "SidebarNvim", "packer", "fugitive", "NvimTree" },
 				buftype_exclude = { "terminal" },
 			})
 		end,
