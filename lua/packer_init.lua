@@ -51,6 +51,15 @@ local plugins = function(use)
 
 	-- Utils
 	use({
+		"Shatur/neovim-session-manager",
+		config = function()
+			require("session_manager").setup({
+				autoload_mode = require("session_manager.config").AutoloadMode.Disabled,
+			})
+		end,
+		requires = { "nvim-lua/plenary.nvim" },
+	})
+	use({
 		"phaazon/hop.nvim",
 		config = function()
 			require("hop").setup()
@@ -180,11 +189,24 @@ local plugins = function(use)
 	})
 	use({
 		"nvim-telescope/telescope.nvim",
-		requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+		requires = {
+			{ "nvim-lua/popup.nvim" },
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-telescope/telescope-ui-select.nvim" },
+		},
 	})
 	use({
 		"nvim-telescope/telescope-frecency.nvim",
 		config = function()
+			require("telescope").setup({
+				extensions = {
+					["ui-select"] = {
+						require("telescope.themes").get_dropdown({
+						}),
+					},
+				},
+			})
+			require("telescope").load_extension("ui-select")
 			require("telescope").load_extension("frecency")
 		end,
 		requires = { "tami5/sqlite.lua" },

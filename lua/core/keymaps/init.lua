@@ -31,8 +31,9 @@ keymap.x = { "<cmd>TroubleToggle<CR>", "list diagnostics" }
 
 local sessions = {
 	name = "+sessions",
-	s = { ":SessionSave<CR>", "save current session" },
-	l = { ":SessionLoad<CR>", "load last session" },
+	s = { ":SessionManager save_current_session<CR>", "save current session" },
+	l = { ":SessionManager load_last_session<CR>", "load last session" },
+	a = { ":SessionManager load_session<CR>", "load recent sessions" },
 }
 
 local pomodoro = {
