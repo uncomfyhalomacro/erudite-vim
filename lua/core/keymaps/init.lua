@@ -41,6 +41,23 @@ local pomodoro = {
 	t = { ":PomodoroStatus<CR>", "display pomodoro status" },
 	S = { ":PomodoroStop<CR>", "stop pomodoro timer" },
 }
+
+local hop_key = {
+	name = "+hop",
+	h = { ":HopWord<CR>", "hop words" },
+	p = { ":HopPattern<CR>", "hop pattern" },
+	l = { ":HopLine<CR>", "hop to any visible lines" },
+}
+
+local hop_key_extend = {
+	name = "+more",
+	h = { ":HopWordCurrentLine<CR>", "hop words on currentline" },
+	p = { ":HopPatternCurrentLine<CR>", "hop pattern on currentline" },
+	l = { ":HopLineStart<CR>", "hop to any visible non-whitespace character" },
+}
+
+hop_key.e = hop_key_extend
+keymap.h = hop_key
 keymap.f = explorer_key
 keymap.k = kitty_key
 keymap.p = pomodoro
