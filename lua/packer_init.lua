@@ -192,21 +192,24 @@ local plugins = function(use)
 		requires = {
 			{ "nvim-lua/popup.nvim" },
 			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-telescope/telescope-ui-select.nvim" },
+			{
+				"nvim-telescope/telescope-ui-select.nvim",
+				config = function()
+					require("telescope").setup({
+						extensions = {
+							["ui-select"] = {
+								require("telescope.themes").get_dropdown({}),
+							},
+						},
+					})
+					require("telescope").load_extension("ui-select")
+				end,
+			},
 		},
 	})
 	use({
 		"nvim-telescope/telescope-frecency.nvim",
 		config = function()
-			require("telescope").setup({
-				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown({
-						}),
-					},
-				},
-			})
-			require("telescope").load_extension("ui-select")
 			require("telescope").load_extension("frecency")
 		end,
 		requires = { "tami5/sqlite.lua" },
