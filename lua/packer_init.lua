@@ -52,6 +52,7 @@ local plugins = function(use)
 	use("folke/tokyonight.nvim")
 	use("Shatur/neovim-ayu")
 	use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
+	use({"projekt0n/github-nvim-theme"})
 
 	-- Transparency
 	use({
