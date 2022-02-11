@@ -89,6 +89,10 @@ local plugins = function(use)
 		requires = {
 			{ "MunifTanjim/nui.nvim" },
 		},
+	})
+	use({
+		"wthollingsworth/pomodoro.nvim",
+		requires = "MunifTanjim/nui.nvim",
 		config = function()
 			require("pomodoro").setup({
 				time_work = 25,
@@ -97,10 +101,6 @@ local plugins = function(use)
 				timers_to_long_break = 4,
 			})
 		end,
-	})
-	use({
-		"wthollingsworth/pomodoro.nvim",
-		requires = "MunifTanjim/nui.nvim",
 	})
 	use({
 		"lukas-reineke/indent-blankline.nvim",
