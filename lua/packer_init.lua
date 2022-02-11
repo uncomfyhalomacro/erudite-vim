@@ -245,12 +245,6 @@ local plugins = function(use)
 			run = ":TSUpdate",
 		})
 		use({ "nvim-treesitter/playground", after = "nvim-treesitter" })
-		use({
-			"ttys3/nvim-blamer.lua",
-		})
-		require("nvim-treesitter.configs").setup({
-			yati = { enable = true },
-		})
 	end
 
 	-- Language Server Protocol Plugins --
