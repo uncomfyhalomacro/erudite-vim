@@ -76,6 +76,10 @@ local git_keys = {
 	S = { ":Git status<CR>", "show git status" },
 	c = { ":Git commit<CR>", "commit stagedtruees" },
 	f = { ":Git fetch<CR>", "fetch changes from remote" },
+	C = { ":Telescope git_commits<CR>", "select a specific commit"},
+	u = { ":Telescope git_status<CR>", "select git file from git status"},
+	F = { ":Telescope git_files<CR>", "select files that are tracked"},
+	b = { ":Telescope git_branches", "select a specific branch"}
 }
 
 if string.find(check_if_local_git_repo, "true") then -- this is because there are weird characters returned e.g. "true^@" instead of just "true" which is kinda annoying
