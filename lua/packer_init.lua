@@ -45,14 +45,12 @@ local plugins = function(use)
 			})
 		end,
 	})
-	use({
-		"shaunsingh/nord.nvim",
-	})
+	use({ "shaunsingh/nord.nvim" })
 	use({ "dracula/vim", as = "dracula" })
 	use("folke/tokyonight.nvim")
 	use("Shatur/neovim-ayu")
 	use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
-	use({"projekt0n/github-nvim-theme"})
+	use({ "projekt0n/github-nvim-theme" })
 
 	-- Transparency
 	use({

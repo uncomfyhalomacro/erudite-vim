@@ -58,6 +58,30 @@ local hop_key_extend = {
 }
 
 hop_key.e = hop_key_extend
+
+local check_if_local_git_repo = vim.fn.system({
+	"git",
+	"-C",
+	vim.fn.getcwd(),
+	"rev-parse",
+	"--is-inside-work-tree",
+})
+
+local git_keys = {
+	name = "+git",
+	a = { ":Git add %<CR>", "git add current file" },
+	s = { ":Gitsigns blame_line<CR>", "show fancy git blame" },
+	t = { ":Gitsigns toggle_current_blame_line<CR>", "toggle inline git blame" },
+	p = { ":Git push<CR>", "push commited changes" },
+	S = { ":Git status<CR>", "show git status" },
+	c = { ":Git commit<CR>", "commit stagedtruees" },
+	f = { ":Git fetch<CR>", "fetch changes from remote" },
+}
+
+if string.find(check_if_local_git_repo, "true") then -- this is because there are weird characters returned e.g. "true^@" instead of just "true" which is kinda annoying
+	keymap.g = git_keys
+end
+
 keymap.h = hop_key
 keymap.f = explorer_key
 keymap.k = kitty_key
@@ -70,15 +94,6 @@ keymap.a = {
 	r = { ":<C-U>Lspsaga range_code_action<CR>", "ranged code action" },
 }
 keymap.A = require("core.keymaps.bufferline")
---keymap.d = {
---name = "+dashboard",
---h = { ":DashboardFindHistory<CR>", "browse history" },
---d = { ":Dashboard<CR>", "main menu" },
---m = { ":DashboardJumpMarks<CR>", "jump marks" },
---w = { ":DashboardFindWord<CR>", "find word" },
---c = { ":DashboardChangeColorscheme<CR>", "change colorscheme" },
---}
-
 keymap["t"] = { ":TSPlaygroundToggle<CR>", "treesitter playground" }
 
 -- FileTypes

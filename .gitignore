@@ -2,3 +2,4 @@ plugged/
 plugin/
 packer_compiled.lua
 ./init.lua
+.luarc.json
