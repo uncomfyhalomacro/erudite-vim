@@ -117,6 +117,14 @@ local plugins = function(use)
 	})
 
 	-- Beta plugins
+	use({
+		"mickael-menu/zk-nvim",
+		config = function()
+			require("zk").setup({
+				picker = "telescope",
+			})
+		end,
+	})
 	use("nathom/filetype.nvim")
 	use({
 		"sidebar-nvim/sidebar.nvim",
