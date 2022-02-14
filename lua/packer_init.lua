@@ -249,7 +249,7 @@ local plugins = function(use)
 				},
 				layout = {
 					height = { min = 4, max = 25 }, -- min and max height of the columns
-					width = { min = 20, max = 120 }, -- min and max width of the columns
+					width = { min = 20, max = 200 }, -- min and max width of the columns
 					spacing = 25, -- spacing between columns
 					align = "center", -- align columns left, center or right
 				},
@@ -269,7 +269,76 @@ local plugins = function(use)
 		end,
 	})
 	use({ "norcalli/nvim-colorizer.lua" })
-	use("preservim/nerdcommenter")
+	use({"numToStr/Comment.nvim", config = function()
+		require('Comment').setup({
+			 ---Add a space b/w comment and the line
+    ---@type boolean
+    padding = true,
+
+    ---Whether the cursor should stay at its position
+    ---NOTE: This only affects NORMAL mode mappings and doesn't work with dot-repeat
+    ---@type boolean
+    sticky = true,
+
+    ---Lines to be ignored while comment/uncomment.
+    ---Could be a regex string or a function that returns a regex string.
+    ---Example: Use '^$' to ignore empty lines
+    ---@type string|fun():string
+    ignore = nil,
+
+    ---LHS of toggle mappings in NORMAL + VISUAL mode
+    ---@type table
+    toggler = {
+        ---Line-comment toggle keymap
+        line = '<localleader>cc',
+        ---Block-comment toggle keymap
+        block = '<localleader>bc',
+    },
+
+    ---LHS of operator-pending mappings in NORMAL + VISUAL mode
+    ---@type table
+    opleader = {
+        ---Line-comment keymap
+        line = '<localleader>c',
+        ---Block-comment keymap
+        block = '<localleader>b',
+    },
+
+    ---LHS of extra mappings
+    ---@type table
+    extra = {
+        ---Add comment on the line above
+        above = '<localleader>cO',
+        ---Add comment on the line below
+        below = '<localleader>co',
+        ---Add comment at the end of line
+        eol = '<localleader>cA',
+    },
+
+    ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
+    ---@type table
+    mappings = {
+        ---Operator-pending mapping
+        ---Includes `gcc`, `gbc`, `gc[count]{motion}` and `gb[count]{motion}`
+        ---NOTE: These mappings can be changed individually by `opleader` and `toggler` config
+        basic = true,
+        ---Extra mapping
+        ---Includes `gco`, `gcO`, `gcA`
+        extra = true,
+        ---Extended mapping
+        ---Includes `g>`, `g<`, `g>[count]{motion}` and `g<[count]{motion}`
+        extended = false,
+    },
+
+    ---Pre-hook, called before commenting the line
+    ---@type fun(ctx: Ctx):string
+    pre_hook = nil,
+
+    ---Post-hook, called after commenting is done
+    ---@type fun(ctx: Ctx)
+    post_hook = nil,
+		})
+	end})
 	use({ "tpope/vim-fugitive", branch = "master" })
 	use("junegunn/vim-easy-align")
 	-- use({ "glepnir/dashboard-nvim" })

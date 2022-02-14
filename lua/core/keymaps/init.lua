@@ -89,7 +89,7 @@ keymap.f = explorer_key
 keymap.k = kitty_key
 keymap.p = pomodoro
 keymap.s = sessions
-keymap.c = { name = "+NerdCommenter" }
+-- keymap.c = { name = "+NerdCommenter" }
 keymap.a = {
 	name = "+code",
 	a = { ":Lspsaga code_action<CR>", "code action" },
@@ -112,8 +112,40 @@ local searchbox_key = {
 	s = { ":SearchBoxSimple<CR>", "simple search" },
 	n = { ":SearchBoxIncSearch<CR>", "find nearest match" },
 }
-
 local_keymap.s = searchbox_key
+local comment_key_blockwise  = {
+	name = "+comment blockwise",
+	c = {
+		name = "comment blocks"
+	}
+}
+
+local_keymap.b = comment_key_blockwise
+
+local comment_key_linewise = {
+	name = "+comment linewise",
+	A = {
+		name = "insert comment EOL"
+	},
+	c = {
+		name = "comment selected line"
+	},
+	o = {
+		name = "insert comment below"
+	},
+	O = {
+		name = "insert comment above"
+	}
+}
+
+local_keymap.c = comment_key_linewise
+
+-- VISUAL LOCALLEADER PREFIX 
+local local_visual_keymap = {}
+
+local_visual_keymap.b = "comment selected blockwise"
+local_visual_keymap.c = "comment selected linewise"
+
 
 -- FileTypes
 vim.cmd("autocmd FileType julia :lua require('core.keymaps.julia')")
@@ -124,3 +156,4 @@ vim.cmd("autocmd FileType bib :lua require('core.keymaps.texlab')")
 
 wk.register({ ["<leader>"] = keymap })
 wk.register({ ["<localleader>"] = local_keymap })
+wk.register({ ["<localleader>"] = local_visual_keymap}, { mode = "v" })
