@@ -1,25 +1,7 @@
-vim.g.which_key_timeout = 100
-vim.g.which_key_use_floating_win = 0
-vim.g.which_key_max_size = 0
-vim.g.mapleader = " "
-vim.g.which_key_hspace = 5
-vim.g.which_key_vertical = 0
-vim.g.which_key_sort_horizontal = 0
-vim.g.which_key_flatten = 0
-
-vim.g.which_key_fallback_to_native_key = 1
-vim.g.which_key_display_names = {
-	["<CR>"] = "↵",
-	["<TAB>"] = "⇆",
-	["<LEADER>"] = "異",
-}
-
-vim.g.which_key_sep = "→"
-vim.g.which_key_timeout = 100
-
-local wk = require("whichkey_setup")
+local wk = require("which-key")
 local keymap = {}
 
+-- LEADER PREFIX --
 -- Basic stuff
 keymap.q = { ":q<CR>", "exit buffer" }
 keymap.w = { ":w<CR>", "write buffer to file" }
@@ -94,6 +76,7 @@ local zk_keys = {
 	b = { ":ZkNotes<CR>", "list notes" },
 }
 
+keymap.z = zk_keys
 keymap.h = hop_key
 keymap.f = explorer_key
 keymap.k = kitty_key
@@ -108,6 +91,23 @@ keymap.a = {
 keymap.A = require("core.keymaps.bufferline")
 keymap["t"] = { ":TSPlaygroundToggle<CR>", "treesitter playground" }
 
+-- LOCALLEADER PREFIX --
+local local_keymap = {}
+vim.api.nvim_set_keymap(
+	"n",
+	"<localleader>s",
+	'<cmd>lua require("searchbox").incsearch()<CR>',
+	{ noremap = true, silent = true }
+)
+
+local searchbox_key = {
+	name = "+search",
+	s = { ":SearchBoxSimple<CR>", "simple search" },
+	n = { ":SearchBoxIncSearch<CR>", "find nearest match" },
+}
+
+local_keymap.s = searchbox_key
+
 -- FileTypes
 vim.cmd("autocmd FileType julia :lua require('core.keymaps.julia')")
 vim.cmd("autocmd FileType lua :lua require('core.keymaps.lua')")
@@ -115,12 +115,5 @@ vim.cmd("autocmd FileType markdown :lua require('core.keymaps.markdown')")
 vim.cmd("autocmd FileType tex :lua require('core.keymaps.texlab')")
 vim.cmd("autocmd FileType bib :lua require('core.keymaps.texlab')")
 
-wk.config({
-	hide_statusline = true,
-	default_keymap_settings = {
-		silent = true,
-		noremap = true,
-	},
-})
-
-wk.register_keymap("leader", keymap)
+wk.register({ ["<leader>"] = keymap })
+wk.register({ ["<localleader>"] = local_keymap })

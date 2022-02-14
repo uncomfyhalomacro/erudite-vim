@@ -1,5 +1,5 @@
 local nvim_lsp = require("lspconfig")
-local wk = require("whichkey_setup")
+local wk = require("which-key")
 local opts = { noremap = true, silent = true }
 
 local on_attach = function(client, bufnr)
@@ -43,9 +43,8 @@ local on_attach = function(client, bufnr)
 	elseif client.resolved_capabilities.document_range_formatting then
 		keymap.l.f = { "<Cmd>lua vim.lsp.buf.range_formatting()<CR>", "format" }
 	end
-	wk.register_keymap("leader", keymap, { bufnr = bufnr })
-	-- wk.register_keymap('leader', visual_keymap, {bufnr=bufnr, mode='v'})
-	wk.register_keymap("leader", visual_keymap, { bufnr = bufnr, mode = "v" })
+	wk.register({ ["<leader>"] = keymap }, { buffer = bufnr })
+	wk.register({ ["<leader>"] = visual_keymap }, { buffer = bufnr, mode = "v" })
 
 	-- saga mappings
 	-- lsp provider to find the cursor word definition and reference
@@ -166,8 +165,9 @@ local servers = {
 				},
 				markdown = {
 					{
-						formatCommand = "markdownlint -s",
-						formatStdin = true,
+						lintCommand = "markdownlint -s",
+						lintStdin = true,
+						lintFormats = { "%f: %l: %m" },
 					},
 				},
 			},

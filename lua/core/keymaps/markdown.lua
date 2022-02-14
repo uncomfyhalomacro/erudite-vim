@@ -1,3 +1,5 @@
+local wk = require("which-key")
+local keymap = {}
 local markdown = {
 	name = "+markdown",
 	p = { ":MarkdownPreview<CR>", "preview on browser" },
@@ -8,8 +10,5 @@ local markdown = {
 		"save MD to PDF",
 	},
 }
-
-local keymap = {}
 keymap.m = markdown
-local wk = require("whichkey_setup")
-wk.register_keymap("leader", keymap)
+wk.register({ ["<leader>"] = keymap })

@@ -1,5 +1,5 @@
-<div align="center"><h1> Erudite Vim </h1></div>
-<div align="center"><img align="center" src="https://github.com/uncomfyhalomacro/erudite-vim/blob/main/screenshots/screenshot.png"></img></div><br/>
+<div align="center"><h1> Erudite Vim </h1></div> <div align="center"><img align="center"
+src="https://github.com/uncomfyhalomacro/erudite-vim/blob/main/screenshots/screenshot.png"></img></div><br/>
 
 This configuration is more focused for Julia users. But it can still be modified
 to be used for other languages. I am planning to add that functionality soon but
@@ -37,7 +37,10 @@ Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/lua/
 - [ ] Add haskell and ghci (Adding a new slime command)
 - [ ] Add python repl support (Adding a new slime command)
 - [x] make markdown preview dynamic with flatpak installed browser or installed
-  from a distro's package manager? (Hmmm. Use xdg-open instead to respect user defaults)
+  from a distro's package manager? (Hmmm. Use xdg-open instead to respect user defaults. For macOS and windows users,
+  you have to edit that file i guess :woozy_face:)
 - [x] Replace dashboard-nvim with alpha-nvim (seems glepnir is MIA, i hope
   glepnir is fine)
-- [ ] ~~Configure vim-slime to add neovim panes for MS Windows~~ (Windows is kinda annoying to use with vim-slime with neovim panes. It works but I rather use WSL)
+- [ ] ~~Configure vim-slime to add neovim panes for MS Windows~~ (Windows is kinda annoying to use with vim-slime with
+  neovim panes. It works but I rather use WSL)
+- [x] Replaced nvim-whichkey lua with folke's which-key.nvim

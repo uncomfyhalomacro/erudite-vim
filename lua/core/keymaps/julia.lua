@@ -2,6 +2,7 @@ local keymap = {}
 local kitty_exe = vim.fn.exepath("kitty")
 local julia_exe = vim.fn.exepath("julia")
 local tmux_exe = vim.fn.exepath("tmux")
+local wk = require("which-key")
 if (vim.fn.getenv("TERM") == "xterm-kitty") and vim.fn.getenv("TERM_PROGRAM") == vim.NIL then
 	if kitty_exe ~= "" and julia_exe ~= "" then
 		local project_path = vim.fn.system({
@@ -38,8 +39,7 @@ if (vim.fn.getenv("TERM") == "xterm-kitty") and vim.fn.getenv("TERM_PROGRAM") ==
 			},
 		}
 		keymap.j = julia
-		local wk = require("whichkey_setup")
-		wk.register_keymap("leader", { k = keymap })
+		wk.register({ ["<leader>k"] = keymap })
 	end
 elseif vim.fn.getenv("TERM_PROGRAM") == "tmux" then
 	if tmux_exe ~= "" then
@@ -80,7 +80,6 @@ elseif vim.fn.getenv("TERM_PROGRAM") == "tmux" then
 			},
 		}
 		keymap.j = julia
-		local wk = require("whichkey_setup")
-		wk.register_keymap("leader", { k = keymap })
+		wk.register({ ["<leader>k"] = keymap })
 	end
 end
