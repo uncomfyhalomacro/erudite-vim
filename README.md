@@ -40,4 +40,4 @@ Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/lua/
   from a distro's package manager? (Hmmm. Use xdg-open instead to respect user defaults)
 - [x] Replace dashboard-nvim with alpha-nvim (seems glepnir is MIA, i hope
   glepnir is fine)
-- ~~[ ] Configure vim-slime to add neovim panes for MS Windows~~ (Windows is kinda annoying to use with vim-slime with neovim panes. It works but I rather use WSL)
+- [ ] ~~Configure vim-slime to add neovim panes for MS Windows~~ (Windows is kinda annoying to use with vim-slime with neovim panes. It works but I rather use WSL)
