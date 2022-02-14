@@ -1,5 +1,15 @@
-<div align="center"><h1> Erudite Vim </h1></div> <div align="center"><img align="center"
-src="https://github.com/uncomfyhalomacro/erudite-vim/blob/main/screenshots/screenshot.png"></img></div><br/>
+<div align="center"><h1> Erudite Vim </h1></div>
+
+![Image](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/screenshots/screenshot_new.png)
+
+![Image](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/screenshots/screenshot_whichkey.png)
+
+![Image](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/screenshots/full_setup.png)
+
+
+
+
+
 
 This configuration is more focused for Julia users. But it can still be modified
 to be used for other languages. I am planning to add that functionality soon but
