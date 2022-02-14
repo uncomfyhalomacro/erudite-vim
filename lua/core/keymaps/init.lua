@@ -89,8 +89,15 @@ keymap.a = {
 	r = { ":<C-U>Lspsaga range_code_action<CR>", "ranged code action" },
 }
 keymap.A = require("core.keymaps.bufferline")
-keymap["t"] = { ":TSPlaygroundToggle<CR>", "treesitter playground" }
 
+local treesitter_key = {
+	name = "+treesitter",
+	p = { ":TSPlaygroundToggle<CR>", "treesitter playground" },
+	t = { ":TSBufToggle<CR>", "toggle treesitter on current buffer"},
+	T = { ":TSToggleAll<CR>", "toggle treesitter on all buffers"},
+	h = { ":TSHighlightCapturesUnderCursor<CR>", "show highlight groups under cursor"} 
+}
+keymap.t = treesitter_key
 -- LOCALLEADER PREFIX --
 local local_keymap = {}
 vim.api.nvim_set_keymap(
