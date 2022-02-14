@@ -40,33 +40,40 @@ local hop_key_extend = {
 }
 
 hop_key.e = hop_key_extend
+function GitKeys()
+	local wk = require("which-key")
+	local keymap = {}
+	local check_if_local_git_repo = vim.fn.system({
+		"git",
+		"-C",
+		vim.fn.getcwd(),
+		"rev-parse",
+		"--is-inside-work-tree",
+	})
 
-local check_if_local_git_repo = vim.fn.system({
-	"git",
-	"-C",
-	vim.fn.getcwd(),
-	"rev-parse",
-	"--is-inside-work-tree",
-})
+	local git_keys = {
+		name = "+git",
+		a = { ":Git add %<CR>", "git add current file" },
+		s = { ":Gitsigns blame_line<CR>", "show fancy git blame" },
+		t = { ":Gitsigns toggle_current_blame_line<CR>", "toggle inline git blame" },
+		p = { ":Git push<CR>", "push commited changes" },
+		S = { ":Git status<CR>", "show git status" },
+		c = { ":Git commit<CR>", "commit staged" },
+		f = { ":Git fetch<CR>", "fetch changes from remote" },
+		C = { ":Telescope git_commits<CR>", "select a specific commit" },
+		u = { ":Telescope git_status<CR>", "select git file from git status" },
+		F = { ":Telescope git_files<CR>", "select files that are tracked" },
+		b = { ":Telescope git_branches<CR>", "select a specific branch" },
+	}
 
-local git_keys = {
-	name = "+git",
-	a = { ":Git add %<CR>", "git add current file" },
-	s = { ":Gitsigns blame_line<CR>", "show fancy git blame" },
-	t = { ":Gitsigns toggle_current_blame_line<CR>", "toggle inline git blame" },
-	p = { ":Git push<CR>", "push commited changes" },
-	S = { ":Git status<CR>", "show git status" },
-	c = { ":Git commit<CR>", "commit stagedtruees" },
-	f = { ":Git fetch<CR>", "fetch changes from remote" },
-	C = { ":Telescope git_commits<CR>", "select a specific commit" },
-	u = { ":Telescope git_status<CR>", "select git file from git status" },
-	F = { ":Telescope git_files<CR>", "select files that are tracked" },
-	b = { ":Telescope git_branches<CR>", "select a specific branch" },
-}
-
-if string.find(check_if_local_git_repo, "true") then -- this is because there are weird characters returned e.g. "true^@" instead of just "true" which is kinda annoying
-	keymap.g = git_keys
+	if string.find(check_if_local_git_repo, "true") then -- this is because there are weird characters returned e.g. "true^@" instead of just "true" which is kinda annoying
+		keymap.g = git_keys
+		wk.register({ ["<leader>"] = keymap })
+		wk.register({ ["<localleader>"] = local_keymap })
+	end
 end
+
+vim.cmd("autocmd BufEnter * :lua GitKeys()")
 
 local zk_keys = {
 	name = "+zettelkasten",
@@ -82,31 +89,63 @@ keymap.f = explorer_key
 keymap.k = kitty_key
 keymap.p = pomodoro
 keymap.s = sessions
-keymap.c = { name = "+NerdCommenter" }
+-- keymap.c = { name = "+NerdCommenter" }
 keymap.a = {
 	name = "+code",
 	a = { ":Lspsaga code_action<CR>", "code action" },
 	r = { ":<C-U>Lspsaga range_code_action<CR>", "ranged code action" },
 }
 keymap.A = require("core.keymaps.bufferline")
-keymap["t"] = { ":TSPlaygroundToggle<CR>", "treesitter playground" }
 
+local treesitter_key = {
+	name = "+treesitter",
+	p = { ":TSPlaygroundToggle<CR>", "treesitter playground" },
+	t = { ":TSBufToggle<CR>", "toggle treesitter on current buffer" },
+	T = { ":TSToggleAll<CR>", "toggle treesitter on all buffers" },
+	h = { ":TSHighlightCapturesUnderCursor<CR>", "show highlight groups under cursor" },
+}
+keymap.t = treesitter_key
 -- LOCALLEADER PREFIX --
 local local_keymap = {}
-vim.api.nvim_set_keymap(
-	"n",
-	"<localleader>s",
-	'<cmd>lua require("searchbox").incsearch()<CR>',
-	{ noremap = true, silent = true }
-)
-
 local searchbox_key = {
 	name = "+search",
 	s = { ":SearchBoxSimple<CR>", "simple search" },
 	n = { ":SearchBoxIncSearch<CR>", "find nearest match" },
 }
-
 local_keymap.s = searchbox_key
+local comment_key_blockwise  = {
+	name = "+comment blockwise",
+	c = {
+		name = "comment blocks"
+	}
+}
+
+local_keymap.b = comment_key_blockwise
+
+local comment_key_linewise = {
+	name = "+comment linewise",
+	A = {
+		name = "insert comment EOL"
+	},
+	c = {
+		name = "comment selected line"
+	},
+	o = {
+		name = "insert comment below"
+	},
+	O = {
+		name = "insert comment above"
+	}
+}
+
+local_keymap.c = comment_key_linewise
+
+-- VISUAL LOCALLEADER PREFIX 
+local local_visual_keymap = {}
+
+local_visual_keymap.b = "comment selected blockwise"
+local_visual_keymap.c = "comment selected linewise"
+
 
 -- FileTypes
 vim.cmd("autocmd FileType julia :lua require('core.keymaps.julia')")
@@ -117,3 +156,4 @@ vim.cmd("autocmd FileType bib :lua require('core.keymaps.texlab')")
 
 wk.register({ ["<leader>"] = keymap })
 wk.register({ ["<localleader>"] = local_keymap })
+wk.register({ ["<localleader>"] = local_visual_keymap}, { mode = "v" })
