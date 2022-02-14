@@ -36,8 +36,8 @@ Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/lua/
 - [ ] Write the keymaps in a doc file or something (In progress)
 - [ ] Add haskell and ghci (Adding a new slime command)
 - [ ] Add python repl support (Adding a new slime command)
-- [ ] make markdown preview dynamic with flatpak installed browser or installed
-  from a distro's package manager? (Hmmm)
+- [x] make markdown preview dynamic with flatpak installed browser or installed
+  from a distro's package manager? (Hmmm. Use xdg-open instead to respect user defaults)
 - [x] Replace dashboard-nvim with alpha-nvim (seems glepnir is MIA, i hope
   glepnir is fine)
-- [ ] Configure vim-slime to add neovim panes for MS Windows
+- ~~[ ] Configure vim-slime to add neovim panes for MS Windows~~ (Windows is kinda annoying to use with vim-slime with neovim panes. It works but I rather use WSL)
