@@ -3,7 +3,7 @@ require("impatient").enable_profile()
 require("packer_compiled")
 require("core.settings")
 require("core.plugins")
-require("core.keymaps")
+require("core.keymaps") -- keymaps should always be last
 
 -- IMPATIENT STARTS HERE --
 -- Reporting a startup time of less than 3.0 milliseconds --
