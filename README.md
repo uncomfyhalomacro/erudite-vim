@@ -6,14 +6,8 @@
 
 ![Image](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/screenshots/full_setup.png)
 
-
-
-
-
-
-This configuration is more focused for Julia users. But it can still be modified
-to be used for other languages. I am planning to add that functionality soon but
-it is not a priority as of yet. Feel free to fork! :smiley:
+This configuration is more focused for Julia users. But it can still be modified to be used for other languages. I am
+planning to add that functionality soon but it is not a priority as of yet. Feel free to fork! :smiley:
 
 ## Prerequisites
 
@@ -54,3 +48,4 @@ Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/lua/
 - [ ] ~~Configure vim-slime to add neovim panes for MS Windows~~ (Windows is kinda annoying to use with vim-slime with
   neovim panes. It works but I rather use WSL)
 - [x] Replaced nvim-whichkey lua with folke's which-key.nvim
+- [ ] Reconfigure completions based on filetype e.g. Julia should have only cmp-latex cmp-vsnip, and cmp-emoji
