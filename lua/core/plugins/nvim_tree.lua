@@ -1,6 +1,7 @@
 vim.g.nvim_tree_respect_buf_cwd = 1
 require("nvim-tree").setup({
 	open_on_startup = false,
+	ignore_ft_on_setup = { "alpha" },
 	update_cwd = true,
 	--respect_buf_cwd = 1,
 	update_focused_file = {
@@ -19,5 +20,10 @@ require("nvim-tree").setup({
 	},
 	view = {
 		hide_root_folder = false,
+		auto_resize = true,
+		width = 45,
+		height = 30,
+		side = "left",
+		signcolumn = "yes",
 	},
 })

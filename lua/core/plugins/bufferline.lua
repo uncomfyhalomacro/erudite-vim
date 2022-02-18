@@ -19,6 +19,12 @@ require("bufferline").setup({
 				highlight = "Directory",
 				text_align = "center",
 			},
+			{
+				filetype = "alpha",
+				text = "Welcome, Traveler",
+				highlight = "Directory",
+				text_align = "center",
+			},
 		},
 	},
 })

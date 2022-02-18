@@ -147,4 +147,4 @@ vim.cmd("autocmd FileType bib :lua require('core.keymaps.texlab')")
 
 wk.register({ ["<leader>"] = keymap })
 wk.register({ ["<localleader>"] = local_keymap })
-wk.register({ ["<localleader>"] = local_visual_keymap }, { mode = "v" })
+wk.register({ ["<localleader>"] = local_visual_keymap })

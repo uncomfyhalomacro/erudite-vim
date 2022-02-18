@@ -29,6 +29,10 @@ local plugins = function(use)
 	use("shaunsingh/solarized.nvim")
 	use({ "lewis6991/gitsigns.nvim", branch = "main", requires = "nvim-lua/plenary.nvim" })
 	use({
+		"rose-pine/neovim",
+		as = "rose-pine",
+	})
+	use({
 		"catppuccin/nvim",
 		as = "catppuccin",
 		config = function()
@@ -38,7 +42,7 @@ local plugins = function(use)
 				transparent_background = transparency,
 				which_key = true,
 				nvimtree = {
-					enabled = false,
+					enabled = true,
 					show_root = not transparency, -- makes the root folder not transparent
 					transparent_panel = transparency, -- make the panel transparent
 				},

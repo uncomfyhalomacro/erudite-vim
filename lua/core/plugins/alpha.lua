@@ -56,6 +56,11 @@ local footers = {
 	"You who have profound knowledge are here to learn and prosper!",
 	"Those who know nothing is but a process for those who are curious of the unknown",
 	"The present is but a mere reflection of the past and the future",
+	"We cannot always trust the human condition",
+	"Mind be purged, world be saved!",
+	"I will have order!",
+	"More speed!",
+	"Speed of light!",
 }
 
 local randomize = math.random(#footers)
