@@ -35,19 +35,19 @@ local plugins = function(use)
 	use({
 		"catppuccin/nvim",
 		as = "catppuccin",
-		config = function()
-			local catppuccin = require("catppuccin")
-			local transparency = vim.g.transparent_enabled
-			catppuccin.setup({
-				transparent_background = transparency,
-				which_key = true,
-				nvimtree = {
-					enabled = true,
-					show_root = not transparency, -- makes the root folder not transparent
-					transparent_panel = transparency, -- make the panel transparent
-				},
-			})
-		end,
+		-- config = function()
+		-- 	local catppuccin = require("catppuccin")
+		-- 	local transparency = vim.g.transparent_enabled
+		-- 	catppuccin.setup({
+		-- 		transparent_background = transparency,
+		-- 		which_key = true,
+		-- 		nvimtree = {
+		-- 			enabled = true,
+		-- 			show_root = not transparency, -- makes the root folder not transparent
+		-- 			transparent_panel = transparency, -- make the panel transparent
+		-- 		},
+		-- 	})
+		-- end,
 	})
 	use({ "shaunsingh/nord.nvim" })
 	use({ "dracula/vim", as = "dracula" })
@@ -260,7 +260,7 @@ local plugins = function(use)
 				ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
 				hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
 				show_help = true, -- show help message on the command line when the popup is visible
-				triggers = { "<leader>", "<localleader>", "g" }, -- automatically setup triggers
+				triggers = { "<leader>", "<localleader>", "g", "<Shift>", "[", "]" }, -- automatically setup triggers
 				-- triggers = {"<leader>"} -- or specify a list manually
 				triggers_blacklist = {
 					-- list of mode / prefixes that should never be hooked by WhichKey
