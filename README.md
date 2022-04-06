@@ -1,3 +1,9 @@
+# Notice
+
+I am moving to kakoune. There are some stuff there that I like compared to neovim/vim.
+In my opinion, this neovim config already has achieved what I needed most of the time.
+So if you want to add some plugins or new keymaps, you might as well fork this. 😄
+
 <div align="center"><h1> Erudite Vim </h1></div>
 
 ![Image](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/screenshots/screenshot_new.png)
