@@ -27,6 +27,14 @@ planning to add that functionality soon but it is not a priority as of yet. Feel
 - cargo (for rustaceans)
 - Install Julia Mono font (optional)
 
+## For Julia users
+
+Run the following inside your shell:
+
+```shell
+julia --project=@nvim-lspconfig -e 'import Pkg; Pkg.add(["LanguageServer", "PackageCompiler"]); using PackageCompiler; create_sysimage(:LanguageServer, sysimage_path=dirname(Pkg.Types.Context().env.project_file) * "/languageserver.so")'
+```
+
 # Installation
 
 There is already a bootstrap script for this configuration, specifically in
