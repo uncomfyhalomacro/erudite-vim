@@ -112,7 +112,18 @@ local servers = {
     popfirst!(LOAD_PATH);
     depot_path = get(ENV, "JULIA_DEPOT_PATH", "");
     buffer_file = "]] .. vim.api.nvim_buf_get_name(0) .. '";' .. [[
-    project_path = dirname(something(Base.current_project(dirname(buffer_file)), Base.active_project()));
+    project_path = let dirname(something(
+				# 1. Check if there is an explicitly set project
+				Base.load_path_expand((
+                p = get(ENV, "JULIA_PROJECT", nothing);
+                p === nothing ? nothing : isempty(p) ? nothing : p
+        )),
+				# 2. Check for Project.toml from buffer's full file path exluding the file name
+				Base.current_project(dirname(buffer_file)),
+				# 3. Fallback to global environment
+				Base.active_project()
+			))
+		end
     server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path);
     server.runlinter = true;
     run(server);
