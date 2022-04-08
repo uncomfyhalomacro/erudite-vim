@@ -112,7 +112,8 @@ local servers = {
     popfirst!(LOAD_PATH);
     depot_path = get(ENV, "JULIA_DEPOT_PATH", "");
     buffer_file = "]] .. vim.api.nvim_buf_get_name(0) .. '";' .. [[
-    project_path = let dirname(something(
+    project_path = let 
+			dirname(something(
 				# 1. Check if there is an explicitly set project
 				Base.load_path_expand((
                 p = get(ENV, "JULIA_PROJECT", nothing);
