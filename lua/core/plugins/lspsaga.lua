@@ -111,7 +111,7 @@ local servers = {
     using LanguageServer;
     popfirst!(LOAD_PATH);
     depot_path = get(ENV, "JULIA_DEPOT_PATH", "");
-    buffer_file = "]] .. vim.api.nvim_buf_get_name(0) .. '";' .. [[
+    buffer_file_path = "]] .. vim.fn.expand("%:p:h") .. '";' .. [[
     project_path = let 
 			dirname(something(
 				# 1. Check if there is an explicitly set project
@@ -119,12 +119,15 @@ local servers = {
                 p = get(ENV, "JULIA_PROJECT", nothing);
                 p === nothing ? nothing : isempty(p) ? nothing : p
         )),
-				# 2. Check for Project.toml from buffer's full file path exluding the file name
-				Base.current_project(dirname(buffer_file)),
-				# 3. Fallback to global environment
+				# 2. Check for Project.toml in current working directory
+				Base.current_project(pwd()),
+				# 3. Check for Project.toml from buffer's full file path exluding the file name
+				Base.current_project(buffer_file_path),
+				# 4. Fallback to global environment
 				Base.active_project()
 			))
 		end
+		@info "LanguageServer has started with buffer `$buffer_file_path`"
     server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path);
     server.runlinter = true;
     run(server);
