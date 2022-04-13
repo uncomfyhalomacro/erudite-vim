@@ -57,3 +57,4 @@ Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/lua/
   neovim panes. It works but I rather use WSL)
 - [x] Replaced nvim-whichkey lua with folke's which-key.nvim
 - [ ] Reconfigure completions based on filetype e.g. Julia should have only cmp-latex cmp-vsnip, and cmp-emoji
+- [ ] Add neovim terminal support for repls. e.g. useful for gui or neovide users
