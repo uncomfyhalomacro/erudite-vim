@@ -1,6 +1,14 @@
 local wk = require("which-key")
 local keymap = {}
 
+function map(mode, lhs, rhs, opts)
+	local options = { noremap = true }
+	if opts then
+		options = vim.tbl_extend("force", options, opts)
+	end
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
 -- LEADER PREFIX --
 -- Basic stuff
 keymap.q = { ":q<CR>", "exit buffer" }
@@ -96,6 +104,9 @@ keymap.a = {
 	r = { ":<C-U>Lspsaga range_code_action<CR>", "ranged code action" },
 }
 keymap.A = require("core.keymaps.bufferline")
+
+map("n", ",", ":BufferLineCyclePrev<CR>", { silent = true })
+map("n", ".", ":BufferLineCycleNext<CR>", { silent = true })
 
 local treesitter_key = {
 	name = "+treesitter",
