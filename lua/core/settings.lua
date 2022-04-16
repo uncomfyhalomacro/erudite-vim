@@ -26,7 +26,7 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.o.timeoutlen = 1000
 vim.o.timeout = true
-vim.o.guifont = "JuliaMono,CaskaydiaCove Nerd Font:h12"
+vim.o.guifont = "JuliaMono,Symbols Nerd Font,Noto Color Emoji,monospace:h12"
 vim.g.neovide_cursor_vfx_mode = "torpedo"
 -- Diagnostics
 vim.g.diagnostic_enable_popup_while_jump = 1
