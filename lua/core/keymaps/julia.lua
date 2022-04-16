@@ -82,4 +82,26 @@ elseif vim.fn.getenv("TERM_PROGRAM") == "tmux" then
 		keymap.j = julia
 		wk.register({ ["<leader>k"] = keymap })
 	end
+else -- we assume the user is using native terminal splits from neovim itself
+	local project_path = vim.fn.system({
+		julia_exe,
+		"--startup-file=no",
+		"-q",
+		"-e",
+		"print(dirname(something(Base.current_project(pwd()), Base.load_path_expand(LOAD_PATH[2]))))",
+	})
+	local termcmd = ":sp term://julia --project="
+	local julia = {
+		name = "+julia",
+		o = {
+			termcmd .. project_path .. "<CR>:<C-[><CR>",
+			"open julia repl in nvim terminal",
+		},
+		-- r = {
+		-- 	termcmd .. project_path .. "<CR>:<C-[><CR>:b#<CR> :%SlimeSend<CR>",
+		-- 	"run code from previous buffer",
+		-- },
+	}
+	keymap.j = julia
+	wk.register({ ["<leader>k"] = keymap })
 end
