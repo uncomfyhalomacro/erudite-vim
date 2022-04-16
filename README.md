@@ -53,8 +53,8 @@ Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/lua/
   you have to edit that file i guess :woozy_face:)
 - [x] Replace dashboard-nvim with alpha-nvim (seems glepnir is MIA, i hope
   glepnir is fine)
-- [ ] ~~Configure vim-slime to add neovim panes for MS Windows~~ (Windows is kinda annoying to use with vim-slime with
+- [x] ~~Configure vim-slime to add neovim panes for MS Windows~~ (Windows is kinda annoying to use with vim-slime with
   neovim panes. It works but I rather use WSL)
 - [x] Replaced nvim-whichkey lua with folke's which-key.nvim
 - [ ] Reconfigure completions based on filetype e.g. Julia should have only cmp-latex cmp-vsnip, and cmp-emoji
-- [ ] Add neovim terminal support for repls. e.g. useful for gui or neovide users
+- [x] Add neovim terminal support for repls. e.g. useful for gui or neovide users
