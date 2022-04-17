@@ -1,10 +1,8 @@
 local keymap = {}
 keymap = {
 	name = "+tab",
-	[","] = { ":BufferLineCyclePrev<CR>", "previous tab" },
-	["."] = { ":BufferLineCycleNext<CR>", "next tab" },
-	["<"] = { ":BufferLineMovePrev<CR>", "move previous tab" },
-	[">"] = { ":BufferLineMoveNext<CR>", "move next tab" },
+	[","] = { ":BufferLineMovePrev<CR>", "previous tab" },
+	["."] = { ":BufferLineMoveNext<CR>", "next tab" },
 	["1"] = { ":BufferLineGoToBuffer 1<CR>", "goto tab 1" },
 	["2"] = { ":BufferLineGoToBuffer 2<CR>", "goto tab 2" },
 	["3"] = { ":BufferLineGoToBuffer 3<CR>", "goto tab 3" },
