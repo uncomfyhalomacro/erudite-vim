@@ -73,6 +73,7 @@ local plugins = function(use)
 	-- Utils
 	use({
 		"Shatur/neovim-session-manager",
+		commit = "2d42185c859907ab600dd2d0ebd8d1764eec5b58",
 		config = function()
 			require("session_manager").setup({
 				autoload_mode = require("session_manager.config").AutoloadMode.Disabled,
@@ -184,7 +185,7 @@ local plugins = function(use)
 			{ "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
 			{ "hrsh7th/vim-vsnip", after = "nvim-cmp", requires = "hrsh7th/vim-vsnip-integ" },
 			{ "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
-			{ "kdheepak/cmp-latex-symbols", after = "nvim-cmp" },
+			{ "uncomfyhalomacro/cmp-latex-symbols", after = "nvim-cmp", run = "cargo run --release" },
 			{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
 			{ "lukas-reineke/cmp-rg", after = "nvim-cmp" },
 			{ "windwp/nvim-autopairs", disable = false },
@@ -292,6 +293,7 @@ local plugins = function(use)
 	use({ "norcalli/nvim-colorizer.lua" })
 	use({
 		"numToStr/Comment.nvim",
+		commit = "0aaea32f27315e2a99ba4c12ab9def5cbb4842e4",
 		config = function()
 			require("Comment").setup({
 				---Add a space b/w comment and the line
