@@ -18,8 +18,8 @@ else
 	local termcmd = ":sp +term<CR>"
 	local someterm = {
 		name = "+nvim terminal",
-		k = { ":cd $HOME<CR>"..termcmd, "split current neovim window" },
-		s = { ":cd %:p:h<CR>" .. termcmd, "split neovim window on cwd"}
+		k = { ":cd $HOME<CR>" .. termcmd, "split current neovim window" },
+		s = { ":cd %:p:h<CR>" .. termcmd, "split neovim window on cwd" },
 	}
 	return someterm
 end

@@ -28,6 +28,10 @@ local on_attach = function(client, bufnr)
 			v = { '<Cmd>lua require("funcs.virtual_text").toggle()<CR>', "virtual text" },
 			-- code action
 			q = { "<Cmd>lua require('lspsaga.codeaction').code_action()<CR>", "code action" },
+			--  workspace symbols
+			w = { "<Cmd>Telescope lsp_workspace_symbols<CR>", "show workspace symbols" },
+			-- dynamic workspace symbols
+			W = { "<Cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "show all workspace symbols" },
 		},
 		r = { "<Cmd>lua require('lspsaga.rename').rename()<CR>", "rename func/var/def" },
 	}
@@ -118,12 +122,7 @@ local servers = {
 			pushfirst!(Base.LOAD_PATH, CUSTOM_LOAD_PATH...)
 			return joinpath(CUSTOM_LOAD_PATH[1], "Project.toml")
     end
-    buffer_file_path = "]]
-		.. 
-		vim.fn.expand("%:p:h")
-		.. "\";"
-		..
-		[[
+    buffer_file_path = "]] .. vim.fn.expand("%:p:h") .. '";' .. [[
     project_path = let 
 			dirname(something(
 				# 1. Check if there is an explicitly set project
@@ -178,6 +177,13 @@ local servers = {
 	sumneko_lua = {
 		cmd = {
 			"lua-language-server",
+		},
+		settings = {
+			Lua = {
+				diagnostics = {
+					globals = { "vim" },
+				},
+			},
 		},
 	},
 	texlab = {

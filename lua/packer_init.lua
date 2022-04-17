@@ -23,6 +23,9 @@ packer.init({
 	},
 })
 local plugins = function(use)
+	-- To manage itself
+	use({ "wbthomason/packer.nvim" })
+
 	-- Themes
 	use("https://git.sr.ht/~leon_plickat/paige")
 	use({ "NLKNguyen/papercolor-theme" })
@@ -140,6 +143,20 @@ local plugins = function(use)
 				update_interval = 100,
 				disable_closing_prompt = true,
 			})
+		end,
+	})
+	use({
+		"DanilaMihailov/beacon.nvim",
+		config = function()
+			vim.g.beacon_enable = true
+			vim.g.beacon_ignore_filetypes = { "fzf", "NvimTree" }
+			vim.cmd([[
+        augroup MyCursorLineGroup
+            autocmd!
+            au WinEnter * setlocal cursorline
+            au WinLeave * setlocal nocursorline
+        augroup end
+      ]])
 		end,
 	})
 	use("lewis6991/impatient.nvim")

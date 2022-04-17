@@ -7,5 +7,6 @@ elseif vim.fn.getenv("TERM_PROGRAM") == "tmux" then
 	vim.g.slime_paste_file = "$HOME/.slime_paste"
 	vim.cmd([[let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}]])
 else
-	vim.g.slime_target = "screen" -- as described in vim-slime's readme, screen is the default
+	vim.g.slime_target = "neovim"
+	-- vim.g.slime_target = "screen" -- as described in vim-slime's readme, screen is the default
 end
