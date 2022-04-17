@@ -26,7 +26,7 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.o.timeoutlen = 1000
 vim.o.timeout = true
-vim.o.guifont = "JuliaMono,Symbols Nerd Font,Noto Color Emoji,monospace:h12"
+vim.o.guifont = "JuliaMono,Symbols Nerd Font,Noto Color Emoji,monospace:h15"
 vim.g.neovide_cursor_vfx_mode = "torpedo"
 -- Diagnostics
 vim.g.diagnostic_enable_popup_while_jump = 1
@@ -44,8 +44,8 @@ if vim.fn.getenv("HOME") == vim.NIL then
 end
 
 -- Python
-if os.getenv("HOME") == nil then
-	vim.g.python3_host_prog = "C:/Users/uncomfyhalomacro/scoop/apps/python/current/python"
+if vim.loop.os_uname().sysname == "Windows_NT" then
+	vim.g.python3_host_prog = vim.fn.getenv("HOME") .. "/scoop/apps/python/current/python"
 else
 	vim.g.python3_host_prog = "/usr/bin/python3"
 	vim.g.python_host_prog = "/usr/bin/python" -- python2 is dead dream on bro
