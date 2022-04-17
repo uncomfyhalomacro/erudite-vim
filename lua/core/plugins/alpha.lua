@@ -38,6 +38,7 @@ dashboard.section.header.val = {
 	[[                               j########f.                            ]],
 	[[                              :##########t.                           ]],
 	[[                              ````````````.                           ]],
+	"																nvim-" .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch,
 }
 --Set menu
 dashboard.section.buttons.val = {
@@ -64,7 +65,6 @@ local footers = {
 }
 
 local randomize = math.random(#footers)
-dashboard.section.footer.val = footers[randomize]
-
+dashboard.section.footer.val = { footers[randomize] }
 -- Send config to alpha
 alpha.setup(dashboard.opts)
