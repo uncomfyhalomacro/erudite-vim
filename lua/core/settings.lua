@@ -36,12 +36,16 @@ if vim.loop.os_uname().sysname == "Windows_NT" then
   -- set shell in windows
 	vim.o.shell = "pwsh-preview.cmd"  -- I use powershell-preview so you might want to edit this
   local python3_path = vim.fn.system({
-    "(Get-Command",
-    "python3).path"
+    vim.o.shell,
+    "-Command",
+    "\"(Get-Command",
+    "python3).path\""
   })
   local python2_path = vim.fn.system({
-    "(Get-Command",
-    "python2).path"
+    vim.o.shell,
+    "-Command",
+    "\"(Get-Command",
+    "python2).path\""
   })
 	vim.g.python3_host_prog = python3_path
   vim.g.python_host_prog = python2_path
