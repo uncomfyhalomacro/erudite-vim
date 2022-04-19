@@ -36,9 +36,9 @@ There is already a bootstrap script for this configuration, specifically in
 copy/remove some stuff that you do not need and make your own bootstrap script
 that works for you. Otherwise, good for you I guess?
 
-### Plugins
+## Plugins
 
-Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/lua/packer_init.lua)
+Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/3b83f6d9d82c6f159bc180832584ec25c54a9d04/lua/run_packer/packer_init.lua#L25-L446)
 
 # TODO
 
