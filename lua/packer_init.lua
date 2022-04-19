@@ -428,6 +428,9 @@ local plugins = function(use)
 	use({ "onsails/lspkind-nvim", after = "nvim-lspconfig" })
 	use({ "kosayoda/nvim-lightbulb", after = "nvim-lspconfig" })
 
+	-- EditorConfig
+	use({ "gpanders/editorconfig.nvim" })
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
