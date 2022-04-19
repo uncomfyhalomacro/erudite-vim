@@ -385,6 +385,9 @@ local plugins = function(use)
 							["ui-select"] = {
 								require("telescope.themes").get_dropdown({}),
 							},
+							["frecency"] = {
+								show_scores = true
+							}
 						},
 					})
 					require("telescope").load_extension("ui-select")
