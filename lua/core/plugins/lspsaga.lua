@@ -249,7 +249,6 @@ for lsp, setup in pairs(servers) do
 	local lsp_status = require("lsp-status")
 	lsp_status.register_progress()
 	lsp_status.messages()
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	setup.capabilities = vim.tbl_extend("keep", setup.capabilities or {}, lsp_status.capabilities)
 	setup.on_attach = lsp_status.on_attach
 	setup.on_attach = on_attach
