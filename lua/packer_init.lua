@@ -397,7 +397,14 @@ local plugins = function(use)
 		config = function()
 			require("telescope").load_extension("frecency")
 		end,
-		requires = { "tami5/sqlite.lua" },
+		requires = { "tami5/sqlite.lua", config = function()
+      if vim.fn.getenv("OS") == "Windows_NT" then
+        vim.g.sqlite_clib_path = vim.fn.stdpath("config") .. "\\sqlite3.dll"
+      end
+		end,
+		-- disable = vim.fn.getenv("OS") == "Windows_NT"
+    },
+		disable = vim.fn.getenv("OS") == "Windows_NT"
 	})
 	use({ "karb94/neoscroll.nvim" })
 

@@ -32,7 +32,7 @@ vim.g.diagnostic_enable_popup_while_jump = 1
 vim.g.diagnostic_enable_virtual_text = 0
 
 -- Python
-if vim.loop.os_uname().sysname == "Windows_NT" then
+if vim.fn.getenv("OS") == "Windows_NT" then
   -- set shell in windows
 	vim.o.shell = "pwsh-preview.cmd"  -- I use powershell-preview so you might want to edit this
   local python3_path = vim.fn.system({
