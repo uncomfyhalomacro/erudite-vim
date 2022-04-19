@@ -54,7 +54,6 @@ local hop_key_extend = {
 
 hop_key.e = hop_key_extend
 function GitKeys()
-	local wk = require("which-key")
 	local check_if_local_git_repo = vim.fn.system({
 		"git",
 		"-C",
