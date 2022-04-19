@@ -179,26 +179,25 @@ local plugins = function(use)
 	use({
 		"hrsh7th/nvim-cmp",
 		requires = {
-			{ "hrsh7th/cmp-path", after = "nvim-cmp" },
-			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp", branch = "main" },
-			{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-			{ "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
-			{ "hrsh7th/vim-vsnip", after = "nvim-cmp", requires = "hrsh7th/vim-vsnip-integ" },
-			{ "hrsh7th/cmp-nvim-lsp-document-symbol", after = "nvim-cmp" },
-			{ "uncomfyhalomacro/cmp-latex-symbols", after = "nvim-cmp", run = "cargo run --release" },
-			{ "hrsh7th/cmp-calc", after = "nvim-cmp" },
-			{ "lukas-reineke/cmp-rg", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-path",  },
+			{ "hrsh7th/cmp-nvim-lsp", branch = "main" },
+			{ "hrsh7th/cmp-buffer",  },
+			{ "hrsh7th/cmp-vsnip",  },
+			{ "hrsh7th/vim-vsnip", requires = "hrsh7th/vim-vsnip-integ" },
+			{ "hrsh7th/cmp-nvim-lsp-document-symbol",  },
+			{ "uncomfyhalomacro/cmp-latex-symbols", run = "cargo run --release" },
+			{ "hrsh7th/cmp-calc"  },
+			{ "lukas-reineke/cmp-rg"  },
 			{ "windwp/nvim-autopairs", disable = false },
 			{ "lukas-reineke/cmp-under-comparator" },
-			{ "hrsh7th/cmp-emoji", after = "nvim-cmp" },
+			{ "hrsh7th/cmp-emoji" },
 			{
 				"uga-rosa/cmp-dictionary",
-				after = "nvim-cmp",
 				config = function()
 					local dict = require("cmp_dictionary")
 					dict.setup({
 						dic = {
-							["*"] = "/usr/share/dict/words",
+							["*"] = { "/usr/share/dict/words" },
 							["markdown"] = {
 								vim.fn.stdpath("config") .. "/" .. "dictionary/american-english",
 								vim.fn.stdpath("config") .. "/" .. "dictionary/american-english-lowercase",
@@ -213,7 +212,6 @@ local plugins = function(use)
 			},
 		},
 	})
-	use("nvim-lua/lsp-status.nvim")
 	use({
 		"andweeb/presence.nvim",
 	})
@@ -386,8 +384,8 @@ local plugins = function(use)
 								require("telescope.themes").get_dropdown({}),
 							},
 							["frecency"] = {
-								show_scores = true
-							}
+								show_scores = true,
+							},
 						},
 					})
 					require("telescope").load_extension("ui-select")
@@ -400,14 +398,16 @@ local plugins = function(use)
 		config = function()
 			require("telescope").load_extension("frecency")
 		end,
-		requires = { "tami5/sqlite.lua", config = function()
-      if vim.fn.getenv("OS") == "Windows_NT" then
-        vim.g.sqlite_clib_path = vim.fn.stdpath("config") .. "\\sqlite3.dll"
-      end
-		end,
-		-- disable = vim.fn.getenv("OS") == "Windows_NT"
-    },
-		disable = vim.fn.getenv("OS") == "Windows_NT"
+		requires = {
+			"tami5/sqlite.lua",
+			config = function()
+				if vim.fn.getenv("OS") == "Windows_NT" then
+					vim.g.sqlite_clib_path = vim.fn.stdpath("config") .. "\\sqlite3.dll"
+				end
+			end,
+			-- disable = vim.fn.getenv("OS") == "Windows_NT"
+		},
+		disable = vim.fn.getenv("OS") == "Windows_NT",
 	})
 	use({ "karb94/neoscroll.nvim" })
 
@@ -427,17 +427,21 @@ local plugins = function(use)
 	end
 
 	-- Language Server Protocol Plugins --
-	use({ "neovim/nvim-lspconfig", branch = "master" })
-	use({ "tami5/lspsaga.nvim", branch = "main", after = "nvim-lspconfig" })
 	use({
-		"folke/lsp-trouble.nvim",
-		requires = "kyazdani42/nvim-web-devicons",
-		after = "nvim-lspconfig",
+		"neovim/nvim-lspconfig",
+		branch = "master",
+		requires = {
+			{ "tami5/lspsaga.nvim", branch = "main" },
+			{ "nvim-lua/lsp-status.nvim" },
+			{
+				"folke/lsp-trouble.nvim",
+				requires = "kyazdani42/nvim-web-devicons",
+			},
+			{ "onsails/lspkind-nvim" },
+			{ "kosayoda/nvim-lightbulb" },
+		},
 	})
 	use("ziglang/zig.vim")
-	use({ "onsails/lspkind-nvim", after = "nvim-lspconfig" })
-	use({ "kosayoda/nvim-lightbulb", after = "nvim-lspconfig" })
-
 	-- EditorConfig
 	use({ "gpanders/editorconfig.nvim" })
 
@@ -450,7 +454,7 @@ local config = {
 	display = {
 		open_fn = require("packer.util").float,
 	},
-	compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
+	compile_path = vim.fn.stdpath("config") .. "/lua/run_packer/packer_compiled.lua",
 }
 
 return packer.startup({

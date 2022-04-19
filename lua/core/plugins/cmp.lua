@@ -6,6 +6,10 @@ local status_ok, npairs = pcall(require, "nvim-autopairs")
 if not status_ok then
 	return
 end
+local lspkind_ok, lsp_kind = pcall(require, "lspkind")
+if not lspkind_ok then
+	return
+end
 npairs.setup({
 	check_ts = true,
 	ts_config = {
@@ -95,7 +99,7 @@ cmp.setup({
 		{ name = "path" },
 	},
 	formatting = {
-		format = require("lspkind").cmp_format({
+		format = lsp_kind.cmp_format({
 			with_text = true,
 			menu = {
 				buffer = "[Buffer]",

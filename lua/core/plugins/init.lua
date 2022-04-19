@@ -1,6 +1,5 @@
 require("core.plugins.cmp")
 require("core.plugins.alpha")
--- require("core.plugins.dashboard")
 require("core.plugins.lspsaga")
 require("core.plugins.lualine")
 require("core.plugins.nvim_tree")

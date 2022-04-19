@@ -1,2 +1,2 @@
--- INIT --
-require("core")
+require("erudite")
+

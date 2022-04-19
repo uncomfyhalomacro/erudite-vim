@@ -6,7 +6,7 @@ local local_keymap = {}
 -- VISUAL LOCALLEADER PREFIX
 local local_visual_keymap = {}
 
-function map(mode, lhs, rhs, opts)
+local function map(mode, lhs, rhs, opts)
 	local options = { noremap = true }
 	if opts then
 		options = vim.tbl_extend("force", options, opts)
@@ -110,6 +110,7 @@ keymap.A = require("core.keymaps.bufferline")
 
 map("n", ",", ":BufferLineCyclePrev<CR>", { silent = true })
 map("n", ".", ":BufferLineCycleNext<CR>", { silent = true })
+map("n", "c", ":BufferLinePickClose<CR>", { silent = true })
 
 local treesitter_key = {
 	name = "+treesitter",
