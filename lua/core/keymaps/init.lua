@@ -1,5 +1,10 @@
 local wk = require("which-key")
+-- LEADER PREFIX --
 local keymap = {}
+-- LOCALLEADER PREFIX --
+local local_keymap = {}
+-- VISUAL LOCALLEADER PREFIX
+local local_visual_keymap = {}
 
 function map(mode, lhs, rhs, opts)
 	local options = { noremap = true }
@@ -50,7 +55,6 @@ local hop_key_extend = {
 hop_key.e = hop_key_extend
 function GitKeys()
 	local wk = require("which-key")
-	local keymap = {}
 	local check_if_local_git_repo = vim.fn.system({
 		"git",
 		"-C",
@@ -116,8 +120,6 @@ local treesitter_key = {
 	h = { ":TSHighlightCapturesUnderCursor<CR>", "show highlight groups under cursor" },
 }
 keymap.t = treesitter_key
--- LOCALLEADER PREFIX --
-local local_keymap = {}
 local searchbox_key = {
 	name = "+search",
 	s = { ":SearchBoxSimple<CR>", "simple search" },
@@ -142,9 +144,6 @@ local comment_key_linewise = {
 }
 
 local_keymap.c = comment_key_linewise
-
--- VISUAL LOCALLEADER PREFIX
-local local_visual_keymap = {}
 
 local_visual_keymap.b = "comment selected blockwise"
 local_visual_keymap.c = "comment selected linewise"
