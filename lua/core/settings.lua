@@ -11,9 +11,7 @@ vim.cmd("let &t_ut=''")
 vim.opt.shortmess:append("c")
 vim.opt.ts = 2
 vim.opt.sw = 2
-
 vim.o.cmdheight = 2
---vim.o.completefunc = "emoji#complete"
 vim.o.completeopt = "menuone,noinsert,noselect"
 vim.o.hidden = true
 vim.opt.mouse = "a"
@@ -28,25 +26,35 @@ vim.o.timeoutlen = 1000
 vim.o.timeout = true
 vim.o.guifont = "JuliaMono,Symbols Nerd Font,Noto Color Emoji,monospace:h15"
 vim.g.neovide_cursor_vfx_mode = "torpedo"
+
 -- Diagnostics
 vim.g.diagnostic_enable_popup_while_jump = 1
 vim.g.diagnostic_enable_virtual_text = 0
 
--- Latex for Julia
-vim.g.latex_to_unicode_auto = 1
-vim.g.latex_to_unicode_suggestions = 0
-vim.g.latex_to_unicode_eager = 0
-vim.g.latex_to_unicode_tab = "on"
-
--- Set shell
-if vim.fn.getenv("HOME") == vim.NIL then
-	vim.o.shell = "pwsh-preview.cmd"
-end
-
 -- Python
 if vim.loop.os_uname().sysname == "Windows_NT" then
-	vim.g.python3_host_prog = vim.fn.getenv("HOME") .. "/scoop/apps/python/current/python"
+  -- set shell in windows
+	vim.o.shell = "pwsh-preview.cmd"
+  local python3_path = vim.fn.system({
+    "Get-Command",
+    "python3"
+  })
+  local python2_path = vim.fn.system({
+    "Get-Command",
+    "python2"
+  })
+	vim.g.python3_host_prog = python3_path
+  vim.g.python_host_prog = python2_path
+	vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
+	vim.opt.autowrite = true
 else
-	vim.g.python3_host_prog = "/usr/bin/python3"
-	vim.g.python_host_prog = "/usr/bin/python" -- python2 is dead dream on bro
+  vim.o.shell = vim.fn.getenv("SHELL")
+	vim.g.python3_host_prog = vim.fn.system({
+    "which",
+    "python3"
+  })
+	vim.g.python_host_prog = vim.fn.system({
+    "which",
+    "python2"
+  }) -- python2 is dead dream on bro
 end
