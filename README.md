@@ -11,7 +11,7 @@ planning to add that functionality soon but it is not a priority as of yet. Feel
 
 ## Prerequisites
 
-- neovim 0.5.0+ (recommended)
+- neovim 0.7.0+ (recommended)
 - git
 - treesitter 
 - kitty or tmux (either one of the two or both)
