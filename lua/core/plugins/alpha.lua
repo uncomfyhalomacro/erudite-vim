@@ -46,6 +46,7 @@ dashboard.section.buttons.val = {
 	dashboard.button("SPC f n", "   →   New file", ":enew <BAR> startinsert <CR>"),
 	dashboard.button("SPC f f", "   →   Search files", ":cd $PWD | Telescope find_files <CR>"),
 	dashboard.button("SPC f h", "   →   Recently opened files", ":Telescope oldfiles <CR>"),
+	dashboard.button("SPC f F", "   →   Frequently opened files", ":Telescope frecency <CR>"),
 	dashboard.button("SPC f b", "   →   Marks", ":Telescope marks <CR>"),
 	dashboard.button("q", "   →   Quit", ":qa <CR>"),
 }
