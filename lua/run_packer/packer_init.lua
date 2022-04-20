@@ -364,7 +364,7 @@ local plugins = function(use)
 		"neovim/nvim-lspconfig",
 		branch = "master",
 		requires = {
-			{ "nvim-lua/lsp-status.nvim" },
+			{ "nvim-lua/lsp-status.nvim", after = "nvim-lspconfig" },
 			{
 				"folke/lsp-trouble.nvim",
 				requires = "kyazdani42/nvim-web-devicons",
