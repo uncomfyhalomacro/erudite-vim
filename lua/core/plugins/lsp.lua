@@ -85,6 +85,7 @@ local servers = {
 			"--history-file=no",
 			"-e",
 			[[
+		# just in case
 		function recurse_project_paths(path::AbstractString)
 			isnothing(Base.current_project(path)) && return
 			tmp = path
@@ -97,7 +98,6 @@ local servers = {
 			pushfirst!(Base.LOAD_PATH, CUSTOM_LOAD_PATH...)
 			return joinpath(CUSTOM_LOAD_PATH[1], "Project.toml")
     end
-    buffer_file_path = "]] .. vim.fn.expand("%:p:h") .. '";' .. [[
     project_path = let 
 			dirname(something(
 				# 1. Check if there is an explicitly set project
@@ -111,8 +111,6 @@ local servers = {
                 p = get(ENV, "JULIA_PROJECT", nothing);
                 p === nothing ? nothing : isempty(p) ? nothing : p
         )),
-				Base.current_project(buffer_file_path),
-        recurse_project_paths(pwd()),
 				Base.current_project(pwd()),
 				Base.active_project()
 			))

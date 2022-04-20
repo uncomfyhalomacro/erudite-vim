@@ -1,6 +1,6 @@
 require("core.plugins.cmp")
 require("core.plugins.alpha")
-require("core.plugins.lspsaga")
+require("core.plugins.lsp")
 require("core.plugins.lualine")
 require("core.plugins.nvim_tree")
 require("core.plugins.markdown_preview")
