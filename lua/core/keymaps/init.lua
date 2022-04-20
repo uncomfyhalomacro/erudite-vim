@@ -68,35 +68,23 @@ function git_automap()
 
 	-- this is because there are weird characters returned e.g. "true^@" instead of just "true" which is kinda annoying
 	if string.find(check_if_local_git_repo, "true") then
-		local git_opts = { silent = true }
-		map("n", "<leader>ga", ":Git add %<CR>", git_opts)
-		map("n", "<leader>gs", ":Gitsigns blame_line<CR>", git_opts)
-		map("n", "<leader>gt", ":Gitsigns toggle_current_blame_line<CR>", git_opts)
-		map("n", "<leader>gp", ":Git push <CR>", git_opts)
-		map("n", "<leader>gS", ":Git status <CR>", git_opts)
-		map("n", "<leader>gc", ":Git commit <CR>", git_opts)
-		map("n", "<leader>gf", ":Git fetch <CR>", git_opts)
-		map("n", "<leader>gC", ":Telescope git_commits <CR>", git_opts)
-		map("n", "<leader>gu", ":Telescope git_status <CR>", git_opts)
-		map("n", "<leader>gF", ":Telescope git_files <CR>", git_opts)
-		map("n", "<leader>gb", ":Telescope git_branches <CR>", git_opts)
-		-- local git_keys = {
-		-- 	name = "+git",
-		-- 	a = { ":Git add %<CR>", "git add current file" },
-		-- 	s = { ":Gitsigns blame_line<CR>", "show fancy git blame" },
-		-- 	t = { ":Gitsigns toggle_current_blame_line<CR>", "toggle inline git blame" },
-		-- 	p = { ":Git push<CR>", "push commited changes" },
-		-- 	S = { ":Git status<CR>", "show git status" },
-		-- 	c = { ":Git commit<CR>", "commit staged" },
-		-- 	f = { ":Git fetch<CR>", "fetch changes from remote" },
-		-- 	C = { ":Telescope git_commits<CR>", "select a specific commit" },
-		-- 	u = { ":Telescope git_status<CR>", "select git file from git status" },
-		-- 	F = { ":Telescope git_files<CR>", "select files that are tracked" },
-		-- 	b = { ":Telescope git_branches<CR>", "select a specific branch" },
-		-- }
-		-- keymap.g = git_keys
-		-- wk.register({ ["<leader>"] = keymap })
-		-- wk.register({ ["<localleader>"] = local_keymap })
+		local git_keys = {
+			name = "+git",
+			a = { ":Git add %<CR>", "git add current file" },
+			s = { ":Gitsigns blame_line<CR>", "show fancy git blame" },
+			t = { ":Gitsigns toggle_current_blame_line<CR>", "toggle inline git blame" },
+			p = { ":Git push<CR>", "push commited changes" },
+			S = { ":Git status<CR>", "show git status" },
+			c = { ":Git commit<CR>", "commit staged" },
+			f = { ":Git fetch<CR>", "fetch changes from remote" },
+			C = { ":Telescope git_commits<CR>", "select a specific commit" },
+			u = { ":Telescope git_status<CR>", "select git file from git status" },
+			F = { ":Telescope git_files<CR>", "select files that are tracked" },
+			b = { ":Telescope git_branches<CR>", "select a specific branch" },
+		}
+		keymap.g = git_keys
+		wk.register({ ["<leader>"] = keymap })
+		wk.register({ ["<localleader>"] = local_keymap })
 		wk.setup({
 			plugins = {
 				marks = true, -- shows a list of your marks on ' and `
@@ -256,7 +244,7 @@ function git_automap()
 end
 vim.api.nvim_exec(
 	[[
-			autocmd CursorMoved,CursorMovedI <buffer> :lua git_automap()
+			autocmd BufEnter,BufLeave * :lua git_automap()
 ]],
 	true
 )
