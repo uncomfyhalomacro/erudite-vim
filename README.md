@@ -58,3 +58,4 @@ Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/3b83f6d9d
 - [x] Replaced nvim-whichkey lua with folke's which-key.nvim
 - [ ] Reconfigure completions based on filetype e.g. Julia should have only cmp-latex cmp-vsnip, and cmp-emoji
 - [x] Add neovim terminal support for repls. e.g. useful for gui or neovide users
+- [ ] make saner keymappings but idk if mine is already sane lol
