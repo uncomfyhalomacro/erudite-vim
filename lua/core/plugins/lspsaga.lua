@@ -1,6 +1,7 @@
 local nvim_lsp = require("lspconfig")
 local wk = require("which-key")
 local opts = { noremap = true, silent = true }
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...)
@@ -9,9 +10,7 @@ local on_attach = function(client, bufnr)
 	local function buf_set_option(...)
 		vim.api.nvim_buf_set_option(bufnr, ...)
 	end
-
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
 	-- Mappings.
 	local keymap = {
 		l = {
@@ -19,27 +18,14 @@ local on_attach = function(client, bufnr)
 			-- workspace
 			a = { "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "add workspace" },
 			r = { "<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "remove workspace" },
-			l = { "<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "list workspace" },
-			-- show
-			d = { "<Cmd>lua require('lspsaga.diagnostic').show_line_diagnostics()<CR> ", "diagnostics" },
-			-- float terminal also you can pass the cli command in open_float_terminal function
-			g = { "<Cmd>lua require('lspsaga.floaterm').open_float_terminal('lazygit')<CR>", "lazygit" },
-			-- toggle virtual text
-			v = { '<Cmd>lua require("funcs.virtual_text").toggle()<CR>', "virtual text" },
-			-- code action
-			q = { "<Cmd>lua require('lspsaga.codeaction').code_action()<CR>", "code action" },
 			--  workspace symbols
 			w = { "<Cmd>Telescope lsp_workspace_symbols<CR>", "show workspace symbols" },
 			-- dynamic workspace symbols
 			W = { "<Cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "show all workspace symbols" },
+			-- code action
+			q = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", "code action" },
 		},
-		r = { "<Cmd>lua require('lspsaga.rename').rename()<CR>", "rename func/var/def" },
-	}
-	local visual_keymap = {
-		l = {
-			name = "+lsp",
-			q = { "<Cmd>'<,'>lua require('lspsaga.codeaction').range_code_action()<CR>", "code action" },
-		},
+		r = { "<Cmd>lua vim.lsp.buf.rename()", "rename func/var/def" },
 	}
 	-- Set some keybinds conditional on server capabilities
 	if client.resolved_capabilities.document_formatting then
@@ -48,27 +34,17 @@ local on_attach = function(client, bufnr)
 		keymap.l.f = { "<Cmd>lua vim.lsp.buf.range_formatting()<CR>", "format" }
 	end
 	wk.register({ ["<leader>"] = keymap }, { buffer = bufnr })
-	wk.register({ ["<leader>"] = visual_keymap }, { buffer = bufnr, mode = "v" })
 
 	-- saga mappings
-	-- lsp provider to find the cursor word definition and reference
-
-	buf_set_keymap("n", "gh", "<Cmd>lua require('lspsaga.provider').lsp_finder()<CR>", opts)
-	-- show hover doc
-	buf_set_keymap("n", "K", "<Cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
-	-- scroll down hover doc or scroll in definition preview
-	buf_set_keymap("n", "<C-f>", "<Cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", opts)
-	-- scroll up hover doc
-	buf_set_keymap("n", "<C-b>", "<Cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", opts)
+	-- show hover doc: do it twice so you can go into the hover window and scroll. press q to exit
+	buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR><Cmd>:lua vim.lsp.buf.hover()<CR>", opts)
 	-- show signature help
-	buf_set_keymap("n", "gs", "<Cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", opts)
-	-- preview definition
-	buf_set_keymap("n", "gp", "<Cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
+	buf_set_keymap("n", "gs", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	-- show definition
 	buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	buf_set_keymap("n", "gD", "<Cmd>Lspsaga hover_doc<CR>", opts)
 	-- jump diagnostic
-	buf_set_keymap("n", "[g", "<Cmd>Lspsaga diagnostic_jump_next<CR>", opts)
-	buf_set_keymap("n", "]g", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
+	buf_set_keymap("n", "[g", "<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+	buf_set_keymap("n", "]g", "<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
 
 	---- Set autocommands conditional on server_capabilities
 	if client.resolved_capabilities.document_highlight then
@@ -76,17 +52,16 @@ local on_attach = function(client, bufnr)
 			[[
 			augroup lsp_auto
 				autocmd! * <buffer>
-				" autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-				" autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+				" autocmd CursorHold <buffer> :lua vim.lsp.buf.document_highlight()
+				" autocmd CursorMoved <buffer> :lua vim.lsp.buf.clear_references()
+				" autocmd CursorMovedI <buffer> :lua vim.lsp.buf.signature_help()
 			augroup END
 		]],
-			false
+			true
 		)
 	end
 end
-
 -- enable snippets
-local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Use a loop to conveniently both setup defined servers
@@ -136,7 +111,6 @@ local servers = {
                 p = get(ENV, "JULIA_PROJECT", nothing);
                 p === nothing ? nothing : isempty(p) ? nothing : p
         )),
-        recurse_project_paths(buffer_file_path),
 				Base.current_project(buffer_file_path),
         recurse_project_paths(pwd()),
 				Base.current_project(pwd()),
@@ -257,11 +231,6 @@ for lsp, setup in pairs(servers) do
 	setup.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 	nvim_lsp[lsp].setup(setup)
 end
-
-local saga = require("lspsaga")
-saga.init_lsp_saga()
-vim.api.nvim_set_keymap("n", "<A-d>", '<Cmd>lua require("lspsaga.floaterm").open_float_terminal()<CR>', opts)
-vim.api.nvim_set_keymap("t", "<A-d>", [[<C-\><C-n>:lua require("lspsaga.floaterm").close_float_terminal()<CR>]], opts)
 
 -- TODO move elsewhere?
 vim.cmd("highlight! link LspDiagnosticsDefaultError WarningMsg")
