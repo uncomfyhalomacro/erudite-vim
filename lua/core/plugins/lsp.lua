@@ -52,9 +52,9 @@ local on_attach = function(client, bufnr)
 			[[
 			augroup lsp_auto
 				autocmd! * <buffer>
-				" autocmd CursorHold <buffer> :lua vim.lsp.buf.document_highlight()
-				" autocmd CursorMoved <buffer> :lua vim.lsp.buf.clear_references()
-				" autocmd CursorMovedI <buffer> :lua vim.lsp.buf.signature_help()
+				 autocmd CursorHold <buffer> :lua vim.lsp.buf.document_highlight()
+				 autocmd CursorMoved <buffer> :lua vim.lsp.buf.clear_references()
+				 autocmd CursorMovedI <buffer> :lua vim.lsp.buf.signature_help()
 			augroup END
 		]],
 			true
