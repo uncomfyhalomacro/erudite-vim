@@ -222,6 +222,14 @@ local plugins = function(use)
 			vim.g.maplocalleader = "\\"
 		end,
 	})
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("todo-comments").setup()
+		end,
+		after = "telescope.nvim",
+	})
 	use({ "norcalli/nvim-colorizer.lua" })
 	use({
 		"numToStr/Comment.nvim",

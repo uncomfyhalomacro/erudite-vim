@@ -18,6 +18,8 @@ local function unmap(mode, rhs)
 	vim.api.nvim_del_keymap(mode, rhs)
 end
 
+map("n", "t", ":TodoTelescope<CR>", { silent = true, noremap = true })
+
 -- LEADER PREFIX --
 -- Basic stuff
 keymap.q = { ":q<CR>", "exit buffer" }
