@@ -25,7 +25,7 @@ local on_attach = function(client, bufnr)
 			-- code action
 			q = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", "code action" },
 		},
-		r = { "<Cmd>lua vim.lsp.buf.rename()", "rename func/var/def" },
+		r = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "rename func/var/def" },
 	}
 	-- Set some keybinds conditional on server capabilities
 	if client.resolved_capabilities.document_formatting then
