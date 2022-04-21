@@ -54,7 +54,6 @@ local on_attach = function(client, bufnr)
 				autocmd! * <buffer>
 				 autocmd CursorHold <buffer> :lua vim.lsp.buf.document_highlight()
 				 autocmd CursorMoved <buffer> :lua vim.lsp.buf.clear_references()
-				 autocmd CursorMovedI <buffer> :lua vim.lsp.buf.signature_help()
 			augroup END
 		]],
 			true
@@ -81,6 +80,7 @@ local servers = {
 		cmd = {
 			"julia",
 			"-J" .. vim.fn.getenv("HOME") .. "/.julia/environments/nvim-lspconfig/languageserver.so",
+			"--sysimage-native-code=yes",
 			"--startup-file=no",
 			"--history-file=no",
 			"-e",
@@ -98,19 +98,18 @@ local servers = {
 			pushfirst!(Base.LOAD_PATH, CUSTOM_LOAD_PATH...)
 			return joinpath(CUSTOM_LOAD_PATH[1], "Project.toml")
     end
+		buffer_file_path = "]] .. vim.fn.expand("%:p:h") .. '";' .. [[
     project_path = let 
 			dirname(something(
 				# 1. Check if there is an explicitly set project
-        # 2. Check if project in current working directory is a subproject.
-        #    If so, we use the main project instead of the subproject.
-				# 	 Or we check the path to the file
-				# 3. Check for Project.toml in current working directory
-				# 4. Check for Project.toml from buffer's full file path exluding the file name
-				# 5. Fallback to global environment
+				# 2. Check for Project.toml in current working directory
+				# 3. Check for Project.toml from buffer's full file path exluding the file name
+				# 4. Fallback to global environment
 				Base.load_path_expand((
                 p = get(ENV, "JULIA_PROJECT", nothing);
                 p === nothing ? nothing : isempty(p) ? nothing : p
         )),
+				Base.current_project(strip(buffer_file_path)),
 				Base.current_project(pwd()),
 				Base.active_project()
 			))
