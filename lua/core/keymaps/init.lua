@@ -13,6 +13,7 @@ local function map(mode, lhs, rhs, opts)
 	end
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
+
 local function unmap(mode, rhs)
 	vim.api.nvim_del_keymap(mode, rhs)
 end
@@ -82,11 +83,11 @@ function git_automap()
 			F = { ":Telescope git_files<CR>", "select files that are tracked" },
 			b = { ":Telescope git_branches<CR>", "select a specific branch" },
 		}
-		keymap.g = git_keys
+		require("which-key").register({ ["<leader>g"] = git_keys })
 	else
-		keymap.g = "which_key_ignore"
+		local git_keys = "which_key_ignore"
+		require("which-key").register({ ["<leader>g"] = git_keys })
 	end
-	require("which-key").register({ ["<leader>"] = keymap })
 end
 vim.api.nvim_exec(
 	[[
@@ -112,12 +113,6 @@ keymap.f = explorer_key
 keymap.k = kitty_key
 keymap.p = pomodoro
 keymap.s = sessions
--- keymap.c = { name = "+NerdCommenter" }
-keymap.a = {
-	name = "+code",
-	a = { ":Lspsaga code_action<CR>", "code action" },
-	r = { ":<C-U>Lspsaga range_code_action<CR>", "ranged code action" },
-}
 keymap.A = require("core.keymaps.bufferline")
 
 map("n", ",", ":BufferLineCyclePrev<CR>", { silent = true })
