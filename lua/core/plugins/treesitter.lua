@@ -1,5 +1,5 @@
 local treesitter = require("nvim-treesitter.configs").setup({
-	ensure_installed = { "julia", "rust", "lua", "haskell", "c", "python", "zig" },
+	ensure_installed = { "julia", "rust", "lua", "haskell", "c", "python", "zig", "comment" },
 	sync_install = true,
 	highlight = {
 		enable = true, -- false will disable the whole extension
