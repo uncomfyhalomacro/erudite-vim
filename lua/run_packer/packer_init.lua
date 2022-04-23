@@ -222,11 +222,17 @@ local plugins = function(use)
 			vim.g.maplocalleader = "\\"
 		end,
 	})
+---UWU fix some of this
+
 	use({
 		"folke/todo-comments.nvim",
 		requires = "nvim-lua/plenary.nvim",
 		config = function()
-			require("todo-comments").setup()
+			require("todo-comments").setup({
+				highlight = {
+					pattern = { [[.*<(KEYWORDS)\s*:]], [[.*\@(KEYWORDS)\s*]] }
+				}
+			})
 		end,
 		after = "telescope.nvim",
 	})
