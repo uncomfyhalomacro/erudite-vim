@@ -227,7 +227,6 @@ for lsp, setup in pairs(servers) do
 	lsp_status.register_client(setup.on_attach)
 	setup.capabilities = lsp_status.capabilities
 	setup.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-	nvim_lsp[lsp].setup(setup)
 	if lsp == "julials" then
 		capabilities.textDocument.completion.completionItem.preselectSupport = true
 		capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
@@ -259,6 +258,7 @@ for lsp, setup in pairs(servers) do
 			update_in_insert = false,
 		})
 	end
+	nvim_lsp[lsp].setup(setup)
 end
 
 -- TODO move elsewhere?
