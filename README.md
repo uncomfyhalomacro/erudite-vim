@@ -6,6 +6,8 @@
 
 ![Image](https://github.com/uncomfyhalomacro/erudite-vim/blob/main/screenshots/full_setup.png)
 
+**NOTE**: Screenshots may not be the same as the current configuration. Please be aware.
+
 This configuration is more focused for Julia users. But it can still be modified to be used for other languages. I am
 planning to add that functionality soon but it is not a priority as of yet. Feel free to fork! :smiley:
 
