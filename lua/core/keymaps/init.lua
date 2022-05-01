@@ -102,6 +102,7 @@ function git_automap()
 		require("which-key").register({ ["<leader>g"] = git_keys })
 	end
 end
+
 vim.api.nvim_exec(
 	[[
 	augroup git_automapper
