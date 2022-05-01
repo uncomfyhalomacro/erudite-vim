@@ -59,3 +59,4 @@ Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/3b83f6d9d
 - [ ] Reconfigure completions based on filetype e.g. Julia should have only cmp-latex cmp-vsnip, and cmp-emoji
 - [x] Add neovim terminal support for repls. e.g. useful for gui or neovide users
 - [ ] make saner keymappings but idk if mine is already sane lol
+- [ ] add nvim-dap configurations. not a priority for now. if someone is able to help, pls do open a pr. i dont need it at this moment lolz
