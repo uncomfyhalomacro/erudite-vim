@@ -60,6 +60,7 @@ local on_attach = function(client, bufnr)
 		)
 	end
 end
+
 -- enable snippets
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
