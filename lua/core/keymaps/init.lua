@@ -28,7 +28,7 @@ keymap.w = { ":w<CR>", "write buffer to file" }
 local explorer_key = require("core.keymaps.explorer")
 local kitty_key = require("core.keymaps.kitty")
 
-keymap.x = { "<cmd>TroubleToggle<CR>", "list diagnostics" }
+keymap.x = { "<cmd>Telescope diagnostics<CR>", "list diagnostics" }
 
 local sessions = {
 	name = "+sessions",

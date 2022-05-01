@@ -234,8 +234,7 @@ local plugins = function(use)
 					pattern = { [[.*<(KEYWORDS)\s*:]], [[.*\@(KEYWORDS)\s*]] },
 				},
 			})
-		end,
-		after = "telescope.nvim",
+		end
 	})
 	use({ "norcalli/nvim-colorizer.lua" })
 	use({
@@ -380,11 +379,6 @@ local plugins = function(use)
 		branch = "master",
 		requires = {
 			{ "nvim-lua/lsp-status.nvim", after = { "nvim-lspconfig", "lualine.nvim" } },
-			{
-				"folke/lsp-trouble.nvim",
-				requires = "kyazdani42/nvim-web-devicons",
-				after = "nvim-lspconfig",
-			},
 			{ "onsails/lspkind-nvim" },
 			{ "kosayoda/nvim-lightbulb" },
 		},
