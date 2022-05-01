@@ -60,6 +60,17 @@ local hop_key_extend = {
 
 hop_key.e = hop_key_extend
 
+local dap_keys = {
+	name = "+debug adapter",
+	t = { ":lua require'dap'.toggle_breakpoint()<CR>", "toggle breakpoints" },
+	c = { ":lua require'dap'.continue()<CR>", "launch debug sessions & execute" },
+	S = { ":lua require'dap'.step_over()<CR>", "step over" },
+	s = { ":lua require'dap'.step_into()<CR>", "step into" },
+	r = { ":lua require'dap'.repl.open()<CR>", "open repl" },
+}
+
+keymap.d = dap_keys
+
 function git_automap()
 	local check_if_local_git_repo = vim.fn.system({
 		"git",

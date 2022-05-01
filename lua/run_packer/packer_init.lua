@@ -71,6 +71,7 @@ local plugins = function(use)
 	use("tiagofumo/vim-nerdtree-syntax-highlight")
 
 	-- Utils
+	use("mfussenegger/nvim-dap")
 	use({
 		"Shatur/neovim-session-manager",
 		config = function()
@@ -222,7 +223,7 @@ local plugins = function(use)
 			vim.g.maplocalleader = "\\"
 		end,
 	})
----UWU fix some of this
+	---UWU fix some of this
 
 	use({
 		"folke/todo-comments.nvim",
@@ -230,8 +231,8 @@ local plugins = function(use)
 		config = function()
 			require("todo-comments").setup({
 				highlight = {
-					pattern = { [[.*<(KEYWORDS)\s*:]], [[.*\@(KEYWORDS)\s*]] }
-				}
+					pattern = { [[.*<(KEYWORDS)\s*:]], [[.*\@(KEYWORDS)\s*]] },
+				},
 			})
 		end,
 		after = "telescope.nvim",
