@@ -228,6 +228,37 @@ for lsp, setup in pairs(servers) do
 	setup.capabilities = lsp_status.capabilities
 	setup.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 	nvim_lsp[lsp].setup(setup)
+	if lsp == "julials" then
+		capabilities.textDocument.completion.completionItem.preselectSupport = true
+		capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+		capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+		capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+		capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+		capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+		capabilities.textDocument.completion.completionItem.resolveSupport = {
+			properties = { "documentation", "detail", "additionalTextEdits" },
+		}
+		capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown" }
+		capabilities.textDocument.codeAction = {
+			dynamicRegistration = true,
+			codeActionLiteralSupport = {
+				codeActionKind = {
+					valueSet = (function()
+						local res = vim.tbl_values(vim.lsp.protocol.CodeActionKind)
+						table.sort(res)
+						return res
+					end)(),
+				},
+			},
+		}
+
+		vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+			virtual_text = false,
+			underline = false,
+			signs = true,
+			update_in_insert = false,
+		})
+	end
 end
 
 -- TODO move elsewhere?
