@@ -230,11 +230,14 @@ local plugins = function(use)
 		requires = "nvim-lua/plenary.nvim",
 		config = function()
 			require("todo-comments").setup({
+				keywords = {
+					TODO = { icon = " ", color = "info", alt = { "DONE", "FIN" } },
+				},
 				highlight = {
 					pattern = { [[.*<(KEYWORDS)\s*:]], [[.*\@(KEYWORDS)\s*]] },
 				},
 			})
-		end
+		end,
 	})
 	use({ "norcalli/nvim-colorizer.lua" })
 	use({
@@ -379,7 +382,7 @@ local plugins = function(use)
 		branch = "master",
 		requires = {
 			{ "nvim-lua/lsp-status.nvim", after = { "nvim-lspconfig", "lualine.nvim" } },
-			{ "onsails/lspkind-nvim" },
+			{ "onsails/lspkind.nvim" },
 			{ "kosayoda/nvim-lightbulb" },
 		},
 	})
