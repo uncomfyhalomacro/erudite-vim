@@ -44,6 +44,7 @@ Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/3b83f6d9d
 
 # TODO
 
+- [ ] switch to neo-tree.nvim as file explorer
 - [ ] Separate lsp configs? (Not sure about this approach)
 - [ ] ~~Replace packer with [dep](https://github.com/chiyadev/dep)?~~ Fixed with
   https://github.com/wbthomason/packer.nvim/issues/750#issuecomment-1006070458
