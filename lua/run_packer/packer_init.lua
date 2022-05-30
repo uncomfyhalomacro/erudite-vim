@@ -320,6 +320,7 @@ local plugins = function(use)
 		"goolord/alpha-nvim",
 		requires = { "kyazdani42/nvim-web-devicons" },
 	})
+	use("folke/lua-dev.nvim")
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = {
