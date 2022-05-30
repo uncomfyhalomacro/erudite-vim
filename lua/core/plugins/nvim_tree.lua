@@ -1,7 +1,7 @@
-vim.g.nvim_tree_respect_buf_cwd = 1
 require("nvim-tree").setup({
 	ignore_ft_on_setup = { "alpha" },
 	update_cwd = true,
+	respect_buf_cwd = true,
 	--respect_buf_cwd = 1,
 	update_focused_file = {
 		enable = true,
