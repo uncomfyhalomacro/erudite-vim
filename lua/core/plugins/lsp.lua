@@ -128,8 +128,10 @@ local servers = {
     popfirst!(LOAD_PATH);
 		@info "LOAD_PATHS: $(Base.load_path())"
     depot_path = get(ENV, "JULIA_DEPOT_PATH", "");
+    symbol_server_path = joinpath(homedir(), ".cache", "nvim", "julia_lsp_symbol_store")
+    mkpath(symbol_server_path)
 		@info "LanguageServer has started with buffer $project_path or $(pwd())"
-    server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path);
+    server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path, nothing, symbol_server_path);
     server.runlinter = true;
     run(server);
 		]],
