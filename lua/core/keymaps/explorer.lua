@@ -1,7 +1,8 @@
 local explorer = {
 	name = "+explorer",
 	n = { ":enew | startinsert <CR>", "create new file" },
-	e = { ":NvimTreeToggle<CR>", "open explorer" },
+	e = { ":NeoTreeFocusToggle<CR>", "open explorer on the side" },
+	z = { ":NeoTreeFloatToggle<CR>", "open explorer float" },
 	t = { ":TransparentToggle<CR>", "toggle transparency" }, -- you need exa or just edit it to use ls
 	h = { ":Telescope oldfiles<CR>", "recently opened files" },
 	b = { ":Telescope marks<CR>", "marks" },

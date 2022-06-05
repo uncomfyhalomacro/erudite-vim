@@ -129,8 +129,8 @@ keymap.p = pomodoro
 keymap.s = sessions
 keymap.A = require("core.keymaps.bufferline")
 
-map("n", ",", ":BufferLineCyclePrev<CR>", { silent = true })
-map("n", ".", ":BufferLineCycleNext<CR>", { silent = true })
+map("n", "{", ":BufferLineCyclePrev<CR>", { silent = true })
+map("n", "}", ":BufferLineCycleNext<CR>", { silent = true })
 map("n", "c", ":BufferLinePickClose<CR>", { silent = true })
 
 local treesitter_key = {
