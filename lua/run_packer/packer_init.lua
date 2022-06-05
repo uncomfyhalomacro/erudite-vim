@@ -97,6 +97,15 @@ local plugins = function(use)
 		},
 	})
 	use({
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+		},
+	})
+	use({
 		"wthollingsworth/pomodoro.nvim",
 		requires = "MunifTanjim/nui.nvim",
 		config = function()
@@ -161,10 +170,6 @@ local plugins = function(use)
 		end,
 	})
 	use("lewis6991/impatient.nvim")
-	use({
-		"kyazdani42/nvim-tree.lua",
-		requires = "kyazdani42/nvim-web-devicons",
-	})
 	use({ "mg979/vim-visual-multi", branch = "master" })
 	use({
 		"iamcco/markdown-preview.nvim",
