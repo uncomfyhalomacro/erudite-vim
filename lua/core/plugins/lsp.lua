@@ -80,6 +80,7 @@ local servers = {
 	julials = {
 		cmd = {
 			"julia",
+			"--project=@nvim-lspconfig",
 			"-J" .. vim.fn.getenv("HOME") .. "/.julia/environments/nvim-lspconfig/languageserver.so",
 			"--sysimage-native-code=yes",
 			"--startup-file=no",
@@ -87,6 +88,9 @@ local servers = {
 			"-e",
 			[[
 		# just in case
+		import Pkg;
+		using LanguageServer
+
 		function recurse_project_paths(path::AbstractString)
 			isnothing(Base.current_project(path)) && return
 			tmp = path
@@ -112,16 +116,17 @@ local servers = {
         )),
 				Base.current_project(strip(buffer_file_path)),
 				Base.current_project(pwd()),
+				Pkg.Types.Context().env.project_file,
 				Base.active_project()
 			))
 		end
     # Some projects require Pkg to activate and instantiate it
     # Activate the project 
     import Pkg;
-    Pkg.activate(project_path);
+		# Pkg.activate(project_path);
     # Instantiate project
-    Pkg.instantiate();
-		@info "Active project: $(Base.active_project())"
+    # Pkg.instantiate();
+		# @info "Active project: $(Base.active_project())"
     ls_install_path = joinpath(get(DEPOT_PATH, 1, joinpath(homedir(), ".julia")), "environments", "nvim-lspconfig");
     pushfirst!(LOAD_PATH, ls_install_path);
     using LanguageServer;
@@ -131,7 +136,7 @@ local servers = {
     symbol_server_path = joinpath(homedir(), ".cache", "nvim", "julia_lsp_symbol_store")
     mkpath(symbol_server_path)
 		@info "LanguageServer has started with buffer $project_path or $(pwd())"
-    server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path, nothing, symbol_server_path);
+    server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path, nothing, symbol_server_path, true);
     server.runlinter = true;
     run(server);
 		]],
