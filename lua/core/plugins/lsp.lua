@@ -13,15 +13,15 @@ local on_attach = function(client, bufnr)
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 	-- Mappings.
 	local keymap = {
+		x = { "<Cmd>lua vim.diagnostic.setloclist()<CR>", "show diagnostics"},
 		l = {
 			name = "+lsp",
 			-- workspace
 			a = { "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "add workspace" },
 			r = { "<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "remove workspace" },
 			--  workspace symbols
-			w = { "<Cmd>Telescope lsp_workspace_symbols<CR>", "show workspace symbols" },
-			-- dynamic workspace symbols
-			W = { "<Cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "show all workspace symbols" },
+			w = { "<Cmd>lua vim.lsp.buf.workspace_symbol()<CR><CR>", "show all workspace symbols" },
+			W = { "<Cmd>lua vim.lsp.buf.workspace_symbol()<CR>", "search workspace symbol" },
 			-- code action
 			q = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", "code action" },
 		},
@@ -43,8 +43,8 @@ local on_attach = function(client, bufnr)
 	-- show definition
 	buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	-- jump diagnostic
-	buf_set_keymap("n", "[g", "<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-	buf_set_keymap("n", "]g", "<Cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+	buf_set_keymap("n", "[g", "<Cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+	buf_set_keymap("n", "]g", "<Cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 
 	---- Set autocommands conditional on server_capabilities
 	if client.resolved_capabilities.document_highlight then

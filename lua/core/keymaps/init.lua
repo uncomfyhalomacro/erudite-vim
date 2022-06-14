@@ -28,8 +28,6 @@ keymap.w = { ":w<CR>", "write buffer to file" }
 local explorer_key = require("core.keymaps.explorer")
 local kitty_key = require("core.keymaps.kitty")
 
-keymap.x = { "<cmd>Telescope diagnostics<CR>", "list diagnostics" }
-
 local sessions = {
 	name = "+sessions",
 	s = { ":SessionManager save_current_session<CR>", "save current session" },
