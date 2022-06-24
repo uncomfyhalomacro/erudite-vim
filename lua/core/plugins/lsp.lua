@@ -13,7 +13,7 @@ local on_attach = function(client, bufnr)
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 	-- Mappings.
 	local keymap = {
-		x = { "<Cmd>lua vim.diagnostic.setloclist()<CR>", "show diagnostics"},
+		x = { "<Cmd>lua vim.diagnostic.setloclist()<CR>", "show diagnostics" },
 		l = {
 			name = "+lsp",
 			-- workspace
