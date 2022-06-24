@@ -380,6 +380,7 @@ local plugins = function(use)
 			run = ":TSUpdate",
 		})
 		use({ "nvim-treesitter/playground", after = "nvim-treesitter" })
+		use({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" })
 	end
 
 	-- Language Server Protocol Plugins --
