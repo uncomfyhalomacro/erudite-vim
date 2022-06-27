@@ -31,6 +31,12 @@ Run the following inside your shell:
 julia --project=@nvim-lspconfig -e 'import Pkg; Pkg.add(["LanguageServer", "PackageCompiler"]); using PackageCompiler; create_sysimage(:LanguageServer, sysimage_path=dirname(Pkg.Types.Context().env.project_file) * "/languageserver.so")'
 ```
 
+Using latest master for LanguageServer.jl:
+
+```shell
+julia --project=@nvim-lspconfig -e 'import Pkg; Pkg.add("PackageCompiler"); Pkg.add(url="https://github.com/julia-vscode/LanguageServer.jl", rev="master"); using PackageCompiler; create_sysimage(:LanguageServer, sysimage_path=dirname(Pkg.Types.Context().env.project_file) * "/languageserver.so")'
+```
+
 # Installation
 
 There is already a bootstrap script for this configuration, specifically in
