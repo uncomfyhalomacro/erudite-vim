@@ -67,10 +67,10 @@ cmp.setup({
 		},
 	},
 	sources = {
-		{ name = "nvim_lsp", group_index = 1, priority = 100 },
+		{ name = "nvim_lsp", group_index = 1, priority = 2 },
 
 		-- For vsnip user.
-		{ name = "vsnip", group_index = 1, priority = 99 },
+		{ name = "vsnip", group_index = 1, priority = 1 },
 
 		-- For luasnip user.
 		--{ name = "cmp_luasnip", group_index = 1 },
@@ -78,14 +78,14 @@ cmp.setup({
 		-- For ultisnips user.
 		--{ name = "ultisnips", group_index = 1 },
 
-		{ name = "buffer", group_index = 1 },
+		{ name = "buffer", group_index = 2 },
 
 		-- emojis
-		{ name = "emoji", group_index = 1 },
+		{ name = "emoji", group_index = 2 },
 
 		-- { name = "rg" }, removing rg for now because of how demanding this is on cpu. i wish i have a way to dynamically run this if it is on a git directory
 		{ name = "calc" },
-		{ name = "latex_symbols", group_index = 1 },
+		{ name = "latex_symbols", group_index = 2, priority = 98 },
 		{
 			name = "dictionary",
 			keyword_length = 2,
