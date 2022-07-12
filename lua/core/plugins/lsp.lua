@@ -1,4 +1,42 @@
 local nvim_lsp = require("lspconfig")
+function get_current_line()
+	return vim.api.nvim_win_get_cursor(0)[1]
+end
+function searchForwardArgs()
+	return get_current_line() .. ":1:" .. vim.fn.expand("%:p")
+end
+function LatexBuildCurrentFileOrBuffer()
+	vim.cmd("cd " .. vim.fn.expand("%:p:h"))
+	vim.fn.system({
+		"setsid",
+		"latexmk",
+		"-verbose",
+		"-outdir=" .. vim.fn.expand("%:p:h"),
+		"-pdflua",
+		"-interaction=nonstopmode",
+		"-synctex=1",
+		vim.fn.expand("%:p"),
+	})
+	if vim.v.shell_error ~= 0 then
+		print("Build Error")
+	else
+		print("Build Success")
+	end
+end
+function LatexForwardSearch()
+	vim.fn.system({
+		"setsid",
+		"zathura",
+		"--synctex-forward",
+		searchForwardArgs(),
+		vim.fn.expand("%:p:r") .. ".pdf",
+	})
+	if vim.v.shell_error ~= 0 then
+		print("Build Error")
+	else
+		print("Build Success")
+	end
+end
 local wk = require("which-key")
 local opts = { noremap = true, silent = true }
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -74,7 +112,7 @@ local servers = {
 	jsonls = {},
 	hls = {},
 	zls = {
-		cmd = { "zls" },
+		cmd = { "/home/uncomfy/Projects/zls-0.9.0/zig-out/bin/zls" },
 		filetypes = { "zig", "zir" },
 	},
 	julials = {
@@ -89,8 +127,6 @@ local servers = {
 			[[
 		# just in case
 		import Pkg;
-		using LanguageServer
-
 		function recurse_project_paths(path::AbstractString)
 			isnothing(Base.current_project(path)) && return
 			tmp = path
@@ -120,13 +156,6 @@ local servers = {
 				Base.active_project()
 			))
 		end
-    # Some projects require Pkg to activate and instantiate it
-    # Activate the project 
-    import Pkg;
-		# Pkg.activate(project_path);
-    # Instantiate project
-    # Pkg.instantiate();
-		# @info "Active project: $(Base.active_project())"
     ls_install_path = joinpath(get(DEPOT_PATH, 1, joinpath(homedir(), ".julia")), "environments", "nvim-lspconfig");
     pushfirst!(LOAD_PATH, ls_install_path);
     using LanguageServer;
@@ -167,27 +196,41 @@ local servers = {
 	},
 	texlab = {
 		cmd = { "texlab" },
-		filetypes = { "tex", "bib" },
 		settings = {
-			bibtex = {
-				formatting = {
-					lineLength = 120,
-				},
-			},
-			latex = {
+			texlab = {
+				auxDirectory = ".",
+				bibtexFormatter = "texlab",
 				build = {
-					args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+					args = { "-verbose", "-pdflua", "-interaction=nonstopmode", "-synctex=1", vim.fn.expand("%:p") },
 					executable = "latexmk",
+					forwardSearchAfter = false,
 					onSave = true,
 				},
 				forwardSearch = {
-					executable = "/usr/bin/zathura",
-					args = { "%p" },
-					onSave = true,
+					executable = "zathura",
+					args = {
+						"--synctex-forward",
+						searchForwardArgs(),
+						vim.fn.expand("%:p:r") .. ".pdf",
+					},
 				},
 				lint = {
 					onChange = true,
 				},
+			},
+		},
+		commands = {
+			TexlabBuild = {
+				function()
+					LatexBuildCurrentFileOrBuffer()
+				end,
+				description = "Build the current buffer",
+			},
+			TexlabForward = {
+				function()
+					LatexForwardSearch()
+				end,
+				description = "Forward search from current position",
 			},
 		},
 	},
