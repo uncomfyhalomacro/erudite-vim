@@ -9,12 +9,13 @@ function LatexBuildCurrentFileOrBuffer()
 	vim.cmd("cd " .. vim.fn.expand("%:p:h"))
 	vim.fn.system({
 		"setsid",
-		"latexmk",
-		"-verbose",
-		"-outdir=" .. vim.fn.expand("%:p:h"),
-		"-pdflua",
-		"-interaction=nonstopmode",
-		"-synctex=1",
+		"tectonic",
+		"-X",
+    "compile",
+		"--outdir=" .. vim.fn.expand("%:p:h"),
+		"--synctex",
+		"--keep-logs",
+		"--keep-intermediates",
 		vim.fn.expand("%:p"),
 	})
 	if vim.v.shell_error ~= 0 then
@@ -196,6 +197,7 @@ local servers = {
 	},
 	texlab = {
 		cmd = { "texlab" },
+		filetypes = { "tex", "bib", "plaintex" },
 		settings = {
 			texlab = {
 				auxDirectory = ".",
