@@ -38,7 +38,7 @@ dashboard.section.header.val = {
 	[[                               j########f.                            ]],
 	[[                              :##########t.                           ]],
 	[[                              ````````````.                           ]],
-	"																nvim-" .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch,
+	"                               nvim-" .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch,
 }
 --Set menu
 dashboard.section.buttons.val = {
