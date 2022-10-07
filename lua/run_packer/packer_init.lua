@@ -38,6 +38,9 @@ local plugins = function(use)
 	use({
 		"catppuccin/nvim",
 		as = "catppuccin",
+		config = function()
+			require("catppuccin").setup({})
+		end,
 		-- config = function()
 		-- 	local catppuccin = require("catppuccin")
 		-- 	local transparency = vim.g.transparent_enabled
@@ -374,6 +377,12 @@ local plugins = function(use)
 		disable = vim.fn.getenv("OS") == "Windows_NT",
 	})
 	use({ "karb94/neoscroll.nvim" })
+	use({
+		"JuliaEditorSupport/julia-vim",
+		config = function()
+			vim.g.latex_to_unicode_tab = "off"
+		end,
+	})
 
 	use({
 		"jpalardy/vim-slime",
@@ -381,6 +390,7 @@ local plugins = function(use)
 	})
 
 	-- LSP and syntax highlighting
+	use("ron-rs/ron.vim")
 	-- Because if you are running MS Windows, these plugins won't work :D most of the time
 	if vim.fn.getenv("HOME") ~= vim.NIL then
 		use({

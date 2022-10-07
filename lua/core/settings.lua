@@ -35,26 +35,27 @@ vim.g.diagnostic_enable_virtual_text = 0
 
 -- Python
 if vim.fn.getenv("OS") == "Windows_NT" then
-  -- set shell in windows
-  vim.o.shell = "pwsh-preview.cmd" -- I use powershell-preview so you might want to edit this
-  local python3_path = vim.fn.system({
-    vim.o.shell,
-    "-Command",
-    '"(Get-Command',
-    'python3).path"',
-  })
-  local python2_path = vim.fn.system({
-    vim.o.shell,
-    "-Command",
-    '"(Get-Command',
-    'python2).path"',
-  })
-  vim.g.python3_host_prog = python3_path
-  vim.g.python_host_prog = python2_path
-  vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
-  vim.opt.autowrite = true
+	-- set shell in windows
+	vim.o.shell = "pwsh-preview.cmd" -- I use powershell-preview so you might want to edit this
+	local python3_path = vim.fn.system({
+		vim.o.shell,
+		"-Command",
+		'"(Get-Command',
+		'python3).path"',
+	})
+	local python2_path = vim.fn.system({
+		vim.o.shell,
+		"-Command",
+		'"(Get-Command',
+		'python2).path"',
+	})
+	vim.g.python3_host_prog = python3_path
+	vim.g.python_host_prog = python2_path
+	vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
+	vim.opt.autowrite = true
 else
-  vim.o.shell = vim.fn.getenv("SHELL")
-  vim.g.python3_host_prog = vim.fn.exepath("python3.10")
-  vim.g.python_host_prog = vim.fn.exepath("python") -- python2 is dead dream on bro
+	vim.o.shell = vim.fn.getenv("SHELL")
+	vim.g.python3_host_prog = vim.fn.exepath("python3.10")
+	vim.g.python_host_prog = vim.fn.exepath("python") -- python2 is dead dream on bro
+	vim.g.ruby_host_prog = vim.fn.exepath("ruby.ruby3.1")
 end

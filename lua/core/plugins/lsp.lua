@@ -2,16 +2,18 @@ local nvim_lsp = require("lspconfig")
 function get_current_line()
 	return vim.api.nvim_win_get_cursor(0)[1]
 end
+
 function searchForwardArgs()
 	return get_current_line() .. ":1:" .. vim.fn.expand("%:p")
 end
+
 function LatexBuildCurrentFileOrBuffer()
 	vim.cmd("cd " .. vim.fn.expand("%:p:h"))
 	vim.fn.system({
 		"setsid",
 		"tectonic",
 		"-X",
-    "compile",
+		"compile",
 		"--outdir=" .. vim.fn.expand("%:p:h"),
 		"--synctex",
 		"--keep-logs",
@@ -24,6 +26,7 @@ function LatexBuildCurrentFileOrBuffer()
 		print("Build Success")
 	end
 end
+
 function LatexForwardSearch()
 	vim.fn.system({
 		"setsid",
@@ -38,6 +41,7 @@ function LatexForwardSearch()
 		print("Build Success")
 	end
 end
+
 local wk = require("which-key")
 local opts = { noremap = true, silent = true }
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -46,9 +50,11 @@ local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
 	end
+
 	local function buf_set_option(...)
 		vim.api.nvim_buf_set_option(bufnr, ...)
 	end
+
 	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 	-- Mappings.
 	local keymap = {
@@ -67,9 +73,9 @@ local on_attach = function(client, bufnr)
 		r = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "rename func/var/def" },
 	}
 	-- Set some keybinds conditional on server capabilities
-	if client.resolved_capabilities.document_formatting then
+	if client.server_capabilities.document_formatting then
 		keymap.l.f = { "<Cmd>lua vim.lsp.buf.formatting()<CR>", "format" }
-	elseif client.resolved_capabilities.document_range_formatting then
+	elseif client.server_capabilities.document_range_formatting then
 		keymap.l.f = { "<Cmd>lua vim.lsp.buf.range_formatting()<CR>", "format" }
 	end
 	wk.register({ ["<leader>"] = keymap }, { buffer = bufnr })
@@ -86,7 +92,7 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "]g", "<Cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 
 	---- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
+	if client.server_capabilities.document_highlight then
 		vim.api.nvim_exec(
 			[[
 			augroup lsp_auto
@@ -107,10 +113,20 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- and map buffer local keybindings when the language server attaches
 local servers = {
 	pyright = {},
-	rust_analyzer = {},
+	rust_analyzer = {
+		cmd = {
+			"rustup",
+			"run",
+			"stable",
+			"rust-analyzer",
+		},
+	},
 	bashls = {},
 	clangd = {},
 	jsonls = {},
+	zk = {
+		cmd = { "/home/uncomfy/go/bin/zk" },
+	},
 	hls = {},
 	zls = {
 		cmd = { "/home/uncomfy/Projects/zls-0.9.0/zig-out/bin/zls" },
