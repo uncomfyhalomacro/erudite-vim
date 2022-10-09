@@ -73,9 +73,9 @@ local on_attach = function(client, bufnr)
 		r = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "rename func/var/def" },
 	}
 	-- Set some keybinds conditional on server capabilities
-	if client.server_capabilities.document_formatting then
+	if client.server_capabilities.documentFormattingProvider then
 		keymap.l.f = { "<Cmd>lua vim.lsp.buf.formatting()<CR>", "format" }
-	elseif client.server_capabilities.document_range_formatting then
+	elseif client.server_capabilities.documentRangeFormattingProvider then
 		keymap.l.f = { "<Cmd>lua vim.lsp.buf.range_formatting()<CR>", "format" }
 	end
 	wk.register({ ["<leader>"] = keymap }, { buffer = bufnr })
@@ -92,7 +92,7 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "]g", "<Cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 
 	---- Set autocommands conditional on server_capabilities
-	if client.server_capabilities.document_highlight then
+	if client.server_capabilities.documentHighlightProvider then
 		vim.api.nvim_exec(
 			[[
 			augroup lsp_auto
@@ -115,9 +115,6 @@ local servers = {
 	pyright = {},
 	rust_analyzer = {
 		cmd = {
-			"rustup",
-			"run",
-			"stable",
 			"rust-analyzer",
 		},
 	},
