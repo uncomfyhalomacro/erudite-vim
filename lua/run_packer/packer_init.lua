@@ -37,9 +37,12 @@ local plugins = function(use)
 	})
 	use({
 		"catppuccin/nvim",
+		tag = "v0.2.4",
 		as = "catppuccin",
 		config = function()
-			require("catppuccin").setup({})
+			require("catppuccin").setup({
+			    flavour = "mocha"
+			})
 		end,
 		-- config = function()
 		-- 	local catppuccin = require("catppuccin")
@@ -227,6 +230,10 @@ local plugins = function(use)
 				end,
 			},
 		},
+	})
+	use({
+	    "kristijanhusak/vim-dadbod-completion",
+	    requires = { "tpope/vim-dadbod" }
 	})
 	use({
 		"andweeb/presence.nvim",
