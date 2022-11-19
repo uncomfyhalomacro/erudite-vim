@@ -121,6 +121,7 @@ local servers = {
 	bashls = {},
 	clangd = {},
 	jsonls = {},
+        gopls = {},
 	zk = {
 		cmd = { "/home/uncomfy/go/bin/zk" },
 	},
@@ -277,6 +278,13 @@ local servers = {
 						lintFormats = { "%f: %l: %m" },
 					},
 				},
+				python = {
+					lintCommand = "ruff",
+					lintStdin = true,
+					lintFormats = { "%f:%l:%c %m" },
+					formatCommand = "ruff --stdin-filename %",
+					formatStdin = true
+				}
 			},
 		},
 	},
