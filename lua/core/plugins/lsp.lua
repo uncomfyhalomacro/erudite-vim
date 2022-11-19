@@ -1,45 +1,45 @@
 local nvim_lsp = require("lspconfig")
 function get_current_line()
-	return vim.api.nvim_win_get_cursor(0)[1]
+    return vim.api.nvim_win_get_cursor(0)[1]
 end
 
 function searchForwardArgs()
-	return get_current_line() .. ":1:" .. vim.fn.expand("%:p")
+    return get_current_line() .. ":1:" .. vim.fn.expand("%:p")
 end
 
 function LatexBuildCurrentFileOrBuffer()
-	vim.cmd("cd " .. vim.fn.expand("%:p:h"))
-	vim.fn.system({
-		"setsid",
-		"tectonic",
-		"-X",
-		"compile",
-		"--outdir=" .. vim.fn.expand("%:p:h"),
-		"--synctex",
-		"--keep-logs",
-		"--keep-intermediates",
-		vim.fn.expand("%:p"),
-	})
-	if vim.v.shell_error ~= 0 then
-		print("Build Error")
-	else
-		print("Build Success")
-	end
+    vim.cmd("cd " .. vim.fn.expand("%:p:h"))
+    vim.fn.system({
+        "setsid",
+        "tectonic",
+        "-X",
+        "compile",
+        "--outdir=" .. vim.fn.expand("%:p:h"),
+        "--synctex",
+        "--keep-logs",
+        "--keep-intermediates",
+        vim.fn.expand("%:p"),
+    })
+    if vim.v.shell_error ~= 0 then
+        print("Build Error")
+    else
+        print("Build Success")
+    end
 end
 
 function LatexForwardSearch()
-	vim.fn.system({
-		"setsid",
-		"zathura",
-		"--synctex-forward",
-		searchForwardArgs(),
-		vim.fn.expand("%:p:r") .. ".pdf",
-	})
-	if vim.v.shell_error ~= 0 then
-		print("Build Error")
-	else
-		print("Build Success")
-	end
+    vim.fn.system({
+        "setsid",
+        "zathura",
+        "--synctex-forward",
+        searchForwardArgs(),
+        vim.fn.expand("%:p:r") .. ".pdf",
+    })
+    if vim.v.shell_error ~= 0 then
+        print("Build Error")
+    else
+        print("Build Success")
+    end
 end
 
 local wk = require("which-key")
@@ -47,63 +47,65 @@ local opts = { noremap = true, silent = true }
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local on_attach = function(client, bufnr)
-	local function buf_set_keymap(...)
-		vim.api.nvim_buf_set_keymap(bufnr, ...)
-	end
+    local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
 
-	local function buf_set_option(...)
-		vim.api.nvim_buf_set_option(bufnr, ...)
-	end
+    local function buf_set_option(...)
+        vim.api.nvim_buf_set_option(bufnr, ...)
+    end
 
-	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-	-- Mappings.
-	local keymap = {
-		x = { "<Cmd>lua vim.diagnostic.setloclist()<CR>", "show diagnostics" },
-		l = {
-			name = "+lsp",
-			-- workspace
-			a = { "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "add workspace" },
-			r = { "<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "remove workspace" },
-			--  workspace symbols
-			w = { "<Cmd>lua vim.lsp.buf.workspace_symbol()<CR><CR>", "show all workspace symbols" },
-			W = { "<Cmd>lua vim.lsp.buf.workspace_symbol()<CR>", "search workspace symbol" },
-			-- code action
-			q = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", "code action" },
-		},
-		r = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "rename func/var/def" },
-	}
-	-- Set some keybinds conditional on server capabilities
-	if client.server_capabilities.documentFormattingProvider then
-		keymap.l.f = { "<Cmd>lua vim.lsp.buf.formatting()<CR>", "format" }
-	elseif client.server_capabilities.documentRangeFormattingProvider then
-		keymap.l.f = { "<Cmd>lua vim.lsp.buf.range_formatting()<CR>", "format" }
-	end
-	wk.register({ ["<leader>"] = keymap }, { buffer = bufnr })
+    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+    -- Mappings.
+    local keymap = {
+        x = { "<Cmd>lua vim.diagnostic.setloclist()<CR>", "show diagnostics" },
+        l = {
+            name = "+lsp",
+            -- workspace
+            a = { "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "add workspace" },
+            r = { "<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "remove workspace" },
+            --  workspace symbols
+            w = { "<Cmd>lua vim.lsp.buf.workspace_symbol()<CR><CR>", "show all workspace symbols" },
+            W = { "<Cmd>lua vim.lsp.buf.workspace_symbol()<CR>", "search workspace symbol" },
+            -- code action
+            q = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", "code action" },
+        },
+        r = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "rename func/var/def" },
+    }
+    -- Set some keybinds conditional on server capabilities
+    if client.server_capabilities.documentFormattingProvider and
+        client.server_capabilities.documentRangeFormattingProvider then
+        keymap.l.f = { "<Cmd>lua vim.lsp.buf.format {async = true}()<CR>", "format" }
+        -- seems they are now merged as one
+        -- elseif client.server_capabilities.documentRangeFormattingProvider then
+        -- 	keymap.l.f = { "<Cmd>lua vim.lsp.buf.formatexpr()<CR>", "format" }
+    end
+    wk.register({ ["<leader>"] = keymap }, { buffer = bufnr })
 
-	-- saga mappings
-	-- show hover doc: do it twice so you can go into the hover window and scroll. press q to exit
-	buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR><Cmd>:lua vim.lsp.buf.hover()<CR>", opts)
-	-- show signature help
-	buf_set_keymap("n", "gs", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	-- show definition
-	buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	-- jump diagnostic
-	buf_set_keymap("n", "[g", "<Cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-	buf_set_keymap("n", "]g", "<Cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    -- saga mappings
+    -- show hover doc: do it twice so you can go into the hover window and scroll. press q to exit
+    buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR><Cmd>:lua vim.lsp.buf.hover()<CR>", opts)
+    -- show signature help
+    buf_set_keymap("n", "gs", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+    -- show definition
+    buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    -- jump diagnostic
+    buf_set_keymap("n", "[g", "<Cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    buf_set_keymap("n", "]g", "<Cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 
-	---- Set autocommands conditional on server_capabilities
-	if client.server_capabilities.documentHighlightProvider then
-		vim.api.nvim_exec(
-			[[
+    ---- Set autocommands conditional on server_capabilities
+    if client.server_capabilities.documentHighlightProvider then
+        vim.api.nvim_exec(
+            [[
 			augroup lsp_auto
 				autocmd! * <buffer>
 				 autocmd CursorHold <buffer> :lua vim.lsp.buf.document_highlight()
 				 autocmd CursorMoved <buffer> :lua vim.lsp.buf.clear_references()
 			augroup END
-		]],
-			true
-		)
-	end
+		]]         ,
+            true
+        )
+    end
 end
 
 -- enable snippets
@@ -112,34 +114,34 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
 local servers = {
-	pyright = {},
-	rust_analyzer = {
-		cmd = {
-			"rust-analyzer",
-		},
-	},
-	bashls = {},
-	clangd = {},
-	jsonls = {},
-        gopls = {},
-	zk = {
-		cmd = { "/home/uncomfy/go/bin/zk" },
-	},
-	hls = {},
-	zls = {
-		cmd = { "/home/uncomfy/Projects/zls-0.9.0/zig-out/bin/zls" },
-		filetypes = { "zig", "zir" },
-	},
-	julials = {
-		cmd = {
-			"julia",
-			"--project=@nvim-lspconfig",
-			"-J" .. vim.fn.getenv("HOME") .. "/.julia/environments/nvim-lspconfig/languageserver.so",
-			"--sysimage-native-code=yes",
-			"--startup-file=no",
-			"--history-file=no",
-			"-e",
-			[[
+    pyright = {},
+    rust_analyzer = {
+        cmd = {
+            "rust-analyzer",
+        },
+    },
+    bashls = {},
+    clangd = {},
+    jsonls = {},
+    gopls = {},
+    zk = {
+        cmd = { "/home/uncomfy/go/bin/zk" },
+    },
+    hls = {},
+    zls = {
+        cmd = { "/home/uncomfy/Projects/zls-0.9.0/zig-out/bin/zls" },
+        filetypes = { "zig", "zir" },
+    },
+    julials = {
+        cmd = {
+            "julia",
+            "--project=@nvim-lspconfig",
+            "-J" .. vim.fn.getenv("HOME") .. "/.julia/environments/nvim-lspconfig/languageserver.so",
+            "--sysimage-native-code=yes",
+            "--startup-file=no",
+            "--history-file=no",
+            "-e",
+            [[
 		# just in case
 		import Pkg;
 		function recurse_project_paths(path::AbstractString)
@@ -183,176 +185,176 @@ local servers = {
     server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path, nothing, symbol_server_path, true);
     server.runlinter = true;
     run(server);
-		]],
-		},
-		settings = {
-			julia = {
-				symbolCacheDownload = true,
-				lint = {
-					missingrefs = "all",
-					iter = true,
-					lazy = true,
-					modname = true,
-				},
-			},
-		},
-	},
-	sumneko_lua = {
-		cmd = {
-			"lua-language-server",
-		},
-		settings = {
-			Lua = {
-				diagnostics = {
-					globals = { "vim" },
-				},
-			},
-		},
-	},
-	texlab = {
-		cmd = { "texlab" },
-		filetypes = { "tex", "bib", "plaintex" },
-		settings = {
-			texlab = {
-				auxDirectory = ".",
-				bibtexFormatter = "texlab",
-				build = {
-					args = { "-verbose", "-pdflua", "-interaction=nonstopmode", "-synctex=1", vim.fn.expand("%:p") },
-					executable = "latexmk",
-					forwardSearchAfter = false,
-					onSave = true,
-				},
-				forwardSearch = {
-					executable = "zathura",
-					args = {
-						"--synctex-forward",
-						searchForwardArgs(),
-						vim.fn.expand("%:p:r") .. ".pdf",
-					},
-				},
-				lint = {
-					onChange = true,
-				},
-			},
-		},
-		commands = {
-			TexlabBuild = {
-				function()
-					LatexBuildCurrentFileOrBuffer()
-				end,
-				description = "Build the current buffer",
-			},
-			TexlabForward = {
-				function()
-					LatexForwardSearch()
-				end,
-				description = "Forward search from current position",
-			},
-		},
-	},
-	-- linters + formatters
-	efm = {
-		cmd = { "efm-langserver" },
-		init_options = { documentFormatting = true },
-		filetypes = {
-			"lua",
-			"python",
-			"markdown",
-			"sh",
-			"json",
-		},
-		settings = {
-			rootMarkers = { ".git/" },
-			languages = {
-				lua = {
-					{
-						formatCommand = "stylua --color Never",
-						formatStdin = true,
-						rootMarkers = { "stylua.toml", ".stylua.toml" },
-					},
-				},
-				markdown = {
-					{
-						lintCommand = "markdownlint -s",
-						lintStdin = true,
-						lintFormats = { "%f: %l: %m" },
-					},
-				},
-				python = {
-					lintCommand = "ruff",
-					lintStdin = true,
-					lintFormats = { "%f:%l:%c %m" },
-					formatCommand = "ruff --stdin-filename %",
-					formatStdin = true
-				}
-			},
-		},
-	},
+		]]         ,
+        },
+        settings = {
+            julia = {
+                symbolCacheDownload = true,
+                lint = {
+                    missingrefs = "all",
+                    iter = true,
+                    lazy = true,
+                    modname = true,
+                },
+            },
+        },
+    },
+    sumneko_lua = {
+        cmd = {
+            "lua-language-server",
+        },
+        settings = {
+            Lua = {
+                diagnostics = {
+                    globals = { "vim" },
+                },
+            },
+        },
+    },
+    texlab = {
+        cmd = { "texlab" },
+        filetypes = { "tex", "bib", "plaintex" },
+        settings = {
+            texlab = {
+                auxDirectory = ".",
+                bibtexFormatter = "texlab",
+                build = {
+                    args = { "-verbose", "-pdflua", "-interaction=nonstopmode", "-synctex=1", vim.fn.expand("%:p") },
+                    executable = "latexmk",
+                    forwardSearchAfter = false,
+                    onSave = true,
+                },
+                forwardSearch = {
+                    executable = "zathura",
+                    args = {
+                        "--synctex-forward",
+                        searchForwardArgs(),
+                        vim.fn.expand("%:p:r") .. ".pdf",
+                    },
+                },
+                lint = {
+                    onChange = true,
+                },
+            },
+        },
+        commands = {
+            TexlabBuild = {
+                function()
+                    LatexBuildCurrentFileOrBuffer()
+                end,
+                description = "Build the current buffer",
+            },
+            TexlabForward = {
+                function()
+                    LatexForwardSearch()
+                end,
+                description = "Forward search from current position",
+            },
+        },
+    },
+    -- linters + formatters
+    efm = {
+        cmd = { "efm-langserver" },
+        init_options = { documentFormatting = true },
+        filetypes = {
+            "lua",
+            "python",
+            "markdown",
+            "sh",
+            "json",
+        },
+        settings = {
+            rootMarkers = { ".git/" },
+            languages = {
+                lua = {
+                    {
+                        formatCommand = "stylua --color Never",
+                        formatStdin = true,
+                        rootMarkers = { "stylua.toml", ".stylua.toml" },
+                    },
+                },
+                markdown = {
+                    {
+                        lintCommand = "markdownlint -s",
+                        lintStdin = true,
+                        lintFormats = { "%f: %l: %m" },
+                    },
+                },
+                python = {
+                    lintCommand = "ruff",
+                    lintStdin = true,
+                    lintFormats = { "%f:%l:%c %m" },
+                    formatCommand = "ruff --stdin-filename %",
+                    formatStdin = true
+                }
+            },
+        },
+    },
 }
 
 for lsp, setup in pairs(servers) do
-	local lsp_status = require("lsp-status")
-	lsp_status.register_progress()
-	lsp_status.messages()
-	setup.capabilities = vim.tbl_extend("keep", setup.capabilities or {}, lsp_status.capabilities)
-	setup.on_attach = lsp_status.on_attach
-	setup.on_attach = on_attach
-	lsp_status.register_client(setup.on_attach)
-	setup.capabilities = lsp_status.capabilities
-	setup.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-	if lsp == "julials" then
-		capabilities.textDocument.completion.completionItem.preselectSupport = true
-		capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
-		capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-		capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
-		capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-		capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-		capabilities.textDocument.completion.completionItem.resolveSupport = {
-			properties = { "documentation", "detail", "additionalTextEdits" },
-		}
-		capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown" }
-		capabilities.textDocument.codeAction = {
-			dynamicRegistration = true,
-			codeActionLiteralSupport = {
-				codeActionKind = {
-					valueSet = (function()
-						local res = vim.tbl_values(vim.lsp.protocol.CodeActionKind)
-						table.sort(res)
-						return res
-					end)(),
-				},
-			},
-		}
+    local lsp_status = require("lsp-status")
+    lsp_status.register_progress()
+    lsp_status.messages()
+    setup.capabilities = vim.tbl_extend("keep", setup.capabilities or {}, lsp_status.capabilities)
+    setup.on_attach = lsp_status.on_attach
+    setup.on_attach = on_attach
+    lsp_status.register_client(setup.on_attach)
+    setup.capabilities = lsp_status.capabilities
+    setup.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+    if lsp == "julials" then
+        capabilities.textDocument.completion.completionItem.preselectSupport = true
+        capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+        capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+        capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+        capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+        capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+        capabilities.textDocument.completion.completionItem.resolveSupport = {
+            properties = { "documentation", "detail", "additionalTextEdits" },
+        }
+        capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown" }
+        capabilities.textDocument.codeAction = {
+            dynamicRegistration = true,
+            codeActionLiteralSupport = {
+                codeActionKind = {
+                    valueSet = (function()
+                        local res = vim.tbl_values(vim.lsp.protocol.CodeActionKind)
+                        table.sort(res)
+                        return res
+                    end)(),
+                },
+            },
+        }
 
-		vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-			virtual_text = false,
-			underline = false,
-			signs = true,
-			update_in_insert = false,
-		})
-	end
-	nvim_lsp[lsp].setup(setup)
+        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+            virtual_text = false,
+            underline = false,
+            signs = true,
+            update_in_insert = false,
+        })
+    end
+    nvim_lsp[lsp].setup(setup)
 end
 
 -- TODO move elsewhere?
 vim.cmd("highlight! link LspDiagnosticsDefaultError WarningMsg")
 vim.fn.sign_define("LspDiagnosticsSignError", {
-	texthl = "LspDiagnosticsSignError",
-	text = "",
-	numhl = "LspDiagnosticsSignError",
+    texthl = "LspDiagnosticsSignError",
+    text = "",
+    numhl = "LspDiagnosticsSignError",
 })
 vim.fn.sign_define("LspDiagnosticsSignWarning", {
-	texthl = "LspDiagnosticsSignWarning",
-	text = "",
-	numhl = "LspDiagnosticsSignWarning",
+    texthl = "LspDiagnosticsSignWarning",
+    text = "",
+    numhl = "LspDiagnosticsSignWarning",
 })
 vim.fn.sign_define("LspDiagnosticsSignInformation", {
-	texthl = "LspDiagnosticsSignInformation",
-	text = "",
-	numhl = "LspDiagnosticsSignInformation",
+    texthl = "LspDiagnosticsSignInformation",
+    text = "",
+    numhl = "LspDiagnosticsSignInformation",
 })
 vim.fn.sign_define("LspDiagnosticsSignHint", {
-	texthl = "LspDiagnosticsSignHint",
-	text = "",
-	numhl = "LspDiagnosticsSignHint",
+    texthl = "LspDiagnosticsSignHint",
+    text = "",
+    numhl = "LspDiagnosticsSignHint",
 })
