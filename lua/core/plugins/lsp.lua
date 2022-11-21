@@ -73,8 +73,10 @@ local on_attach = function(client, bufnr)
         r = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "rename func/var/def" },
     }
     -- Set some keybinds conditional on server capabilities
-    if client.server_capabilities.documentFormattingProvider and
-        client.server_capabilities.documentRangeFormattingProvider then
+    if
+        client.server_capabilities.documentFormattingProvider
+        and client.server_capabilities.documentRangeFormattingProvider
+    then
         keymap.l.f = { "<Cmd>lua vim.lsp.buf.format {async = true}()<CR>", "format" }
         -- seems they are now merged as one
         -- elseif client.server_capabilities.documentRangeFormattingProvider then
@@ -102,7 +104,7 @@ local on_attach = function(client, bufnr)
 				 autocmd CursorHold <buffer> :lua vim.lsp.buf.document_highlight()
 				 autocmd CursorMoved <buffer> :lua vim.lsp.buf.clear_references()
 			augroup END
-		]]         ,
+		]],
             true
         )
     end
@@ -156,7 +158,10 @@ local servers = {
 			pushfirst!(Base.LOAD_PATH, CUSTOM_LOAD_PATH...)
 			return joinpath(CUSTOM_LOAD_PATH[1], "Project.toml")
     end
-		buffer_file_path = "]] .. vim.fn.expand("%:p:h") .. '";' .. [[
+		buffer_file_path = "]]
+                .. vim.fn.expand("%:p:h")
+                .. '";'
+                .. [[
     project_path = let 
 			dirname(something(
 				# 1. Check if there is an explicitly set project
@@ -185,7 +190,7 @@ local servers = {
     server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path, nothing, symbol_server_path, true);
     server.runlinter = true;
     run(server);
-		]]         ,
+		]],
         },
         settings = {
             julia = {
@@ -285,8 +290,8 @@ local servers = {
                     lintStdin = true,
                     lintFormats = { "%f:%l:%c %m" },
                     formatCommand = "ruff --stdin-filename %",
-                    formatStdin = true
-                }
+                    formatStdin = true,
+                },
             },
         },
     },
