@@ -71,3 +71,4 @@ Just refer [here](https://github.com/uncomfyhalomacro/erudite-vim/blob/3b83f6d9d
 - [ ] add nvim-dap configurations. not a priority for now. if someone is able to help, pls do open a pr. i dont need it at this moment lolz
 - [ ] switch to [Fennel](https://fennel-lang.org/) with [aniseed](https://github.com/Olical/aniseed) plugin
 - [ ] Replace hop.nvim with leap.nvim
+- [ ] Replace packer with lazy.nvim
