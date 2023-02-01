@@ -8,6 +8,8 @@
 
 **NOTE**: Screenshots may not be the same as the current configuration. Please be aware.
 
+# Moved to [Codeberg](https://codeberg.org/uncomfyhalomacro/erudite.nvim)
+
 This configuration is more focused for Julia users. But it can still be modified to be used for other languages. I am
 planning to add that functionality soon but it is not a priority as of yet. Feel free to fork! :smiley:
 
