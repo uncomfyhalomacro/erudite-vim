@@ -3,7 +3,6 @@ local treesitter = require("nvim-treesitter.configs").setup({
     sync_install = true,
     highlight = {
         enable = true, -- false will disable the whole extension
-        disable = { "julia" },
     },
     playground = {
         enable = true,
